@@ -11,6 +11,7 @@ config_version=4
 [application]
 
 config/name="GMTK-game-jam-2021"
+run/main_scene="res://Assets/Scenes/LevelScene.tscn"
 config/icon="res://icon.png"
 
 [global]

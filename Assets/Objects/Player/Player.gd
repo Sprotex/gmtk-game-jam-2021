@@ -1,36 +1,45 @@
 extends KinematicBody2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var speed: int = 20
-var jumpForce: int = 600
-var gravity: int = 800
+const EPS: float = 0.1
+
+var max_x_speed: int = 600
+var x_speed: int = 4400
+var slow_down_increment: int = 1500
+
+var jump_force: int = 1000
+var gravity: int = 3200
+var max_y_speed: int = 900
 
 var vel: Vector2 = Vector2()
 var grounded: bool = false
 
 onready var sprite = $tmp_player
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 func _physics_process(delta):
+	# XSPEED
 	if Input.is_action_pressed("move_left"):
-		vel.x -= speed
-	if Input.is_action_pressed("move_right"):
-		vel.x += speed
+		vel.x -= x_speed * delta
+	elif Input.is_action_pressed("move_right"):
+		vel.x += x_speed * delta
+	else:
+		var decrease_speed_by: float = slow_down_increment * delta
+		if abs(vel.x) <= decrease_speed_by:
+			vel.x = 0
+		else:
+			vel.x -= decrease_speed_by * sign(vel.x)
+		
+	vel.x = clamp(vel.x, -max_x_speed, max_x_speed)
+	
 	vel = move_and_slide(vel, Vector2.UP)
+	if abs(vel.x) <= EPS:
+		vel.x = 0
+	
 	vel.y += gravity * delta
+	if vel.y > max_y_speed:
+		vel.y = max_y_speed
 	
 	if Input.is_action_pressed("jump") and is_on_floor():
-		vel.y = jumpForce
+		vel.y = -jump_force
 
 	if vel.x < 0:
 		sprite.flip_h = true

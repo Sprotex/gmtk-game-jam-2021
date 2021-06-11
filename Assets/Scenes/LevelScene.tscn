@@ -9,6 +9,12 @@ script = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 402.596, 256.39 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="Tile" parent="." instance=ExtResource( 3 )]
-position = Vector2( 360.217, 639.916 )
+position = Vector2( 471.896, 545.956 )
+scale = Vector2( 3.70989, 0.246794 )
+
+[node name="Tile2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 744.588, 444.071 )
+scale = Vector2( 0.349885, 0.246794 )
