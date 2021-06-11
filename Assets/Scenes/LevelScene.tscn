@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Scripts/RootScript.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Objects/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Objects/Tile/Tile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Objects/Worker/Worker.tscn" type="PackedScene" id=4]
 
 [node name="LevelScene" type="Node"]
 script = ExtResource( 1 )
@@ -26,3 +27,6 @@ scale = Vector2( 0.189883, 0.086794 )
 [node name="Tile4" parent="." instance=ExtResource( 3 )]
 position = Vector2( 894.419, 372.153 )
 scale = Vector2( 0.10988, 0.406794 )
+
+[node name="Worker" parent="." instance=ExtResource( 4 )]
+position = Vector2( 186, 248 )
