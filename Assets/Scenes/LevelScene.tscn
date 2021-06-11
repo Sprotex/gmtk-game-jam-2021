@@ -8,13 +8,21 @@
 script = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 402.596, 256.39 )
+position = Vector2( 282.731, 487.129 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Tile" parent="." instance=ExtResource( 3 )]
-position = Vector2( 471.896, 545.956 )
-scale = Vector2( 3.70989, 0.246794 )
+position = Vector2( 524.337, 580.417 )
+scale = Vector2( 2.58989, 0.086794 )
+
+[node name="Tile3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 387.991, 312.22 )
+scale = Vector2( 1.26989, 0.086794 )
 
 [node name="Tile2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 744.588, 444.071 )
-scale = Vector2( 0.349885, 0.246794 )
+position = Vector2( 831.49, 439.576 )
+scale = Vector2( 0.189883, 0.086794 )
+
+[node name="Tile4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 894.419, 372.153 )
+scale = Vector2( 0.10988, 0.406794 )
