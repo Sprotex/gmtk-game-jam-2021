@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/Scripts/RootScript.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Objects/Player/Player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Textures/NameplateNora.png" type="Texture" id=10]
 [ext_resource path="res://Textures/NameplateJudy.png" type="Texture" id=11]
 [ext_resource path="res://Textures/NameplateChad.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Objects/MusicSystem/Music.tscn" type="PackedScene" id=13]
 
 [node name="LevelScene" type="Node"]
 script = ExtResource( 1 )
@@ -122,3 +123,5 @@ position = Vector2( 934.342, 355.882 )
 
 [node name="Node_3" type="Node2D" parent="PathNodes"]
 position = Vector2( 838.234, 223.733 )
+
+[node name="Music" parent="." instance=ExtResource( 13 )]

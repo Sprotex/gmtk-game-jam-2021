@@ -9,6 +9,8 @@ const filenames = [
 	'anger_4_messages.txt',
 ];
 
+signal on_message_delivered
+
 func _ready():
 	for filename in filenames:
 		anger_to_messages.push_back(
