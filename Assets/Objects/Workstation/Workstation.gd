@@ -31,9 +31,9 @@ func search(closed: Array, receiver_name: String) -> bool:
 			if port.cable != null:
 				cables.append(port.cable)
 		for cable in cables:
-			var cable_connections = ""
+			var _cable_connections = ""
 			if not (cable.connections[0] is PlayerBody or cable.connections[1] is PlayerBody):
-				cable_connections = "%s <-> %s" % [cable.connections[0].computer.computer_name, cable.connections[1].computer.computer_name]
+				_cable_connections = "%s <-> %s" % [cable.connections[0].computer.computer_name, cable.connections[1].computer.computer_name]
 			if cable.search(closed, receiver_name):
 				return true
 	return false

@@ -9,6 +9,7 @@ onready var messageShowTimer: Timer = $MessageShowTimer
 onready var bubble: RichTextLabel = $BubbleText
 onready var bubble_background: NinePatchRect = $BubbleBackground
 onready var message_manager = get_node("/root/MessageManager")
+onready var anger_sprite = get_node("AngerSprite")
 
 var _starting_position: Vector2
 var _problems = []
@@ -61,6 +62,7 @@ func work(delta: float):
 		if anger_int > 4:
 			anger_int = 4
 		say_text(MessageManager.pick_message(_problems[0], anger_int))
+		anger_sprite.set_angriness(anger_int)
 	
 
 func go_home(delta: float):
