@@ -102,6 +102,7 @@ nameplate = ExtResource( 11 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 396.66, 434.016 )
+cables_count = 2
 
 [node name="PathNodes" type="Node" parent="."]
 script = ExtResource( 8 )
@@ -119,3 +120,5 @@ position = Vector2( 934.342, 355.882 )
 position = Vector2( 838.234, 223.733 )
 
 [node name="Music" parent="." instance=ExtResource( 13 )]
+
+[editable path="Player"]

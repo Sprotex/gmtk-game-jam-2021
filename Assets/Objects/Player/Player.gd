@@ -4,6 +4,7 @@ const EPS: float = 0.1
 
 class_name PlayerBody
 
+export (int) var cables_count = 3
 onready var jumpSound = get_node("SoundSystem/Jump")
 
 # Declare member variables here. Examples:
@@ -32,6 +33,7 @@ var grounded: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_node("CableConnecting").set_cable_count(cables_count)
 	var level_manager = get_node("/root/LevelManager")
 	level_manager.player_reference = self
 

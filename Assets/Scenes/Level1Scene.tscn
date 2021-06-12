@@ -129,6 +129,7 @@ nameplate = ExtResource( 14 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 396.66, 434.016 )
+cables_count = 1
 
 [node name="PathNodes" type="Node" parent="."]
 script = ExtResource( 9 )

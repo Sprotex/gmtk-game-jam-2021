@@ -3,17 +3,20 @@ extends Node
 var near_areas = []
 var near_computer = null
 var cable_class = preload("res://Assets/Objects/Cable/Cable.tscn")
+var cables = []
 onready var interactor = get_parent().get_node("Interactor")
-onready var cables = get_children()
 onready var player = get_parent()
 
 signal on_lose_cable
 signal on_gain_cable
 
-func _ready():
-	for cable in cables:
+func set_cable_count(value: int):
+	for i in value:
+		var cable = cable_class.instance()
 		cable.init()
+		add_child(cable)
 		emit_signal("on_gain_cable")
+	cables = get_children()
 
 func _gain_cable(cable):
 	cables.push_front(cable)
