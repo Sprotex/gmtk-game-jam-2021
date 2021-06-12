@@ -18,8 +18,9 @@ func _process(_delta):
 	if connections.size() >= 2 and connections[1] is PlayerBody and visible:
 		start_drawing()
 
-func search(open: Array, closed: Array, receiver_name: String) -> bool:
+func search(closed: Array, receiver_name: String) -> bool:
 	for connection in connections:
-		if not closed.has(connection):
-			open.append(connection)
-	return true
+		var computer = connection.computer
+		if computer.search(closed, receiver_name):
+			return true
+	return false

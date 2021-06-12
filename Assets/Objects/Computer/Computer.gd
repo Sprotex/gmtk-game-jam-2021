@@ -14,14 +14,18 @@ func connect_to_pc(id: int):
 # receiver_name: which pc is receiving the message
 # returns true when message arrived, false otherwise
 func try_send_message(receiver_name: String) -> bool:
-	var open = []
 	var closed = []
-	return _search(open, closed, receiver_name)
-		
-func _search(open: Array, closed: Array, receiver_name: String) -> bool:
-	for cable in cables:
-		if cable.search(open, closed, receiver_name):
-			return true
+	return search(closed, receiver_name)
+
+func search(closed: Array, receiver_name: String) -> bool:
+	if receiver_name == computer_name:
+		return true
+	if not closed.has(self):
+		closed.append(self)
+		for cable in cables:
+			var cable_connections = "%s <-> %s" % [cable.connections[0].computer.computer_name, cable.connections[1].computer.computer_name]
+			if cable.search(closed, receiver_name):
+				return true
 	return false
 
 func _process(_delta):
