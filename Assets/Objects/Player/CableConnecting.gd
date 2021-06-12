@@ -15,12 +15,12 @@ func _connect_cable(id):
 		var cable = cables[0]
 		var port = near_computer.ports[id]
 		if cable.connections.empty(): # I am currently not carrying a cable
-			if port.cable == null: # check if port is full
+			if port.cable == null: # port is empty
 				port.cable = cable
 				cable.connections.push_back(port) 
 				cable.connections.push_back(player)
 				cable.start_drawing()
-			else: # disconnect the cable, attach it to player
+			else: # disconnect the cable from occupied port, attach it to player
 				cable = port.cable
 				cables.push_front(cable)
 				port.cable = null
@@ -55,4 +55,4 @@ func _on_Interactor_area_exited(area):
 		for overlapping_area in overlapping_areas:
 			if overlapping_area is ComputerArea:
 				near_computer = area.computer
-		
+				return

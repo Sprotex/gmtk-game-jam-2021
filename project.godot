@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "ComputerArea",
 "language": "GDScript",
-"path": "res://Assets/Objects/Computer/ComputerReference.gd"
+"path": "res://Assets/Objects/Workstation/ComputerArea.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "PlayerBody",
