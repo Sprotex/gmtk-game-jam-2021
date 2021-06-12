@@ -36,10 +36,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AngeringTimer" type="Timer" parent="."]
-wait_time = 2.0
-
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-
-[connection signal="timeout" from="AngeringTimer" to="." method="_on_AngeringTimer_timeout"]

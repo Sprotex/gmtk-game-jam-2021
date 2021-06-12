@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Assets/Scripts/RootScript.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Scenes/LevelScene.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Objects/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Objects/Tile/Tile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Objects/Worker/Worker.tscn" type="PackedScene" id=4]
@@ -15,6 +15,7 @@
 
 [node name="LevelScene" type="Node"]
 script = ExtResource( 1 )
+level_name = "level1"
 
 [node name="LevelBackground" type="Sprite" parent="."]
 texture = ExtResource( 9 )

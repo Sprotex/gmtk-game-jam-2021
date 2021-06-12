@@ -36,7 +36,7 @@ script = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactor"]
 shape = SubResource( 2 )
 
-[node name="PlayerSprite" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 
 [connection signal="area_entered" from="Interactor" to="CableConnecting" method="_on_Interactor_area_entered"]
