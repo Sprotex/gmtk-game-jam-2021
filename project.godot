@@ -38,6 +38,7 @@ FileUtils="*res://Assets/Objects/Singletons/FileUtils/FileUtils.gd"
 TimeManager="*res://Assets/Objects/Singletons/TimeManager/TimeManager.gd"
 GlobalNavigation="*res://Assets/Objects/Singletons/Navigation/GlobalNavigation.gd"
 TimelineManager="*res://Assets/Objects/Singletons/TimelineManager.gd"
+BubbleManager="*res://Assets/Objects/Singletons/BubbleManager/BubbleManager.gd"
 
 [global]
 

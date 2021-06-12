@@ -12,7 +12,7 @@ func _ready():
 
 func reset():
 	workers = {}
-	workstations = {} 
+	workstations = {}
 
 
 var scene_sequence = [
