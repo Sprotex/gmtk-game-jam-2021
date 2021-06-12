@@ -2,6 +2,14 @@ extends KinematicBody2D
 
 const EPS: float = 0.1
 
+class_name PlayerBody
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+var speed: int = 20
+var jumpForce: int = 600
+
 # XSpeed handling
 var max_x_speed: int = 600
 var x_speed: int = 4400
@@ -19,6 +27,10 @@ var airtime:float = 0
 
 var vel: Vector2 = Vector2()
 var grounded: bool = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	get_node("/root/LevelManager").player_reference = self
 
 onready var sprite = $tmp_player
 
