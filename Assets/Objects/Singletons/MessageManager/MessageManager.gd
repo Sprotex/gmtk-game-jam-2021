@@ -24,7 +24,7 @@ func _ready():
 func pick_message(name: String, anger: int):
 	var candidates = anger_to_messages[anger]
 	var sentence = candidates[randi() % len(candidates)]
-	return sentence.format({"name": name})
+	return sentence.format({"name": "[color=red]%s[/color]" % name})
 	
 
 func pick_thanks_message(name: String) -> String:

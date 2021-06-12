@@ -1,12 +1,13 @@
-Well, finally, {name}!
-Thanks, {name}!
-It wasn't that hard, {name}, was it?
-Brilliant, {name}!
-Awesome answer, {name}.
-Got it, {name}...
-Wow, thanks, but why so rude, {name}?
-I love you, {name}.
-Wow, that was fast, {name}!
-Sweet bajeebus, {name}, that was a large attachment.
-My notebook just doubled its value, {name}.
-To: {name}. Subject: :o)
+Well, finally!
+Thanks!
+It wasn't that hard, was it?
+Brilliant!
+Awesome answer.
+Got it.
+Wow, thanks, but why so rude?
+I love you.
+Wow, that was fast!
+Sweet bajeebus, that was a large attachment.
+A precious little piece of data.
+I am sending you an e-mail as a reward.
+Really? THAT is your response?

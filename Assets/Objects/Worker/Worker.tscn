@@ -36,7 +36,9 @@ margin_right = 60.0
 margin_bottom = -45.0
 rect_scale = Vector2( 1, 0.977162 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "Alex, where is my coffee?"
+bbcode_enabled = true
+bbcode_text = "[color=red]Alex[/color] i need you"
+text = "Alex i need you"
 __meta__ = {
 "_edit_use_anchors_": false
 }
