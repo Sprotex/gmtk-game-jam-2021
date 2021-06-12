@@ -14,7 +14,6 @@ func _process(delta):
 		)
 		_tween.start()
 		_ending = true
-		
 
 
 
