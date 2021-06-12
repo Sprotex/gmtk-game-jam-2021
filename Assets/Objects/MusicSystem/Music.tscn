@@ -1,0 +1,13 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Objects/MusicSystem/Music.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sounds/the final 1on1.wav" type="AudioStream" id=2]
+[ext_resource path="res://Assets/Sounds/fury of hr.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Sounds/ye ol corporate boy.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Sounds/admins of madness.wav" type="AudioStream" id=5]
+
+[node name="Music" type="AudioStreamPlayer"]
+script = ExtResource( 1 )
+GameplayMusic = [ ExtResource( 3 ), ExtResource( 5 ) ]
+IntroMusic = [ ExtResource( 4 ) ]
+FailMusic = [ ExtResource( 2 ) ]

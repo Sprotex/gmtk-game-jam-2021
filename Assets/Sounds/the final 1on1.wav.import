@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/the final 1on1.wav-3e774630ed71f6468d1d9838dfe16480.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/the final 1on1.wav"
+dest_files=[ "res://.import/the final 1on1.wav-3e774630ed71f6468d1d9838dfe16480.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
