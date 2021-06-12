@@ -5,7 +5,12 @@ var player_reference
 var workers: Dictionary
 var workstations: Dictionary
 
-func init():
+
+func _ready():
+	reset()
+
+
+func reset():
 	workers = {}
 	workstations = {} 
 
@@ -25,4 +30,9 @@ func go_to_next_scene():
 		get_tree().quit()
 		return
 	
+	for worker in workers.values():
+		worker._problems = []
+	reset()
 	get_tree().change_scene(scene_sequence[_current_scene_index])
+	
+	

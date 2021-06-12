@@ -12,7 +12,7 @@ onready var message_manager = get_node("/root/MessageManager")
 onready var anger_sprite = get_node("AngerSprite")
 
 var _starting_position: Vector2
-var _problems = []
+onready var _problems = []
 var anger = 0
 var _work_location: Vector2 = Vector2.INF
 
@@ -36,6 +36,7 @@ class Problem:
 		
 	func is_solved():
 		return progress == 1.0
+
 
 func _ready():
 	_starting_position = global_position
