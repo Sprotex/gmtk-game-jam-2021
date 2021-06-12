@@ -1,18 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Objects/Workstation/Workstation.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Workstation.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Objects/Workstation/ComputerArea.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Objects/Workstation/Port.gd" type="Script" id=4]
+[ext_resource path="res://Textures/NameplateOtto.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 50 )
 
 [node name="Workstation" type="Node2D"]
 script = ExtResource( 1 )
+nameplate = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="Ports" type="Node2D" parent="."]
@@ -40,3 +41,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
+
+[node name="Nameplate" type="Sprite" parent="."]
+position = Vector2( -31.4695, 11.1286 )
+texture = ExtResource( 5 )

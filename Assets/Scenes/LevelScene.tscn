@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/Scripts/RootScript.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Objects/Player/Player.tscn" type="PackedScene" id=2]
@@ -8,57 +8,117 @@
 [ext_resource path="res://Assets/Objects/Singletons/TimeManager/TimeLabel.gd" type="Script" id=6]
 [ext_resource path="res://Assets/Objects/Workstation/Workstation.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Objects/Pathfinding/PathNodes.gd" type="Script" id=8]
+[ext_resource path="res://Textures/level1.png" type="Texture" id=9]
+[ext_resource path="res://Textures/NameplateNora.png" type="Texture" id=10]
+[ext_resource path="res://Textures/NameplateJudy.png" type="Texture" id=11]
+[ext_resource path="res://Textures/NameplateChad.png" type="Texture" id=12]
 
 [node name="LevelScene" type="Node"]
 script = ExtResource( 1 )
 
+[node name="LevelBackground" type="Sprite" parent="."]
+texture = ExtResource( 9 )
+centered = false
+
 [node name="Label" parent="." instance=ExtResource( 5 )]
-margin_left = 841.26
-margin_top = 28.5269
-margin_right = 881.26
-margin_bottom = 42.5269
+margin_left = 816.062
+margin_top = 140.66
+margin_right = 916.062
+margin_bottom = 200.66
 script = ExtResource( 6 )
 
-[node name="Tiles" type="Node" parent="."]
+[node name="Tiles" type="Node2D" parent="."]
+visible = false
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
-[node name="Tile3" parent="Tiles" instance=ExtResource( 3 )]
-position = Vector2( 387.991, 312.22 )
-scale = Vector2( 1.26989, 0.086794 )
+[node name="middle_floor" parent="Tiles" instance=ExtResource( 3 )]
+position = Vector2( 398.835, 299.812 )
+scale = Vector2( 1.7241, -0.060287 )
 
-[node name="Tile" parent="Tiles" instance=ExtResource( 3 )]
-position = Vector2( 524.337, 580.417 )
-scale = Vector2( 2.58989, 0.086794 )
+[node name="bottom_floor" parent="Tiles" instance=ExtResource( 3 )]
+position = Vector2( 512.998, 576.637 )
+scale = Vector2( 3.14989, 0.144885 )
 
-[node name="Tile2" parent="Tiles" instance=ExtResource( 3 )]
-position = Vector2( 831.49, 439.576 )
-scale = Vector2( 0.189883, 0.086794 )
+[node name="stairs_middle" parent="Tiles" instance=ExtResource( 3 )]
+position = Vector2( 924.507, 433.26 )
+scale = Vector2( 0.307478, -0.0726378 )
 
-[node name="Tile4" parent="Tiles" instance=ExtResource( 3 )]
-position = Vector2( 894.419, 372.153 )
-scale = Vector2( 0.10988, 0.406794 )
+[node name="wall_right" parent="Tiles" instance=ExtResource( 3 )]
+position = Vector2( 995.982, 231.391 )
+scale = Vector2( 0.10988, 1.48679 )
+
+[node name="wall_left" parent="Tiles" instance=ExtResource( 3 )]
+position = Vector2( 41.1335, 331.348 )
+scale = Vector2( 0.0575134, 0.459099 )
+
+[node name="wall_left_outer" parent="Tiles" instance=ExtResource( 3 )]
+position = Vector2( -149.714, 254.554 )
+scale = Vector2( 0.10988, 1.48679 )
+
+[node name="wall_left2_up" parent="Tiles" instance=ExtResource( 3 )]
+position = Vector2( 39.2458, 23.4732 )
+scale = Vector2( 0.0575134, 0.299099 )
+
+[node name="wall_left3_up" parent="Tiles" instance=ExtResource( 3 )]
+position = Vector2( 751.965, 55.5456 )
+scale = Vector2( 0.0575134, 0.299099 )
+
+[node name="ceiling" parent="Tiles" instance=ExtResource( 3 )]
+position = Vector2( 507.334, 38.629 )
+scale = Vector2( 2.26989, 0.0753481 )
 
 [node name="Workers" type="Node" parent="."]
 
-[node name="Worker" parent="Workers" instance=ExtResource( 4 )]
-position = Vector2( 13.936, 499.146 )
-work_location = Vector2( 227.936, 231.146 )
+[node name="Otto" parent="Workers" instance=ExtResource( 4 )]
+position = Vector2( -513.959, 481.357 )
+work_location = Vector2( 214.864, 222.398 )
+
+[node name="Judy" parent="Workers" instance=ExtResource( 4 )]
+position = Vector2( -64.1179, 482.692 )
+work_location = Vector2( 540.526, 482.591 )
+
+[node name="Nora" parent="Workers" instance=ExtResource( 4 )]
+position = Vector2( -85.4753, 482.692 )
+work_location = Vector2( 216.013, 483.69 )
+
+[node name="Chad" parent="Workers" instance=ExtResource( 4 )]
+position = Vector2( -118.846, 484.027 )
+work_location = Vector2( 540.526, 221.027 )
 
 [node name="Workstations" type="Node" parent="."]
 
-[node name="Workstation CEO" parent="Workstations" instance=ExtResource( 7 )]
-position = Vector2( 227, 231 )
+[node name="Workstation 1" parent="Workstations" instance=ExtResource( 7 )]
+position = Vector2( 216.013, 221.265 )
+
+[node name="Workstation 2" parent="Workstations" instance=ExtResource( 7 )]
+position = Vector2( 216.013, 483.69 )
+nameplate = ExtResource( 10 )
+
+[node name="Workstation 3" parent="Workstations" instance=ExtResource( 7 )]
+position = Vector2( 540.526, 221.027 )
+nameplate = ExtResource( 12 )
+
+[node name="Workstation 4" parent="Workstations" instance=ExtResource( 7 )]
+position = Vector2( 540.526, 482.591 )
+nameplate = ExtResource( 11 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 334.364, 473.659 )
+position = Vector2( 396.66, 434.016 )
 
 [node name="PathNodes" type="Node" parent="."]
 script = ExtResource( 8 )
 
 [node name="Node_0" type="Node2D" parent="PathNodes"]
-position = Vector2( 652, 501 )
+position = Vector2( 723.438, 484.027 )
 
 [node name="Node_1" type="Node2D" parent="PathNodes"]
-position = Vector2( 828, 380 )
+position = Vector2( 870.27, 355.882 )
 
 [node name="Node_2" type="Node2D" parent="PathNodes"]
-position = Vector2( 646, 231 )
+position = Vector2( 934.342, 355.882 )
+
+[node name="Node_3" type="Node2D" parent="PathNodes"]
+position = Vector2( 838.234, 223.733 )

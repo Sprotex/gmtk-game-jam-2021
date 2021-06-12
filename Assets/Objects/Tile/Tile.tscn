@@ -1,6 +1,4 @@
-[gd_scene load_steps=3 format=2]
-
-[ext_resource path="res://Assets/Sprites/tmp_block.png" type="Texture" id=1]
+[gd_scene load_steps=2 format=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 210, 210 )
@@ -9,11 +7,3 @@ extents = Vector2( 210, 210 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-
-[node name="tmp_block" type="Sprite" parent="."]
-position = Vector2( 0, 2.11893 )
-texture = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}

@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const MOVE_SPEED: float = 2.0
+const MOVE_SPEED: float = 200.0
 const EPS: float = 0.01
 
 
@@ -29,8 +29,8 @@ func _process(delta: float):
 
 
 func go_to_work(delta: float):
-	global_position = global_position.move_toward(work_location, MOVE_SPEED)
-	
+	GlobalNavigation.navigate(self, work_location, MOVE_SPEED, delta)
+
 
 func work(delta: float):
 	if timer.is_stopped(): timer.start()
