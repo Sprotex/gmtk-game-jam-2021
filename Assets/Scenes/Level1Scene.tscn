@@ -1,0 +1,190 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Assets/Objects/UI/CableUI/CableUI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Objects/Workstation/Workstation.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Objects/Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Objects/Singletons/TimeManager/TimeLabel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Objects/UI/ScoreUI/ScoreUI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Objects/Worker/Worker.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Objects/Tile/Tile.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Fonts/FontResource.tres" type="DynamicFont" id=8]
+[ext_resource path="res://Assets/Objects/Pathfinding/PathNodes.gd" type="Script" id=9]
+[ext_resource path="res://Assets/Scenes/LevelScene.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Objects/Singletons/TimeManager/TimeLabel.gd" type="Script" id=11]
+[ext_resource path="res://Textures/level1.png" type="Texture" id=12]
+[ext_resource path="res://Textures/NameplateNora.png" type="Texture" id=13]
+[ext_resource path="res://Textures/NameplateJudy.png" type="Texture" id=14]
+[ext_resource path="res://Textures/NameplateChad.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Fonts/Kenney Future Narrow.ttf" type="DynamicFontData" id=16]
+[ext_resource path="res://Assets/Objects/UI/FullscreenLabel/FullscreenLabel.gd" type="Script" id=17]
+[ext_resource path="res://Assets/Objects/UI/FullscreenLabel/EndOverlay.gd" type="Script" id=18]
+
+[sub_resource type="DynamicFont" id=1]
+size = 49
+font_data = ExtResource( 16 )
+
+[node name="LevelScene" type="Node"]
+script = ExtResource( 10 )
+level_name = "level1"
+
+[node name="Back Black" type="ColorRect" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelBackground" type="Sprite" parent="."]
+texture = ExtResource( 12 )
+centered = false
+
+[node name="Label" parent="." instance=ExtResource( 4 )]
+margin_left = 821.351
+margin_top = 81.7401
+margin_right = 921.351
+margin_bottom = 141.74
+custom_fonts/font = ExtResource( 8 )
+script = ExtResource( 11 )
+
+[node name="CableUI" parent="." instance=ExtResource( 1 )]
+player_path = NodePath("../Player")
+
+[node name="ScoreUI" parent="." instance=ExtResource( 5 )]
+
+[node name="Tiles" type="Node2D" parent="."]
+visible = false
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="middle_floor" parent="Tiles" instance=ExtResource( 7 )]
+position = Vector2( 398.835, 299.812 )
+scale = Vector2( 1.7241, -0.060287 )
+
+[node name="bottom_floor" parent="Tiles" instance=ExtResource( 7 )]
+position = Vector2( 512.998, 576.637 )
+scale = Vector2( 3.14989, 0.144885 )
+
+[node name="stairs_middle" parent="Tiles" instance=ExtResource( 7 )]
+position = Vector2( 924.507, 433.26 )
+scale = Vector2( 0.307478, -0.0726378 )
+
+[node name="wall_right" parent="Tiles" instance=ExtResource( 7 )]
+position = Vector2( 995.982, 231.391 )
+scale = Vector2( 0.10988, 1.48679 )
+
+[node name="wall_left" parent="Tiles" instance=ExtResource( 7 )]
+position = Vector2( 41.1335, 331.348 )
+scale = Vector2( 0.0575134, 0.459099 )
+
+[node name="wall_left_outer" parent="Tiles" instance=ExtResource( 7 )]
+position = Vector2( -149.714, 254.554 )
+scale = Vector2( 0.10988, 1.48679 )
+
+[node name="wall_left2_up" parent="Tiles" instance=ExtResource( 7 )]
+position = Vector2( 39.2458, 23.4732 )
+scale = Vector2( 0.0575134, 0.299099 )
+
+[node name="wall_left3_up" parent="Tiles" instance=ExtResource( 7 )]
+position = Vector2( 751.965, 55.5456 )
+scale = Vector2( 0.0575134, 0.299099 )
+
+[node name="ceiling" parent="Tiles" instance=ExtResource( 7 )]
+position = Vector2( 507.334, 38.629 )
+scale = Vector2( 2.26989, 0.0753481 )
+
+[node name="Workers" type="Node" parent="."]
+
+[node name="Otto" parent="Workers" instance=ExtResource( 6 )]
+position = Vector2( -513.959, 481.357 )
+
+[node name="Judy" parent="Workers" instance=ExtResource( 6 )]
+position = Vector2( -64.1179, 482.692 )
+
+[node name="Nora" parent="Workers" instance=ExtResource( 6 )]
+position = Vector2( -85.4753, 482.692 )
+
+[node name="Chad" parent="Workers" instance=ExtResource( 6 )]
+position = Vector2( -118.846, 484.027 )
+
+[node name="Workstations" type="Node" parent="."]
+
+[node name="Otto" parent="Workstations" instance=ExtResource( 2 )]
+position = Vector2( 216.013, 221.265 )
+
+[node name="Nora" parent="Workstations" instance=ExtResource( 2 )]
+position = Vector2( 216.013, 483.69 )
+nameplate = ExtResource( 13 )
+
+[node name="Chad" parent="Workstations" instance=ExtResource( 2 )]
+position = Vector2( 540.526, 221.027 )
+nameplate = ExtResource( 15 )
+
+[node name="Judy" parent="Workstations" instance=ExtResource( 2 )]
+position = Vector2( 540.526, 482.591 )
+nameplate = ExtResource( 14 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 396.66, 434.016 )
+
+[node name="PathNodes" type="Node" parent="."]
+script = ExtResource( 9 )
+
+[node name="Node_0" type="Node2D" parent="PathNodes"]
+position = Vector2( 723.438, 484.027 )
+
+[node name="Node_1" type="Node2D" parent="PathNodes"]
+position = Vector2( 870.27, 355.882 )
+
+[node name="Node_2" type="Node2D" parent="PathNodes"]
+position = Vector2( 934.342, 355.882 )
+
+[node name="Node_3" type="Node2D" parent="PathNodes"]
+position = Vector2( 838.234, 223.733 )
+
+[node name="EndOverlay" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="EndOverlay"]
+
+[node name="ScreenLabel" type="ColorRect" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="ScreenLabel"]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Level 1 : Start-Up"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "s"
+}
+
+[node name="Tween" type="Tween" parent="ScreenLabel"]
+
+[node name="Timer" type="Timer" parent="ScreenLabel"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="ScreenLabel/Timer" to="ScreenLabel" method="_on_Timer_timeout"]

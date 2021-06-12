@@ -24,15 +24,9 @@ func _ready():
 func pick_message(name: String, anger: int):
 	var candidates = anger_to_messages[anger]
 	var sentence = candidates[randi() % len(candidates)]
-	return sentence.format({"name": capitalize_name(name)})
+	return sentence.format({"name": name})
 	
 
 func pick_thanks_message(name: String) -> String:
 	var sentence = thanks_messages[randi() % len(thanks_messages)]
-	return sentence.format({"name": capitalize_name(name)})
-
-
-func capitalize_name(name: String) -> String:
-	var first_char = name[0].to_upper()
-	var rest = name.substr(1)
-	return first_char + rest
+	return sentence.format({"name": name})

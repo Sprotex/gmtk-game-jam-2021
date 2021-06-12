@@ -14,7 +14,7 @@ onready var anger_sprite = get_node("AngerSprite")
 var _starting_position: Vector2
 var _problems = []
 var anger = 0
-export var work_location: Vector2
+var _work_location: Vector2 = Vector2.INF
 
 
 class Problem:
@@ -23,12 +23,12 @@ class Problem:
 	var length: float = 2.0
 	
 	func init(to: String, var length: float = 2.0):
-		self.to = to.to_lower()
+		self.to = to
 		self.length = length
 		return self
 		
 	func try_solve_from(name: String, delta: float):
-		var is_connected = LevelManager.workstations[name.to_lower()].try_send_message(to)
+		var is_connected = LevelManager.workstations[name].try_send_message(to)
 		if is_connected:
 			progress += delta
 			if progress > 1.0:
@@ -39,7 +39,13 @@ class Problem:
 
 func _ready():
 	_starting_position = global_position
-	LevelManager.workers[name.to_lower()] = self
+	LevelManager.workers[name] = self
+
+
+func get_work_location():
+	if _work_location == Vector2.INF:
+		_work_location = LevelManager.workstations[name].global_position
+	return _work_location
 
 
 func _process(delta: float):
@@ -49,7 +55,7 @@ func _process(delta: float):
 	
 	var time = TimeManager.current_time()
 	if time < 12 or (time > 13 and time < 17):
-		if global_position.distance_squared_to(work_location) > EPS:
+		if global_position.distance_squared_to(get_work_location()) > EPS:
 			go_to_work(delta)
 		else:
 			work(delta)
@@ -63,7 +69,7 @@ func _process(delta: float):
 # ================
 
 func go_to_work(delta: float):
-	GlobalNavigation.navigate(self, work_location, MOVE_SPEED, delta)
+	GlobalNavigation.navigate(self, get_work_location(), MOVE_SPEED, delta)
 
 
 func work(delta: float):
