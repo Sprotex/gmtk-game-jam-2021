@@ -11,6 +11,7 @@ position = Vector2( 698, 383 )
 
 [node name="Computer2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 476, 383 )
+computer_name = "CEO"
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 242, 339 )
