@@ -13,7 +13,7 @@ var jumpForce: int = 600
 # XSpeed handling
 var max_x_speed: int = 600
 var x_speed: int = 4400
-var slow_down_increment: int = 1500
+var slow_down_increment: int = 2200
 
 # Falling
 var gravity: int = 3200

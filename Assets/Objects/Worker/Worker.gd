@@ -17,6 +17,26 @@ var anger = 0
 export var work_location: Vector2
 
 
+class Problem:
+	var to: String
+	var progress: float = 0.0
+	var length: float = 2.0
+	
+	func init(to: String, var length: float = 2.0):
+		self.to = to.to_lower()
+		self.length = length
+		return self
+		
+	func try_solve_from(name: String, delta: float):
+		var is_connected = LevelManager.workstations[name.to_lower()].try_send_message(to)
+		if is_connected:
+			progress += delta
+			if progress > 1.0:
+				progress = 1.0
+		
+	func is_solved():
+		return progress == 1.0
+
 func _ready():
 	_starting_position = global_position
 	LevelManager.workers[name.to_lower()] = self
@@ -24,8 +44,8 @@ func _ready():
 
 func _process(delta: float):
 	anger -= ANGER_INCREMENT * delta
-	if anger < 0:
-		anger = 0
+	anger = clamp(anger, 0, 4)
+	anger_sprite.set_angriness(int(anger))
 	
 	var time = TimeManager.current_time()
 	if time < 12 or (time > 13 and time < 17):
@@ -49,10 +69,12 @@ func go_to_work(delta: float):
 func work(delta: float):
 	if len(_problems) == 0: return
 	# TODO problem solving
-	var solved = LevelManager.workstations[name.to_lower()].try_send_message(_problems[0].to_lower())
-	if solved:
+	var problem: Problem = _problems[0]
+	
+	problem.try_solve_from(name, delta)
+	if problem.is_solved():
 		say_no_more()
-		say_text(MessageManager.pick_thanks_message(_problems[0]), 2.0)
+		say_text(MessageManager.pick_thanks_message(problem.to), 2.0)
 		_problems.pop_front()
 		MessageManager.emit_signal("on_message_delivered")
 		return
@@ -64,9 +86,8 @@ func work(delta: float):
 		if anger_int > 4:
 			MessageManager.emit_signal("on_message_failed")
 			anger_int = 4
-		say_text(MessageManager.pick_message(_problems[0], anger_int))
+		say_text(MessageManager.pick_message(problem.to, int(anger)))
 		anger_sprite.set_angriness(anger_int)
-	
 
 func go_home(delta: float):
 	say_no_more()
@@ -82,8 +103,10 @@ func lunch_break(delta: float):
 # ==================
 
 # Called from outer scope by timeline manager
-func add_problem(target_name: String):
-	_problems.push_back(target_name)
+func add_problem(target_name: String, time: float = 2.0):
+	_problems.push_back(
+		Problem.new().init(target_name, time)
+	)
 
 # MESSAGING
 	

@@ -4,4 +4,9 @@ It wasn't that hard, {name}, was it?
 Brilliant, {name}!
 Awesome answer, {name}.
 Got it, {name}...
-Wow, why so rude, {name}?
+Wow, thanks, but why so rude, {name}?
+I love you, {name}.
+Wow, that was fast, {name}!
+Sweet bajeebus, {name}, that was a large attachment.
+My notebook just doubled its value, {name}.
+To: {name}. Subject: :o)
