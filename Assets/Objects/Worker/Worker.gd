@@ -23,6 +23,7 @@ class Problem:
 	var progress: float = 0.0
 	var length: float = 2.0
 	var is_message_in_progress = false
+	var current_signal_sender = null
 	
 	func init(to: String, var length: float = 2.0):
 		self.to = to
@@ -47,11 +48,21 @@ class Problem:
 		# destination is not found at the end of this cable
 		
 		# then run the message
-		cable_chain[0].message_signals.connect("on_reached_destination", self, "handle_on_reached_destination")
-		cable_chain[0].message_signals.send_message(cable_chain, cable_chain_destinations, length)
+		var index = 0
+		current_signal_sender = cable_chain[index].message_signals
+		current_signal_sender.connect("on_reached_destination", self, "handle_on_reached_destination")
+		current_signal_sender.connect("on_canceled_transmission", self, "handle_on_canceled_transmission")
+		current_signal_sender.send_message(cable_chain, cable_chain_destinations, length)
 	
 	func handle_on_reached_destination(obj):
 		progress = 1.0
+		current_signal_sender.disconnect("on_reached_destination", self, "handle_on_reached_destination")
+		current_signal_sender.disconnect("on_canceled_transmission", self, "handle_on_canceled_transmission")
+	
+	func handle_on_canceled_transmission():
+		is_message_in_progress = false
+		current_signal_sender.disconnect("on_reached_destination", self, "handle_on_reached_destination")
+		current_signal_sender.disconnect("on_canceled_transmission", self, "handle_on_canceled_transmission")
 	
 	func try_solve_from(name: String, delta: float):
 		if is_message_in_progress:

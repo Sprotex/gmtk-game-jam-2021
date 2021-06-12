@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/Objects/Cable/Cable.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Objects/Cable/MessageSignals.gd" type="Script" id=2]
-[ext_resource path="res://Textures/Workstation.png" type="Texture" id=3]
+[ext_resource path="res://Textures/LetterIcon.png" type="Texture" id=3]
 
 [node name="Cable" type="Node2D"]
 script = ExtResource( 1 )
@@ -26,6 +26,7 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="MessageSignals"]
 visible = false
+z_index = 1
 texture = ExtResource( 3 )
 
 [node name="MessageTween" type="Tween" parent="MessageSignals"]
