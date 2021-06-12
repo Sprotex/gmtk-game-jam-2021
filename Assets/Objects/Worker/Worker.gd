@@ -2,14 +2,16 @@ extends KinematicBody2D
 
 onready var bubble = $BubbleText
 onready var timer = $AngeringTimer
+onready var messageManager = get_node("/root/MessageManager")
 
-func _ready():
-	timer.start()
-
+var anger = 0
 
 func say_text(message: String):
 	bubble.text = message
 
 
 func _on_AngeringTimer_timeout():
-	say_text('I am very angry at you, Alex!')
+	say_text(messageManager.pick_message('Alex', anger))
+	anger += 1
+	if anger > 4:
+		anger = 0

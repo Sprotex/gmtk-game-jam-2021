@@ -1,0 +1,5 @@
+Last chance or {name} is no more
+I will fire you, {name}!
+This is your last warning, {name}!
+I am this close to reporting you, {name}!
+Do you like this job, {name}?!

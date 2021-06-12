@@ -1,0 +1,4 @@
+Hey {name}, can you help me open this file?
+{name}, what is your e-mail address?
+How are you doing, {name}?
+Heyyy {name}, I need you to work on Saturday

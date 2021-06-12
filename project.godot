@@ -14,6 +14,11 @@ config/name="GMTK-game-jam-2021"
 run/main_scene="res://Assets/Scenes/LevelScene.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+MessageManager="*res://Assets/Objects/Singletons/MessageManager/MessageManager.tscn"
+FileUtils="*res://Assets/Objects/Singletons/FileUtils/FileUtils.gd"
+
 [global]
 
 window=false
