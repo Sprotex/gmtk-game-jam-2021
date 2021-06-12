@@ -7,6 +7,8 @@ class_name PlayerBody
 export (int) var cables_count = 3
 onready var jumpSound = get_node("SoundSystem/Jump")
 
+var controls_enabled = true
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -41,9 +43,9 @@ onready var sprite = $Sprite
 
 func _physics_process(delta):
 	# XSPEED
-	if Input.is_action_pressed("move_left"):
+	if Input.is_action_pressed("move_left") and controls_enabled:
 		vel.x -= x_speed * delta
-	elif Input.is_action_pressed("move_right"):
+	elif Input.is_action_pressed("move_right") and controls_enabled:
 		vel.x += x_speed * delta
 	else:
 		var decrease_speed_by: float = slow_down_increment * delta
@@ -65,10 +67,10 @@ func _physics_process(delta):
 	# jump
 	if is_on_floor():
 		airtime = 0
-		if Input.is_action_pressed("jump"):
+		if Input.is_action_pressed("jump") and controls_enabled:
 			jumpSound.play_event()
 			vel.y = -base_jump_force
 	
 	airtime += delta
-	if airtime < max_jump_time && Input.is_action_pressed("jump"):
+	if airtime < max_jump_time && Input.is_action_pressed("jump") and controls_enabled:
 		vel.y -= additional_jump_force

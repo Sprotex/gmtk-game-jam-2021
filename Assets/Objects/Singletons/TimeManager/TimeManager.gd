@@ -31,7 +31,8 @@ func get_duration():
 func current_time_string() -> String:
 	var hours = int(_time)
 	var minutes = int((_time - hours) * 60)
-	return '%d:%02d' % [hours, minutes]
+	# ugly hack to monospace this font
+	return ('%d:%02d' % [hours, minutes]).replace("1", " 1")
 
 func current_time() -> float:
 	return _time

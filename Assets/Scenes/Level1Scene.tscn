@@ -150,7 +150,10 @@ position = Vector2( 934.342, 355.882 )
 [node name="Node_3" type="Node2D" parent="PathNodes"]
 position = Vector2( 838.234, 223.733 )
 
-[node name="EndOverlay" type="ColorRect" parent="."]
+[node name="Overlays" type="Node2D" parent="."]
+z_index = 1
+
+[node name="EndOverlay" type="ColorRect" parent="Overlays"]
 modulate = Color( 1, 1, 1, 0 )
 margin_right = 1024.0
 margin_bottom = 600.0
@@ -160,9 +163,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="EndOverlay"]
+[node name="Tween" type="Tween" parent="Overlays/EndOverlay"]
 
-[node name="ScreenLabel" type="ColorRect" parent="."]
+[node name="ScreenLabel" type="ColorRect" parent="Overlays"]
 visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
@@ -172,7 +175,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Text" type="Label" parent="ScreenLabel"]
+[node name="Text" type="Label" parent="Overlays/ScreenLabel"]
 margin_right = 1024.0
 margin_bottom = 600.0
 custom_fonts/font = SubResource( 1 )
@@ -185,11 +188,11 @@ __meta__ = {
 "_editor_description_": "s"
 }
 
-[node name="Tween" type="Tween" parent="ScreenLabel"]
+[node name="Tween" type="Tween" parent="Overlays/ScreenLabel"]
 
-[node name="Timer" type="Timer" parent="ScreenLabel"]
+[node name="Timer" type="Timer" parent="Overlays/ScreenLabel"]
 wait_time = 2.0
 one_shot = true
 autostart = true
 
-[connection signal="timeout" from="ScreenLabel/Timer" to="ScreenLabel" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Overlays/ScreenLabel/Timer" to="Overlays/ScreenLabel" method="_on_Timer_timeout"]
