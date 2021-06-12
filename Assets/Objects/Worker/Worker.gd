@@ -24,8 +24,8 @@ func _ready():
 
 func _process(delta: float):
 	anger -= ANGER_INCREMENT * delta
-	if anger < 0:
-		anger = 0
+	anger = clamp(anger, 0, 4)
+	anger_sprite.set_angriness(int(anger))
 	
 	var time = TimeManager.current_time()
 	if time < 12 or (time > 13 and time < 17):
@@ -60,11 +60,7 @@ func work(delta: float):
 	var prev_anger = anger
 	anger += 2 * ANGER_INCREMENT * delta
 	if not bubble.visible or int(anger) != int(prev_anger):
-		var anger_int = int(anger)
-		if anger_int > 4:
-			anger_int = 4
-		say_text(MessageManager.pick_message(_problems[0], anger_int))
-		anger_sprite.set_angriness(anger_int)
+		say_text(MessageManager.pick_message(_problems[0], int(anger)))
 	
 
 func go_home(delta: float):
