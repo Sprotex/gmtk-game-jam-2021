@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tmp_player.png-8d7dccac4c0d817a2b09f94d2e7643c5.stex"
+path="res://.import/NameplateVojt.png-cafc8e76cdd9f0f76354742ee7180221.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/tmp_player.png"
-dest_files=[ "res://.import/tmp_player.png-8d7dccac4c0d817a2b09f94d2e7643c5.stex" ]
+source_file="res://Textures/NameplateVojt.png"
+dest_files=[ "res://.import/NameplateVojt.png-cafc8e76cdd9f0f76354742ee7180221.stex" ]
 
 [params]
 

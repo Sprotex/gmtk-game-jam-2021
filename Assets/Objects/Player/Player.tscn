@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Assets/Sprites/tmp_player.png" type="Texture" id=1]
+[ext_resource path="res://Textures/WorkerGrey.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Objects/Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Objects/Player/CableConnecting.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Objects/Cable/Cable.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 71.666
-height = 43.1375
+radius = 34.2519
+height = 33.1943
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 50, 50 )
@@ -16,14 +16,14 @@ extents = Vector2( 50, 50 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( -4.48985, 11.2246 )
+position = Vector2( -0.251935, 9.9382 )
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="tmp_player" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true

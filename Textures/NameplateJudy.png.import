@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Worker_Male.png-72dac909785a120e9927ca10d6c4ca2f.stex"
+path="res://.import/NameplateJudy.png-702ac7127bce8ec7bf75d01e9d6d9db4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Worker_Male.png"
-dest_files=[ "res://.import/Worker_Male.png-72dac909785a120e9927ca10d6c4ca2f.stex" ]
+source_file="res://Textures/NameplateJudy.png"
+dest_files=[ "res://.import/NameplateJudy.png-702ac7127bce8ec7bf75d01e9d6d9db4.stex" ]
 
 [params]
 

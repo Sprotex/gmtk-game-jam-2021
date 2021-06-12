@@ -36,6 +36,7 @@ LevelManager="*res://Assets/Autoload/LevelManager.tscn"
 MessageManager="*res://Assets/Objects/Singletons/MessageManager/MessageManager.tscn"
 FileUtils="*res://Assets/Objects/Singletons/FileUtils/FileUtils.gd"
 TimeManager="*res://Assets/Objects/Singletons/TimeManager/TimeManager.gd"
+GlobalNavigation="*res://Assets/Objects/Singletons/Navigation/GlobalNavigation.gd"
 
 [global]
 

@@ -32,7 +32,7 @@ var grounded: bool = false
 func _ready():
 	get_node("/root/LevelManager").player_reference = self
 
-onready var sprite = $tmp_player
+onready var sprite = $Sprite
 
 func _physics_process(delta):
 	# XSPEED
@@ -66,8 +66,3 @@ func _physics_process(delta):
 	airtime += delta
 	if airtime < max_jump_time && Input.is_action_pressed("jump"):
 		vel.y -= additional_jump_force
-	
-	if vel.x < 0:
-		sprite.flip_h = true
-	elif vel.x > 0:
-		sprite.flip_h = false
