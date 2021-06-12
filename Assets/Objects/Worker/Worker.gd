@@ -11,6 +11,7 @@ onready var bubble_background: NinePatchRect = $BubbleBackground
 onready var message_manager = get_node("/root/MessageManager")
 onready var anger_sprite = get_node("AngerSprite")
 
+var next_will_fail = false
 var _starting_position: Vector2
 var _problems = []
 var anger = 0
@@ -65,7 +66,6 @@ func _process(delta: float):
 func go_to_work(delta: float):
 	GlobalNavigation.navigate(self, work_location, MOVE_SPEED, delta)
 
-
 func work(delta: float):
 	if len(_problems) == 0: return
 	# TODO problem solving
@@ -77,15 +77,18 @@ func work(delta: float):
 		say_text(MessageManager.pick_thanks_message(problem.to), 2.0)
 		_problems.pop_front()
 		MessageManager.emit_signal("on_message_delivered")
+		next_will_fail = false
 		return
 	
 	var prev_anger = anger
 	anger += 2 * ANGER_INCREMENT * delta
 	if not bubble.visible or int(anger) != int(prev_anger):
 		var anger_int = int(anger)
-		if anger_int > 4:
-			MessageManager.emit_signal("on_message_failed")
-			anger_int = 4
+		if anger_int >= 4:
+			if next_will_fail:
+				MessageManager.emit_signal("on_message_failed")
+			next_will_fail = true
+			anger -= 1.0
 		say_text(MessageManager.pick_message(problem.to, int(anger)))
 		anger_sprite.set_angriness(anger_int)
 

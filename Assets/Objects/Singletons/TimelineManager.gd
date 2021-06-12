@@ -17,6 +17,7 @@ class TimelinePiece:
 
 # Called in _ready of LevelScene 
 func init(level_name: String):
+	_timeline = []
 	var lines = FileUtils.read_lines('res://Assets/Configs/%s.csv' % level_name)
 	# first line is column names
 	lines.pop_front()

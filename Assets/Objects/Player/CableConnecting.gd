@@ -93,5 +93,4 @@ func _on_Interactor_area_exited(area):
 		var area_index = near_areas.find(area)
 		near_areas.remove(area_index)
 		near_computer = null
-		print("Remove near ", area.computer.computer_name)
 		_set_near_computer()

@@ -11,6 +11,10 @@ func _ready():
 	MessageManager.connect("on_message_failed", self, "game_over")
 	MessageManager.connect("on_message_delivered", self, "handle_deliver_message")
 
+func _process(_delta):
+	if Input.is_key_pressed(KEY_KP_0):
+		game_over()
+
 func handle_deliver_message():
 	connections_enabled_count += 1
 
@@ -24,6 +28,7 @@ func game_over():
 	time_worked_label.text = "%d:%02d" % [hours, minutes]
 	visible = true
 	level_manager.player_reference.visible = false
+	MessageManager._ready()
 
 func _on_PlayAgainButton_pressed():
 	Engine.time_scale = 1.0
