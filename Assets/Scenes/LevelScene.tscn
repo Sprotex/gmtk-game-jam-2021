@@ -91,20 +91,24 @@ work_location = Vector2( 540.526, 221.027 )
 
 [node name="Workstations" type="Node" parent="."]
 
-[node name="Workstation 1" parent="Workstations" instance=ExtResource( 7 )]
+[node name="Otto" parent="Workstations" instance=ExtResource( 7 )]
 position = Vector2( 216.013, 221.265 )
+computer_name = "otto"
 
-[node name="Workstation 2" parent="Workstations" instance=ExtResource( 7 )]
+[node name="Nora" parent="Workstations" instance=ExtResource( 7 )]
 position = Vector2( 216.013, 483.69 )
 nameplate = ExtResource( 10 )
+computer_name = "nora"
 
-[node name="Workstation 3" parent="Workstations" instance=ExtResource( 7 )]
+[node name="Chad" parent="Workstations" instance=ExtResource( 7 )]
 position = Vector2( 540.526, 221.027 )
 nameplate = ExtResource( 12 )
+computer_name = "chad"
 
-[node name="Workstation 4" parent="Workstations" instance=ExtResource( 7 )]
+[node name="Judy" parent="Workstations" instance=ExtResource( 7 )]
 position = Vector2( 540.526, 482.591 )
 nameplate = ExtResource( 11 )
+computer_name = "judy"
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 396.66, 434.016 )

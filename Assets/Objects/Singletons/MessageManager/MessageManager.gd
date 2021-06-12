@@ -19,4 +19,6 @@ func _ready():
 func pick_message(name: String, anger: int):
 	var candidates = anger_to_messages[anger]
 	var sentence = candidates[randi() % len(candidates)]
-	return sentence.format({"name": name})
+	var first_char = name[0].to_upper()
+	var rest = name.substr(1)
+	return sentence.format({"name": first_char + rest})

@@ -2,4 +2,9 @@ extends Node
 
 var player_reference
 
-var workers = {}
+var workers: Dictionary
+var workstations: Dictionary
+
+func init():
+	workers = {}
+	workstations = {} 

@@ -48,16 +48,19 @@ func go_to_work(delta: float):
 func work(delta: float):
 	if len(_problems) == 0: return
 	# TODO problem solving
-	var solved = false
+	var solved = LevelManager.workstations[name.to_lower()].try_send_message(_problems[0].to_lower())
 	if solved:
 		say_no_more()
-		_problems.push_front()
+		_problems.pop_front()
 		return
 	
 	var prev_anger = anger
 	anger += 2 * ANGER_INCREMENT * delta
 	if not bubble.visible or int(anger) != int(prev_anger):
-		say_text(MessageManager.pick_message(_problems[0], int(anger)))
+		var anger_int = int(anger)
+		if anger_int > 4:
+			anger_int = 4
+		say_text(MessageManager.pick_message(_problems[0], anger_int))
 	
 
 func go_home(delta: float):

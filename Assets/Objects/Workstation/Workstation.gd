@@ -8,6 +8,7 @@ onready var nameplateSprite = $Nameplate
 
 func _ready():
 	nameplateSprite.texture = nameplate
+	LevelManager.workstations[name.to_lower()] = self
 
 func _process(_delta):
 	if Input.is_key_pressed(KEY_KP_ENTER):
