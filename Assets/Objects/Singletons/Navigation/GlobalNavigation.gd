@@ -14,7 +14,7 @@ class NavigationRequest:
 		return self
 		
 
-func navigate(obj: Node2D, target: Vector2, speed: float):
+func navigate(obj: Node2D, target: Vector2, speed: float, delta: float):
 	var id = obj.get_instance_id()
 	
 	var request
@@ -25,7 +25,7 @@ func navigate(obj: Node2D, target: Vector2, speed: float):
 		ongoing_requests[id] = request
 		
 	var next_target = request.nodes[0]
-	obj.global_position = obj.global_position.move_toward(next_target, speed)
+	obj.global_position = obj.global_position.move_toward(next_target, speed * delta)
 	
 	if obj.global_position.distance_squared_to(next_target) < 0.001:
 		request.nodes.pop_front()
