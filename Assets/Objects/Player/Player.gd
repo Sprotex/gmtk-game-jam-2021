@@ -4,6 +4,8 @@ const EPS: float = 0.1
 
 class_name PlayerBody
 
+onready var jumpSound = get_node("SoundSystem/Jump")
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -62,6 +64,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		airtime = 0
 		if Input.is_action_pressed("jump"):
+			jumpSound.play_event()
 			vel.y = -base_jump_force
 	
 	airtime += delta

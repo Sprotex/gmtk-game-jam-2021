@@ -1,6 +1,5 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Assets/Scenes/LevelScene.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Objects/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Objects/Tile/Tile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Objects/Worker/Worker.tscn" type="PackedScene" id=4]
@@ -12,14 +11,9 @@
 [ext_resource path="res://Textures/NameplateNora.png" type="Texture" id=10]
 [ext_resource path="res://Textures/NameplateJudy.png" type="Texture" id=11]
 [ext_resource path="res://Textures/NameplateChad.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Objects/UI/CableUI/CableUI.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Assets/Fonts/FontResource.tres" type="DynamicFont" id=14]
-[ext_resource path="res://Assets/Objects/UI/ScoreUI/ScoreUI.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Assets/Objects/UI/GameOverUI/GameOverUI.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Assets/Objects/MusicSystem/Music.tscn" type="PackedScene" id=13]
 
-[node name="LevelScene" type="Node2D"]
-script = ExtResource( 1 )
-level_name = "level1"
+[node name="LevelScene" type="Node"]
 
 [node name="LevelBackground" type="Sprite" parent="."]
 texture = ExtResource( 9 )
@@ -30,13 +24,7 @@ margin_left = 816.062
 margin_top = 140.66
 margin_right = 916.062
 margin_bottom = 200.66
-custom_fonts/font = ExtResource( 14 )
 script = ExtResource( 6 )
-
-[node name="CableUI" parent="." instance=ExtResource( 13 )]
-player_path = NodePath("../Player")
-
-[node name="ScoreUI" parent="." instance=ExtResource( 15 )]
 
 [node name="Tiles" type="Node2D" parent="."]
 visible = false
@@ -81,44 +69,36 @@ scale = Vector2( 0.0575134, 0.299099 )
 position = Vector2( 507.334, 38.629 )
 scale = Vector2( 2.26989, 0.0753481 )
 
-[node name="Workers" type="Node2D" parent="."]
+[node name="Workers" type="Node" parent="."]
 
 [node name="Otto" parent="Workers" instance=ExtResource( 4 )]
 position = Vector2( -513.959, 481.357 )
-work_location = Vector2( 214.864, 222.398 )
 
 [node name="Judy" parent="Workers" instance=ExtResource( 4 )]
 position = Vector2( -64.1179, 482.692 )
-work_location = Vector2( 540.526, 482.591 )
 
 [node name="Nora" parent="Workers" instance=ExtResource( 4 )]
 position = Vector2( -85.4753, 482.692 )
-work_location = Vector2( 216.013, 483.69 )
 
 [node name="Chad" parent="Workers" instance=ExtResource( 4 )]
 position = Vector2( -118.846, 484.027 )
-work_location = Vector2( 540.526, 221.027 )
 
-[node name="Workstations" type="Node2D" parent="."]
+[node name="Workstations" type="Node" parent="."]
 
-[node name="Otto" parent="Workstations" instance=ExtResource( 7 )]
+[node name="Workstation 1" parent="Workstations" instance=ExtResource( 7 )]
 position = Vector2( 216.013, 221.265 )
-computer_name = "otto"
 
-[node name="Nora" parent="Workstations" instance=ExtResource( 7 )]
+[node name="Workstation 2" parent="Workstations" instance=ExtResource( 7 )]
 position = Vector2( 216.013, 483.69 )
 nameplate = ExtResource( 10 )
-computer_name = "nora"
 
-[node name="Chad" parent="Workstations" instance=ExtResource( 7 )]
+[node name="Workstation 3" parent="Workstations" instance=ExtResource( 7 )]
 position = Vector2( 540.526, 221.027 )
 nameplate = ExtResource( 12 )
-computer_name = "chad"
 
-[node name="Judy" parent="Workstations" instance=ExtResource( 7 )]
+[node name="Workstation 4" parent="Workstations" instance=ExtResource( 7 )]
 position = Vector2( 540.526, 482.591 )
 nameplate = ExtResource( 11 )
-computer_name = "judy"
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 396.66, 434.016 )
@@ -138,4 +118,4 @@ position = Vector2( 934.342, 355.882 )
 [node name="Node_3" type="Node2D" parent="PathNodes"]
 position = Vector2( 838.234, 223.733 )
 
-[node name="GameOverUI" parent="." instance=ExtResource( 16 )]
+[node name="Music" parent="." instance=ExtResource( 13 )]

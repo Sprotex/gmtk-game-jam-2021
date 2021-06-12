@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/speak_003.wav-a1a05b221df5c6a734b8210bfd5a2674.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/speak_003.wav"
+dest_files=[ "res://.import/speak_003.wav-a1a05b221df5c6a734b8210bfd5a2674.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

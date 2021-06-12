@@ -12,6 +12,9 @@ func reset():
 	_time = 7.5
 	_duration = 0.0
 
+func _ready():
+	reset()
+
 func _process(delta):
 	var converted_delta = delta * (1.0 / HOUR_LENGTH)
 	_duration += converted_delta

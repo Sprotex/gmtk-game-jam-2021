@@ -27,8 +27,8 @@ func init(level_name: String):
 		
 		var time = parts[0].split(":")
 		time = float(time[0]) + float(time[1]) / 60.0
-		var from = parts[1].to_lower()
-		var to = parts[2].to_lower()
+		var from = parts[1]
+		var to = parts[2]
 		
 		_timeline.push_back(TimelinePiece.new().init(time, from, to))
 
@@ -41,7 +41,14 @@ func _process(delta):
 	
 	if time > next_piece.time:
 		_timeline.pop_front()
-		print("New request at %s from %s to %s" % [TimeManager.current_time_string(), next_piece.from, next_piece.to])
-		LevelManager.workers[next_piece.from].add_problem(next_piece.to)
+		var from = next_piece.from
+		var to = next_piece.to
+		if from == 'RANDOM':
+			from = LevelManager.workers.keys()[randi() % len(LevelManager.workers.keys())]
+		while to == 'RANDOM' or to == from:
+			to = LevelManager.workers.keys()[randi() % len(LevelManager.workers.keys())]
+		
+		print("New request at %s from %s to %s" % [TimeManager.current_time_string(),from, to])
+		LevelManager.workers[from].add_problem(to)
 		
 	
