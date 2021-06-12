@@ -51,6 +51,7 @@ func work(delta: float):
 	var solved = LevelManager.workstations[name.to_lower()].try_send_message(_problems[0].to_lower())
 	if solved:
 		say_no_more()
+		say_text(MessageManager.pick_thanks_message(_problems[0]), 2.0)
 		_problems.pop_front()
 		return
 	
