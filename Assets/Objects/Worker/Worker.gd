@@ -32,37 +32,60 @@ class Problem:
 		
 	func send_networking_message(from, to, prev: Dictionary):
 		var cable_chain = []
+		var closed = []
 		var cable_chain_destinations = []
 		var destination_workstation = null
-		var to_cables = []
 		var workstation = LevelManager.workstations[to]
-		for port in workstation.ports:
-			if not port.is_empty():
-				to_cables.append(port.cable)
-		for cable in to_cables:
-			if prev.has(cable):
-				cable_chain.push_front(cable)
-				cable_chain_destinations.push_front(prev.get(cable))
+		while true:
+			var to_cables = []
+			for port in workstation.ports:
+				if not port.is_empty():
+					to_cables.append(port.cable)
+			for cable in to_cables:
+				if prev.has(cable) and not closed.has(cable):
+					closed.append(cable)
+					cable_chain.push_front(cable)
+					cable_chain_destinations.push_front(prev.get(cable))
+					break
+			if cable_chain_destinations.front() == from:
 				break
+			else:
+				var index = 0
+				if cable_chain_destinations.front() != cable_chain.front().connections[index].computer:
+					index = 1
+				workstation = cable_chain.front().connections[index].computer
 		# add cable at last position, mark from where im sending, then iterate over next connection if 
 		# destination is not found at the end of this cable
 		
 		# then run the message
 		var index = 0
 		current_signal_sender = cable_chain[index].message_signals
+		
 		current_signal_sender.connect("on_reached_destination", self, "handle_on_reached_destination")
+		current_signal_sender.connect("on_relay_message", self, "handle_on_relay_message")
 		current_signal_sender.connect("on_canceled_transmission", self, "handle_on_canceled_transmission")
 		current_signal_sender.send_message(cable_chain, cable_chain_destinations, length)
 	
-	func handle_on_reached_destination(obj):
-		progress = 1.0
+	func disconnect_signals():
 		current_signal_sender.disconnect("on_reached_destination", self, "handle_on_reached_destination")
+		current_signal_sender.disconnect("on_relay_message", self, "handle_on_relay_message")
 		current_signal_sender.disconnect("on_canceled_transmission", self, "handle_on_canceled_transmission")
 	
+	
+	func handle_on_reached_destination(obj):
+		progress = 1.0
+		disconnect_signals()
+		
+	func handle_on_relay_message(next_signal_sender):
+		disconnect_signals()
+		current_signal_sender = next_signal_sender
+		current_signal_sender.connect("on_reached_destination", self, "handle_on_reached_destination")
+		current_signal_sender.connect("on_relay_message", self, "handle_on_relay_message")
+		current_signal_sender.connect("on_canceled_transmission", self, "handle_on_canceled_transmission")
+		
 	func handle_on_canceled_transmission():
 		is_message_in_progress = false
-		current_signal_sender.disconnect("on_reached_destination", self, "handle_on_reached_destination")
-		current_signal_sender.disconnect("on_canceled_transmission", self, "handle_on_canceled_transmission")
+		disconnect_signals()
 	
 	func try_solve_from(name: String, delta: float):
 		if is_message_in_progress:
