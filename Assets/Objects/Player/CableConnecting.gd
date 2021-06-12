@@ -13,16 +13,25 @@ func _ready():
 func _connect_cable(id):
 	if not cables.empty():
 		var cable = cables[0]
-		if cable.connections.empty():
-			cable.connections.push_back(near_computer.ports[id]) # todo check if port is full
-			cable.connections.push_back(player)
-			cable.start_drawing()
-		else:
-			var computer_1 = cable.connections[0].computer
+		var port = near_computer.ports[id]
+		if cable.connections.empty(): # I am currently not carrying a cable
+			if port.cable == null: # check if port is full
+				port.cable = cable
+				cable.connections.push_back(port) 
+				cable.connections.push_back(player)
+				cable.start_drawing()
+			else: # disconnect the cable, attach it to player
+				cable = port.cable
+				cables.push_front(cable)
+				port.cable = null
+				var index = 0 if cable.connections[0] == port else 1
+				cable.connections[index] = player
+		else: # I am currently carrying a cable
+			var computer_1_index = 1 if cable.connections[0] is PlayerBody else 0
+			var computer_1 = cable.connections[computer_1_index].computer
 			var computer_2 = near_computer
-			cable.connections[1] = near_computer.ports[id]
-			computer_1.cables.push_back(cable)
-			computer_2.cables.push_back(cable)
+			cable.connections[1 - computer_1_index] = port
+			port.cable = cable
 			cable.start_drawing()
 			cables.pop_front()
 

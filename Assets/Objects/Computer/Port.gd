@@ -1,8 +1,9 @@
 extends Node2D
 
 export (int) var id
-var connected_node = null
+var cable = null
+
 onready var computer = get_parent().get_parent()
 
-func connect_to(node):
-	connected_node = node
+func connect_to(_cable):
+	cable = _cable

@@ -3,7 +3,6 @@ extends Node2D
 export (String) var computer_name
 onready var ports = get_node("Ports").get_children()
 onready var level_manager = get_node("/root/LevelManager")
-onready var cables = []
 
 func connect_to_player(id: int):
 	ports[id].connect_to(level_manager.player_reference.get_node("CableConnecting"))
@@ -22,6 +21,10 @@ func search(closed: Array, receiver_name: String) -> bool:
 		return true
 	if not closed.has(self):
 		closed.append(self)
+		var cables = []
+		for port in ports:
+			if port.cable != null:
+				cables.append(port.cable)
 		for cable in cables:
 			var cable_connections = "%s <-> %s" % [cable.connections[0].computer.computer_name, cable.connections[1].computer.computer_name]
 			if cable.search(closed, receiver_name):

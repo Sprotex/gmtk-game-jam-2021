@@ -15,8 +15,10 @@ func stop_drawing():
 	visible = false
 
 func _process(_delta):
-	if connections.size() >= 2 and connections[1] is PlayerBody and visible:
-		start_drawing()
+	if connections.size() >= 2 and visible:
+		for connection in connections:
+			if connection is PlayerBody:
+				start_drawing()
 
 func search(closed: Array, receiver_name: String) -> bool:
 	for connection in connections:
