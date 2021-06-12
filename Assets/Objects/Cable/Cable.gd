@@ -6,6 +6,8 @@ var connections = []
 var line2d: Line2D
 var line2d_border: Line2D
 
+signal on_disconnected
+
 func init():
 	MessageManager.connect("on_message_failed", self, "set_lines_visibility", [false])
 	line2d = get_node("Line2D")

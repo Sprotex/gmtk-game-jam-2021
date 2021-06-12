@@ -14,6 +14,7 @@ func is_empty() -> bool:
 func connect_cable(new_cable):
 	if cable == new_cable:
 		return
-	emit_signal("on_connection_changed")
+	if cable != null:
+		cable.emit_signal("on_disconnected")
 	cable = new_cable
 	connector.visible = not is_empty()
