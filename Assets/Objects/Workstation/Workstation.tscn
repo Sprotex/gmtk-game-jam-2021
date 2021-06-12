@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Objects/Workstation/Workstation.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Workstation.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Objects/Workstation/ComputerArea.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Objects/Workstation/Port.gd" type="Script" id=4]
 [ext_resource path="res://Textures/NameplateOtto.png" type="Texture" id=5]
+[ext_resource path="res://Textures/PortFiller.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 50 )
@@ -19,18 +20,39 @@ texture = ExtResource( 2 )
 [node name="Ports" type="Node2D" parent="."]
 
 [node name="Port" type="Node2D" parent="Ports"]
-position = Vector2( 42.3812, -25.8978 )
+position = Vector2( 41.9093, -26.6647 )
 script = ExtResource( 4 )
 
+[node name="Sprite" type="Sprite" parent="Ports/Port"]
+visible = false
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="Port2" type="Node2D" parent="Ports"]
-position = Vector2( 42.3812, -7.51301 )
+position = Vector2( 42.1006, -8.42501 )
 script = ExtResource( 4 )
 id = 1
 
+[node name="Sprite" type="Sprite" parent="Ports/Port2"]
+visible = false
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="Port3" type="Node2D" parent="Ports"]
-position = Vector2( 42.3812, 10.874 )
+position = Vector2( 41.9603, 9.47092 )
 script = ExtResource( 4 )
 id = 2
+
+[node name="Sprite" type="Sprite" parent="Ports/Port3"]
+visible = false
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource( 3 )

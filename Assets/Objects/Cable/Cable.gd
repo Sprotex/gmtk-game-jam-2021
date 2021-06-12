@@ -2,18 +2,29 @@ extends Node2D
 
 var connections = []
 var line2d: Line2D
+var line2d_border: Line2D
 
 func init():
+	MessageManager.connect("on_message_failed", self, "set_lines_visibility", [false])
 	line2d = get_node("Line2D")
-	visible = false
+	line2d_border = get_node("Line2DBorder")
+	line2d.set_as_toplevel(true)
+	line2d_border.set_as_toplevel(true)
+	set_lines_visibility(false)
+
+func set_lines_visibility(value: bool):
+	line2d.visible = value
+	line2d_border.visible = value
 
 func start_drawing():
 	line2d.points[0] = connections[0].global_position
 	line2d.points[1] = connections[1].global_position
-	visible = true
+	line2d_border.points[0] = connections[0].global_position
+	line2d_border.points[1] = connections[1].global_position
+	set_lines_visibility(true)
 
 func stop_drawing():
-	visible = false
+	set_lines_visibility(false)
 
 func _process(_delta):
 	if connections.size() >= 2 and visible:

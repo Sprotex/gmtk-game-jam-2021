@@ -25,7 +25,7 @@ func _unplug_cable(cable, port):
 	cable = port.cable
 	if not cables.has(cable):
 		_gain_cable(cable)
-	port.cable = null
+	port.connect_cable(null)
 	var index = 0 if cable.connections[0] == port else 1
 	cable.connections[index] = player
 
@@ -34,8 +34,8 @@ func _connect_cable(id):
 	if not cables.empty():
 		var cable = cables[0]
 		if cable.connections.empty(): # I am currently not carrying a cable
-			if port.cable == null: # port is empty
-				port.cable = cable
+			if port.is_empty(): # port is empty
+				port.connect_cable(cable)
 				cable.connections.push_back(port)
 				cable.connections.push_back(player)
 				cable.start_drawing()
@@ -47,14 +47,14 @@ func _connect_cable(id):
 				var connected_index = 1 if cable.connections[0] is PlayerBody else 0
 				var unconnected_index = 1 - connected_index
 				cable.connections[unconnected_index] = port
-				port.cable = cable
+				port.connect_cable(cable)
 				cable.start_drawing()
 				_lose_cable()
 			elif cable.connections.has(port): # I am disconnecting and it's the cable I'm carrying
 				cable = port.cable
 				while not cable.connections.empty():
 					cable.connections.pop_front()
-				port.cable = null
+				port.connect_cable(null)
 				cable.stop_drawing()
 				emit_signal("on_gain_cable")
 	elif not port.is_empty(): # can plug out occupied port

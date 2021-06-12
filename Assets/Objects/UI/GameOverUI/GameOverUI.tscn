@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Objects/UI/GameOverUI/GameOverUI.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/FontResource.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Textures/GameOverScreen.png" type="Texture" id=3]
+
+[node name="GameOverUI" type="Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConnectionsEnabledLabel" type="Label" parent="."]
+margin_left = 661.105
+margin_top = 121.012
+margin_right = 771.105
+margin_bottom = 181.012
+rect_rotation = -1.76937
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "1234"
+
+[node name="TimeWorkedLabel" type="Label" parent="."]
+margin_left = 518.4
+margin_top = 183.288
+margin_right = 768.4
+margin_bottom = 243.288
+rect_rotation = -1.76272
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0 seconds"
+
+[node name="PlayAgainButton" type="Button" parent="."]
+margin_left = 189.206
+margin_top = 479.381
+margin_right = 461.206
+margin_bottom = 549.381
+rect_rotation = -1.40377
+flat = true
+
+[connection signal="pressed" from="PlayAgainButton" to="." method="_on_PlayAgainButton_pressed"]

@@ -62,6 +62,7 @@ func work(delta: float):
 	if not bubble.visible or int(anger) != int(prev_anger):
 		var anger_int = int(anger)
 		if anger_int > 4:
+			MessageManager.emit_signal("on_message_failed")
 			anger_int = 4
 		say_text(MessageManager.pick_message(_problems[0], anger_int))
 		anger_sprite.set_angriness(anger_int)

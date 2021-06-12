@@ -4,15 +4,26 @@ extends Node
 const HOUR_LENGTH = 20
 #const HOUR_LENGTH = 5
 
-var _time: float = 7.5
+onready var _time: float = 7.5
+onready var _duration = 0.0
 var time_label: Label
 
+func reset():
+	_time = 7.5
+	_duration = 0.0
+
 func _process(delta):
-	_time += delta * (1.0 / HOUR_LENGTH)
+	var converted_delta = delta * (1.0 / HOUR_LENGTH)
+	_duration += converted_delta
+	_time += converted_delta
+	
 	if _time >= 24:
 		_time -= 24
 	
 	time_label.text = current_time_string()
+
+func get_duration():
+	return _duration
 
 func current_time_string() -> String:
 	var hours = int(_time)

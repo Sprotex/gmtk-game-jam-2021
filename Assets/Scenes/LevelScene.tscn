@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/Scenes/LevelScene.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Objects/Player/Player.tscn" type="PackedScene" id=2]
@@ -15,8 +15,9 @@
 [ext_resource path="res://Assets/Objects/UI/CableUI/CableUI.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Assets/Fonts/FontResource.tres" type="DynamicFont" id=14]
 [ext_resource path="res://Assets/Objects/UI/ScoreUI/ScoreUI.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Assets/Objects/UI/GameOverUI/GameOverUI.tscn" type="PackedScene" id=16]
 
-[node name="LevelScene" type="Node"]
+[node name="LevelScene" type="Node2D"]
 script = ExtResource( 1 )
 level_name = "level1"
 
@@ -80,7 +81,7 @@ scale = Vector2( 0.0575134, 0.299099 )
 position = Vector2( 507.334, 38.629 )
 scale = Vector2( 2.26989, 0.0753481 )
 
-[node name="Workers" type="Node" parent="."]
+[node name="Workers" type="Node2D" parent="."]
 
 [node name="Otto" parent="Workers" instance=ExtResource( 4 )]
 position = Vector2( -513.959, 481.357 )
@@ -98,7 +99,7 @@ work_location = Vector2( 216.013, 483.69 )
 position = Vector2( -118.846, 484.027 )
 work_location = Vector2( 540.526, 221.027 )
 
-[node name="Workstations" type="Node" parent="."]
+[node name="Workstations" type="Node2D" parent="."]
 
 [node name="Otto" parent="Workstations" instance=ExtResource( 7 )]
 position = Vector2( 216.013, 221.265 )
@@ -136,3 +137,5 @@ position = Vector2( 934.342, 355.882 )
 
 [node name="Node_3" type="Node2D" parent="PathNodes"]
 position = Vector2( 838.234, 223.733 )
+
+[node name="GameOverUI" parent="." instance=ExtResource( 16 )]
