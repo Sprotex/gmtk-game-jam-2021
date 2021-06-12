@@ -1,5 +1,7 @@
 extends Node2D
 
+
+onready var message_signals = get_node("MessageSignals")
 var connections = []
 var line2d: Line2D
 var line2d_border: Line2D
@@ -32,10 +34,10 @@ func _process(_delta):
 			if connection is PlayerBody:
 				start_drawing()
 
-func search(closed: Array, receiver_name: String) -> bool:
+func search(closed: Array, prev: Dictionary, receiver_name: String) -> bool:
 	for connection in connections:
 		if not connection is PlayerBody:
 			var computer = connection.computer
-			if computer.search(closed, receiver_name):
+			if computer.search(closed, prev, receiver_name):
 				return true
 	return false

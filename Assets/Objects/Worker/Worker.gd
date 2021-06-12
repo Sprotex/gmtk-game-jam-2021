@@ -22,18 +22,46 @@ class Problem:
 	var to: String
 	var progress: float = 0.0
 	var length: float = 2.0
+	var is_message_in_progress = false
 	
 	func init(to: String, var length: float = 2.0):
 		self.to = to
 		self.length = length
 		return self
 		
+	func send_networking_message(from, to, prev: Dictionary):
+		var cable_chain = []
+		var cable_chain_destinations = []
+		var destination_workstation = null
+		var to_cables = []
+		var workstation = LevelManager.workstations[to]
+		for port in workstation.ports:
+			if not port.is_empty():
+				to_cables.append(port.cable)
+		for cable in to_cables:
+			if prev.has(cable):
+				cable_chain.push_front(cable)
+				cable_chain_destinations.push_front(prev.get(cable))
+				break
+		# add cable at last position, mark from where im sending, then iterate over next connection if 
+		# destination is not found at the end of this cable
+		
+		# then run the message
+		cable_chain[0].message_signals.connect("on_reached_destination", self, "handle_on_reached_destination")
+		cable_chain[0].message_signals.send_message(cable_chain, cable_chain_destinations, length)
+	
+	func handle_on_reached_destination(obj):
+		progress = 1.0
+	
 	func try_solve_from(name: String, delta: float):
-		var is_connected = LevelManager.workstations[name].try_send_message(to)
+		if is_message_in_progress:
+			return
+		var prev = {}
+		var workstation = LevelManager.workstations[name]
+		var is_connected = workstation.try_send_message(to, prev)
 		if is_connected:
-			progress += delta
-			if progress > 1.0:
-				progress = 1.0
+			is_message_in_progress = true
+			send_networking_message(workstation, to, prev)
 		
 	func is_solved():
 		return progress == 1.0
