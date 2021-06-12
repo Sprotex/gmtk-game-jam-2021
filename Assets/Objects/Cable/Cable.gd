@@ -23,7 +23,8 @@ func _process(_delta):
 
 func search(closed: Array, receiver_name: String) -> bool:
 	for connection in connections:
-		var computer = connection.computer
-		if computer.search(closed, receiver_name):
-			return true
+		if not connection is PlayerBody:
+			var computer = connection.computer
+			if computer.search(closed, receiver_name):
+				return true
 	return false
