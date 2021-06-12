@@ -5,5 +5,5 @@ var cable = null
 
 onready var computer = get_parent().get_parent()
 
-func connect_to(_cable):
-	cable = _cable
+func is_empty() -> bool:
+	return cable == null

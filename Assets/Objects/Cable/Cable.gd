@@ -5,6 +5,7 @@ var line2d: Line2D
 
 func init():
 	line2d = get_node("Line2D")
+	visible = false
 
 func start_drawing():
 	line2d.points[0] = connections[0].global_position

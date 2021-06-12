@@ -3,20 +3,9 @@
 [ext_resource path="res://Assets/Objects/Workstation/Workstation.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Workstation.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Objects/Workstation/ComputerArea.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Objects/Workstation/Port.gd" type="Script" id=4]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Node2D
-
-export (int) var id
-var cable = null
-
-onready var computer = get_parent().get_parent()
-
-func connect_to(_cable):
-	cable = _cable
-"
-
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 50 )
 
 [node name="Workstation" type="Node2D"]
@@ -27,23 +16,27 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="Ports" type="Node2D" parent="."]
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Port" type="Node2D" parent="Ports"]
-script = SubResource( 1 )
+position = Vector2( 42.3812, -25.8978 )
+script = ExtResource( 4 )
 
 [node name="Port2" type="Node2D" parent="Ports"]
-script = SubResource( 1 )
+position = Vector2( 42.3812, -7.51301 )
+script = ExtResource( 4 )
 id = 1
 
 [node name="Port3" type="Node2D" parent="Ports"]
-script = SubResource( 1 )
+position = Vector2( 42.3812, 10.874 )
+script = ExtResource( 4 )
 id = 2
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
