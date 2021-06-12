@@ -10,6 +10,8 @@ const filenames = [
 ];
 var thanks_messages = []
 
+signal on_message_delivered
+
 func _ready():
 	for filename in filenames:
 		anger_to_messages.push_back(

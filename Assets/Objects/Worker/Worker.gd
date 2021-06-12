@@ -53,6 +53,7 @@ func work(delta: float):
 	if solved:
 		say_no_more()
 		_problems.pop_front()
+		MessageManager.emit_signal("on_message_delivered")
 		return
 	
 	var prev_anger = anger

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Scenes/LevelScene.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Objects/Player/Player.tscn" type="PackedScene" id=2]
@@ -12,7 +12,9 @@
 [ext_resource path="res://Textures/NameplateNora.png" type="Texture" id=10]
 [ext_resource path="res://Textures/NameplateJudy.png" type="Texture" id=11]
 [ext_resource path="res://Textures/NameplateChad.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Objects/CableUI/CableUI.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/Objects/UI/CableUI/CableUI.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/Fonts/FontResource.tres" type="DynamicFont" id=14]
+[ext_resource path="res://Assets/Objects/UI/ScoreUI/ScoreUI.tscn" type="PackedScene" id=15]
 
 [node name="LevelScene" type="Node"]
 script = ExtResource( 1 )
@@ -27,10 +29,13 @@ margin_left = 816.062
 margin_top = 140.66
 margin_right = 916.062
 margin_bottom = 200.66
+custom_fonts/font = ExtResource( 14 )
 script = ExtResource( 6 )
 
 [node name="CableUI" parent="." instance=ExtResource( 13 )]
 player_path = NodePath("../Player")
+
+[node name="ScoreUI" parent="." instance=ExtResource( 15 )]
 
 [node name="Tiles" type="Node2D" parent="."]
 visible = false

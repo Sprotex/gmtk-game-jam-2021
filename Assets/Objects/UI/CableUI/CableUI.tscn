@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Assets/Objects/CableUI/CableUI.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Objects/UI/CableUI/CableUI.gd" type="Script" id=1]
 [ext_resource path="res://Textures/CableIcon.png" type="Texture" id=2]
 
 [node name="CableUI" type="Control"]
