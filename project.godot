@@ -18,6 +18,7 @@ config/icon="res://icon.png"
 
 MessageManager="*res://Assets/Objects/Singletons/MessageManager/MessageManager.tscn"
 FileUtils="*res://Assets/Objects/Singletons/FileUtils/FileUtils.gd"
+TimeManager="*res://Assets/Objects/Singletons/TimeManager/TimeManager.gd"
 
 [global]
 
