@@ -151,7 +151,7 @@ func say_text(message: String, timeout = -1):
 	if timeout > 0:
 		messageShowTimer.start(timeout)
 		
-	bubble.text = message
+	bubble.bbcode_text = message
 	bubble.visible = true
 	bubble_background.visible = true
 	
