@@ -18,6 +18,7 @@ func reset():
 var scene_sequence = [
 	'res://Assets/Scenes/Level1Scene.tscn',
 	'res://Assets/Scenes/Level2Scene.tscn',
+	'res://Assets/Scenes/Level3Scene.tscn',
 ]
 var _current_scene_index = 0
 
