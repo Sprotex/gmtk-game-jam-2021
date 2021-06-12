@@ -38,3 +38,8 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+
+[node name="MessageShowTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="MessageShowTimer" to="." method="_on_MessageShowTimer_timeout"]

@@ -5,7 +5,7 @@ const EPS: float = 0.01
 # anger increment per second of being unsatisfied
 const ANGER_INCREMENT = 0.15
 
-
+onready var messageShowTimer: Timer = $MessageShowTimer
 onready var bubble: RichTextLabel = $BubbleText
 onready var bubble_background: NinePatchRect = $BubbleBackground
 onready var message_manager = get_node("/root/MessageManager")
@@ -82,7 +82,13 @@ func add_problem(target_name: String):
 
 # MESSAGING
 	
-func say_text(message: String):
+func say_text(message: String, timeout = -1):
+	if !messageShowTimer.is_stopped():
+		messageShowTimer.stop()
+
+	if timeout > 0:
+		messageShowTimer.start(timeout)
+		
 	bubble.text = message
 	bubble.visible = true
 	bubble_background.visible = true
@@ -90,3 +96,7 @@ func say_text(message: String):
 func say_no_more():
 	bubble.visible = false
 	bubble_background.visible = false
+
+
+func _on_MessageShowTimer_timeout():
+	say_no_more()

@@ -1,0 +1,7 @@
+Well, finally, {name}!
+Thanks, {name}!
+It wasn't that hard, {name}, was it?
+Brilliant, {name}!
+Awesome answer, {name}.
+Got it, {name}...
+Wow, why so rude, {name}?
