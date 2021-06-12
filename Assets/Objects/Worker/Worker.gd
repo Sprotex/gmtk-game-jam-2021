@@ -45,7 +45,7 @@ func _ready():
 
 func _process(delta: float):
 	anger -= ANGER_INCREMENT * delta
-	anger = clamp(anger, 0, 4)
+	anger = clamp(anger, 0, 5)
 	anger_sprite.set_angriness(int(anger))
 	
 	var time = TimeManager.current_time()
@@ -82,15 +82,11 @@ func work(delta: float):
 	
 	var prev_anger = anger
 	anger += 2 * ANGER_INCREMENT * delta
+	if anger >= 5:
+		MessageManager.emit_signal("on_message_failed")
+		return
 	if not bubble.visible or int(anger) != int(prev_anger):
-		var anger_int = int(anger)
-		if anger_int >= 4:
-			if next_will_fail:
-				MessageManager.emit_signal("on_message_failed")
-			next_will_fail = true
-			anger -= 1.0
 		say_text(MessageManager.pick_message(problem.to, int(anger)))
-		anger_sprite.set_angriness(anger_int)
 
 func go_home(delta: float):
 	say_no_more()
