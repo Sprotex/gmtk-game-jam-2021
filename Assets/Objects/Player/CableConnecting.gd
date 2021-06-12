@@ -1,20 +1,32 @@
 extends Node
 
-onready var interactor = get_parent().get_node("Interactor")
+var near_areas = []
 var near_computer = null
 var cable_class = preload("res://Assets/Objects/Cable/Cable.tscn")
+onready var interactor = get_parent().get_node("Interactor")
 onready var cables = get_children()
 onready var player = get_parent()
-var near_areas = []
+
+signal on_lose_cable
+signal on_gain_cable
 
 func _ready():
 	for cable in cables:
 		cable.init()
+		emit_signal("on_gain_cable")
+
+func _gain_cable(cable):
+	cables.push_front(cable)
+	emit_signal("on_gain_cable")
+
+func _lose_cable():
+	cables.pop_front()
+	emit_signal("on_lose_cable")
 
 func _unplug_cable(cable, port):
 	cable = port.cable
 	if not cables.has(cable):
-		cables.push_front(cable)
+		_gain_cable(cable)
 	port.cable = null
 	var index = 0 if cable.connections[0] == port else 1
 	cable.connections[index] = player
@@ -38,16 +50,15 @@ func _connect_cable(id):
 				cable.connections[unconnected_index] = port
 				port.cable = cable
 				cable.start_drawing()
-				cables.pop_front()
+				_lose_cable()
 			elif cable.connections.has(port): # I am disconnecting and it's the cable I'm carrying
 				cable = port.cable
 				while not cable.connections.empty():
 					cable.connections.pop_front()
 				port.cable = null
 				cable.stop_drawing()
-	else:
-		if not port.is_empty(): # can plug out occupied port
-			_unplug_cable(port.cable, port)
+	elif not port.is_empty(): # can plug out occupied port
+		_unplug_cable(port.cable, port)
 
 func _process(_delta):
 	if near_computer != null:

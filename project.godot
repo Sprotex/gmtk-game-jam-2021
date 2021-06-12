@@ -32,7 +32,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-LevelManager="*res://Assets/Autoload/LevelManager.tscn"
+LevelManager="*res://Assets/Objects/Singletons/LevelManager/LevelManager.tscn"
 MessageManager="*res://Assets/Objects/Singletons/MessageManager/MessageManager.tscn"
 FileUtils="*res://Assets/Objects/Singletons/FileUtils/FileUtils.gd"
 TimeManager="*res://Assets/Objects/Singletons/TimeManager/TimeManager.gd"

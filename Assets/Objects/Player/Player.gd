@@ -30,7 +30,8 @@ var grounded: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_node("/root/LevelManager").player_reference = self
+	var level_manager = get_node("/root/LevelManager")
+	level_manager.player_reference = self
 
 onready var sprite = $Sprite
 
