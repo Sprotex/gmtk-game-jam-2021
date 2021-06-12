@@ -17,11 +17,9 @@ func _ready():
 
 func _gain_cable(cable):
 	cables.push_front(cable)
-	emit_signal("on_gain_cable")
 
 func _lose_cable():
 	cables.pop_front()
-	emit_signal("on_lose_cable")
 
 func _unplug_cable(cable, port):
 	cable = port.cable
@@ -41,6 +39,7 @@ func _connect_cable(id):
 				cable.connections.push_back(port)
 				cable.connections.push_back(player)
 				cable.start_drawing()
+				emit_signal("on_lose_cable")
 			else: # disconnect the cable from occupied port, attach it to player
 				_unplug_cable(cable, port)
 		else: # I am currently carrying a cable
@@ -57,6 +56,7 @@ func _connect_cable(id):
 					cable.connections.pop_front()
 				port.cable = null
 				cable.stop_drawing()
+				emit_signal("on_gain_cable")
 	elif not port.is_empty(): # can plug out occupied port
 		_unplug_cable(port.cable, port)
 
