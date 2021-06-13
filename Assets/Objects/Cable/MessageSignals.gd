@@ -7,7 +7,7 @@ var current_cable_chain_destinations = null
 var current_hop_duration = 0.0
 
 signal on_reached_destination
-signal on_relay_message(cable_message, next_signal_sender)
+signal on_relay_message(next_signal_sender)
 signal on_canceled_transmission
 
 func send_message(cable_chain, cable_chain_destinations, hop_duration):
@@ -47,25 +47,14 @@ func disconnect_signals(cable_message):
 
 func handle_on_message_delivered(cable_message):
 	disconnect_signals(cable_message)
-	current_cable_chain.pop_front()
-	current_cable_chain_destinations.pop_front()
-	if current_cable_chain.empty():
-		current_cable = null
-		current_cable_chain = []
-		current_cable_chain_destinations = []
-		current_hop_duration = 0.0
-		emit_signal("on_reached_destination")
-	else:
-		var next_signal_sender = current_cable_chain.front().message_signals
-		emit_signal("on_relay_message", next_signal_sender)
-		next_signal_sender.send_message(current_cable_chain, current_cable_chain_destinations, current_hop_duration)
+	emit_signal("on_reached_destination")
 
 func handle_on_message_relayed(cable_message):
 	disconnect_signals(cable_message)
 	cable_message.cable_chain.pop_front()
 	cable_message.cable_chain_destinations.pop_front()
 	var next_signal_sender = cable_message.cable_chain.front().message_signals
-	emit_signal("on_relay_message", cable_message, next_signal_sender)
+	emit_signal("on_relay_message", next_signal_sender) # tohle se nepripojuje
 	next_signal_sender.send_message(cable_message.cable_chain, cable_message.cable_chain_destinations, current_hop_duration)
 
 func handle_on_disconnected(cable_message):

@@ -35,9 +35,10 @@ var grounded: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_node("CableConnecting").set_cable_count(cables_count)
 	var level_manager = get_node("/root/LevelManager")
 	level_manager.player_reference = self
+	yield(get_tree(),"idle_frame")
+	get_node("CableConnecting").set_cable_count(cables_count)
 
 onready var sprite = $Sprite
 
