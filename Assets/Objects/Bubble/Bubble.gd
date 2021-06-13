@@ -16,11 +16,11 @@ func _process(delta):
 	var camera_pos = camera.get_camera_screen_center()
 	self.global_position.x = clamp(
 		self.global_position.x,
-		camera_pos.x - 690,
-		camera_pos.x + 690
+		camera_pos.x - 670,
+		camera_pos.x + 670
 	)
 	self.global_position.y = clamp(
 		self.global_position.y,
-		camera_pos.y - 330,
-		camera_pos.y + 450
+		camera_pos.y - 310,
+		camera_pos.y + 500
 	)

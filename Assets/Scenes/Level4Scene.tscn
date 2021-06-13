@@ -274,8 +274,9 @@ position = Vector2( 583.386, 481.004 )
 nameplate = ExtResource( 20 )
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
-position = Vector2( 69.7583, 484.813 )
+position = Vector2( 66.836, 481.734 )
 scale = Vector2( 1.00147, 1 )
+cables_count = 4
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( 0, 200 )
@@ -301,10 +302,10 @@ script = ExtResource( 11 )
 position = Vector2( 723.438, 484.027 )
 
 [node name="Node_1" type="Node2D" parent="PathNodes"]
-position = Vector2( 870.27, 355.882 )
+position = Vector2( 873.445, 320.165 )
 
 [node name="Node_2" type="Node2D" parent="PathNodes"]
-position = Vector2( 934.342, 355.882 )
+position = Vector2( 934.342, 320.165 )
 
 [node name="Node_3" type="Node2D" parent="PathNodes"]
 position = Vector2( 838.234, 223.733 )

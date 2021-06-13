@@ -27,6 +27,7 @@ var walk_locations = [
 	Vector2(120, 222),
 	Vector2(898, 480),
 ]
+var _has_lunch_break = true
 
 class MsgQueueElement:
 	var msg: String
@@ -137,6 +138,7 @@ class Problem:
 
 func _ready():
 	_starting_position = global_position
+	_has_lunch_break = LevelManager._current_scene_index != 3 || get_work_location().x < 1100
 	lunch_break_start = 11.5 + randf()
 	LevelManager.workers[name] = self
 

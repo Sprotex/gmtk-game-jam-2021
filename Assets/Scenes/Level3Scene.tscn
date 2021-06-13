@@ -255,6 +255,7 @@ nameplate = ExtResource( 20 )
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 69.7583, 484.813 )
 scale = Vector2( 1.00147, 1 )
+cables_count = 4
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( 0, 200 )
