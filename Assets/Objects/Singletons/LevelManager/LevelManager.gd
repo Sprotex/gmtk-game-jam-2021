@@ -22,6 +22,8 @@ func reset():
 	error_messages = null
 
 var scene_sequence = [
+	'res://Assets/Scenes/Level1Scene.tscn',
+	'res://Assets/Scenes/Level2Scene.tscn',
 	'res://Assets/Scenes/Level3Scene.tscn',
 	'res://Assets/Scenes/Level4Scene.tscn',
 	'res://Assets/Scenes/LevelVictory1.tscn'
