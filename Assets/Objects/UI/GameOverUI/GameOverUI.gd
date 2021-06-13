@@ -28,7 +28,6 @@ func game_over():
 	time_worked_label.text = "%d:%02d" % [hours, minutes]
 	visible = true
 	level_manager.player_reference.visible = false
-	MessageManager._ready()
 
 func _on_PlayAgainButton_pressed():
 	Engine.time_scale = 1.0
