@@ -16,12 +16,21 @@ extents = Vector2( 50, 50 )
 
 [node name="Workstation" type="Node2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 nameplate = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Ports" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Port" type="Node2D" parent="Ports"]
 position = Vector2( 41.9093, -26.6647 )
@@ -113,11 +122,10 @@ hue_variation = -0.02
 hue_variation_random = 1.0
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
+position = Vector2( 42.1006, -8.42501 )
 script = ExtResource( 3 )
 __meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
+"_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
