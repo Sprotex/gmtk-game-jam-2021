@@ -11,5 +11,6 @@ func _ready():
 	sound_system.stop_music()
 	sound_system.play_music(level_music)
 	LevelManager.tutorial = tutorial
+	LevelManager.scene = self
 	TimeManager.reset()
 	TimelineManager.init(timeline)

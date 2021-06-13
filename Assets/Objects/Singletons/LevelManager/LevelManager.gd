@@ -7,6 +7,7 @@ var workstations: Dictionary
 var camera: Camera2D = null
 var tutorial: bool
 var score: int
+var scene: Node
 
 
 func _ready():

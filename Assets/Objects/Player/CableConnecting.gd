@@ -34,11 +34,13 @@ func _unplug_cable(cable, port):
 
 func _connect_cable(id):
 	var port = near_computer.ports[id]
-	if not port.is_enabled: return
+	if not port.is_enabled:
+		ErrorManager.show_error("This port is not available")
+		return
 	if not cables.empty():
 		var cable = cables[0]
 		if cable.connections.empty(): # I am currently not carrying a cable
-			if port.is_empty(): # port is empty
+			if port.is_empty(): # port is empty, can connect
 				port.connect_cable(cable)
 				cable.connections.push_back(port)
 				cable.connections.push_back(player)
@@ -63,6 +65,8 @@ func _connect_cable(id):
 				emit_signal("on_gain_cable")
 	elif not port.is_empty(): # can plug out occupied port
 		_unplug_cable(port.cable, port)
+	else:
+		ErrorManager.show_error("No cable in inventory or port")
 
 func _process(_delta):
 	if near_computer != null:

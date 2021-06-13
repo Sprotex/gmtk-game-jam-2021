@@ -22,4 +22,4 @@ func play_music(index: int):
 
 func play_fail():
 	stop_music()
-	fail_music.play_event()
+	fail_music.play()

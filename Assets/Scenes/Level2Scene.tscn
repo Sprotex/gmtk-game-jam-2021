@@ -27,7 +27,7 @@
 size = 49
 font_data = ExtResource( 16 )
 
-[node name="LevelScene" type="Node"]
+[node name="LevelScene2" type="Node"]
 script = ExtResource( 10 )
 level_music = 1
 timeline = "time;from;to;override_message1

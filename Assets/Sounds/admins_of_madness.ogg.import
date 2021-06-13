@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/admins_of_madness.ogg-84f1f3157965d8ffe603028575f8a094.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/admins_of_madness.ogg"
+dest_files=[ "res://.import/admins_of_madness.ogg-84f1f3157965d8ffe603028575f8a094.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
