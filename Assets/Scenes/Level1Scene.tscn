@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/Objects/UI/CableUI/CableUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Objects/Workstation/Workstation.tscn" type="PackedScene" id=2]
@@ -20,11 +20,7 @@
 [ext_resource path="res://Assets/Objects/UI/FullscreenLabel/EndOverlay.gd" type="Script" id=18]
 [ext_resource path="res://Assets/Objects/UI/GameOverUI/GameOverUI.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Assets/Objects/Singletons/BubbleManager/BubbleRegisterer.gd" type="Script" id=20]
-[ext_resource path="res://Textures/DecorationBook.png" type="Texture" id=21]
 [ext_resource path="res://Textures/DecorationPostit.png" type="Texture" id=22]
-[ext_resource path="res://Textures/DecorationMug.png" type="Texture" id=23]
-[ext_resource path="res://Textures/DecorationGlobe.png" type="Texture" id=24]
-[ext_resource path="res://Textures/DecorationMelon.png" type="Texture" id=25]
 [ext_resource path="res://Assets/Scenes/FlavorPostits.gd" type="Script" id=26]
 
 [sub_resource type="DynamicFont" id=1]
@@ -290,75 +286,6 @@ nameplate = ExtResource( 15 )
 [node name="Judy" parent="Workstations" instance=ExtResource( 2 )]
 position = Vector2( 540.526, 482.591 )
 nameplate = ExtResource( 14 )
-
-[node name="Flavor" type="Node2D" parent="."]
-
-[node name="DecorationBook" type="Sprite" parent="Flavor"]
-position = Vector2( 257.752, 428.7 )
-texture = ExtResource( 21 )
-
-[node name="DecorationGlobe" type="Sprite" parent="Flavor"]
-position = Vector2( 609.231, 261.848 )
-texture = ExtResource( 24 )
-
-[node name="DecorationMug" type="Sprite" parent="Flavor"]
-position = Vector2( 43.5494, 216.586 )
-texture = ExtResource( 23 )
-
-[node name="DecorationMelon" type="Sprite" parent="Flavor"]
-position = Vector2( 945.283, 392.793 )
-rotation = -1.29916
-texture = ExtResource( 25 )
-
-[node name="DecorationBook2" type="Sprite" parent="Flavor"]
-position = Vector2( 884.669, 462.903 )
-texture = ExtResource( 21 )
-
-[node name="DecorationBook3" type="Sprite" parent="Flavor"]
-position = Vector2( 891.694, 475.143 )
-texture = ExtResource( 21 )
-
-[node name="DecorationBook4" type="Sprite" parent="Flavor"]
-position = Vector2( 884.194, 487.643 )
-texture = ExtResource( 21 )
-
-[node name="DecorationBook5" type="Sprite" parent="Flavor"]
-position = Vector2( 883.944, 499.893 )
-texture = ExtResource( 21 )
-
-[node name="DecorationBook6" type="Sprite" parent="Flavor"]
-position = Vector2( 878.245, 513.718 )
-rotation = -0.058909
-texture = ExtResource( 21 )
-
-[node name="DecorationBook7" type="Sprite" parent="Flavor"]
-position = Vector2( 882.654, 527.892 )
-rotation = -0.17708
-texture = ExtResource( 21 )
-
-[node name="DecorationBook8" type="Sprite" parent="Flavor"]
-position = Vector2( 934.626, 488.204 )
-rotation = 1.30091
-texture = ExtResource( 21 )
-
-[node name="DecorationBook9" type="Sprite" parent="Flavor"]
-position = Vector2( 956.675, 480.015 )
-rotation = 1.88913
-texture = ExtResource( 21 )
-
-[node name="DecorationBook10" type="Sprite" parent="Flavor"]
-position = Vector2( 968.329, 492.299 )
-rotation = 1.76191
-texture = ExtResource( 21 )
-
-[node name="DecorationBook11" type="Sprite" parent="Flavor"]
-position = Vector2( 945.965, 532.617 )
-rotation = 2.98537
-texture = ExtResource( 21 )
-
-[node name="DecorationBook12" type="Sprite" parent="Flavor"]
-position = Vector2( 932.421, 529.467 )
-texture = ExtResource( 21 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 396.66, 434.016 )
