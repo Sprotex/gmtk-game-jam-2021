@@ -13,6 +13,13 @@ signal on_canceled_transmission
 
 func send_message(cable_chain, cable_chain_destinations, hop_duration):
 	current_cable = cable_chain.front()
+	if current_cable.connections[0] is PlayerBody or current_cable.connections[1] is PlayerBody:
+		emit_signal("on_canceled_transmission")
+		return
+	if not (current_cable.connections[0].computer == cable_chain_destinations.front() 
+		or current_cable.connections[1].computer == cable_chain_destinations.front()):
+		emit_signal("on_canceled_transmission")
+		return
 	current_cable_chain = cable_chain
 	current_cable_chain_destinations = cable_chain_destinations
 	current_hop_duration = hop_duration
@@ -47,8 +54,8 @@ func handle_tween_completed(_obj, _key):
 		emit_signal("on_reached_destination", null)
 	else:
 		var next_signal_sender = current_cable_chain.front().message_signals
-		next_signal_sender.send_message(current_cable_chain, current_cable_chain_destinations, current_hop_duration)
 		emit_signal("on_relay_message", next_signal_sender)
+		next_signal_sender.send_message(current_cable_chain, current_cable_chain_destinations, current_hop_duration)
 
 func handle_on_disconnected():
 	disconnect_signals()

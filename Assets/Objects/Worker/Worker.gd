@@ -71,7 +71,6 @@ class Problem:
 		current_signal_sender.disconnect("on_relay_message", self, "handle_on_relay_message")
 		current_signal_sender.disconnect("on_canceled_transmission", self, "handle_on_canceled_transmission")
 	
-	
 	func handle_on_reached_destination(obj):
 		progress = 1.0
 		disconnect_signals()
