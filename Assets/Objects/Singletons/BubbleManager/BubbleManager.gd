@@ -10,7 +10,7 @@ func _ready():
 
 func show_bubble(obj: Node, message: String, location: Vector2, timeout: float = -1):
 	var id = obj.get_instance_id()
-	var bubble
+	var bubble: Bubble
 	if bubbles.has(id):
 		bubble = bubbles[id]
 		bubble.visible = true
@@ -20,6 +20,7 @@ func show_bubble(obj: Node, message: String, location: Vector2, timeout: float =
 	
 	bubble_holder.add_child(bubble)
 	bubble.get_node("Text").bbcode_text = message
+	bubble.desired_position = location
 	bubble.global_position = location
 
 
@@ -31,6 +32,7 @@ func bubble_visible(obj: Node):
 
 
 func hide_my_bubble(obj: Node):
+	if not bubble_visible(obj): return
 	var bubble = bubbles[obj.get_instance_id()]
 	if bubble == null: return
 	

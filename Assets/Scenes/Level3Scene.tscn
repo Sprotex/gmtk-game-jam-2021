@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Assets/Objects/UI/CableUI/CableUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Objects/Workstation/Workstation.tscn" type="PackedScene" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://Assets/Objects/UI/FullscreenLabel/EndOverlay.gd" type="Script" id=21]
 [ext_resource path="res://Assets/Objects/Singletons/BubbleManager/BubbleRegisterer.gd" type="Script" id=22]
 [ext_resource path="res://Textures/NameplateJosh.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Objects/Camera/GameCamera.gd" type="Script" id=24]
 
 [sub_resource type="DynamicFont" id=1]
 size = 49
@@ -194,7 +195,13 @@ scale = Vector2( 0.15, 0.06 )
 [node name="Workers" type="Node" parent="."]
 
 [node name="CEO" parent="Workers" instance=ExtResource( 6 )]
-position = Vector2( -513.959, 481.357 )
+position = Vector2( 1298.93, -301.994 )
+
+[node name="Bob" parent="Workers" instance=ExtResource( 6 )]
+position = Vector2( 1391.78, 481.357 )
+
+[node name="Josh" parent="Workers" instance=ExtResource( 6 )]
+position = Vector2( 1357.29, 218.36 )
 
 [node name="Otto" parent="Workers" instance=ExtResource( 6 )]
 position = Vector2( -64.1179, 482.692 )
@@ -222,7 +229,7 @@ position = Vector2( 1391.78, -42.6072 )
 nameplate = ExtResource( 19 )
 
 [node name="Josh" parent="Workstations" instance=ExtResource( 2 )]
-position = Vector2( 1344.14, 215.37 )
+position = Vector2( 1357.29, 218.36 )
 nameplate = ExtResource( 23 )
 
 [node name="Otto" parent="Workstations" instance=ExtResource( 2 )]
@@ -249,6 +256,7 @@ position = Vector2( 69.7583, 484.813 )
 scale = Vector2( 1.00147, 1 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( 0, 200 )
 scale = Vector2( 0.997566, 1 )
 current = true
 zoom = Vector2( 1.5, 1.5 )
@@ -257,6 +265,7 @@ limit_top = -600
 limit_right = 1850
 limit_bottom = 600
 smoothing_enabled = true
+script = ExtResource( 24 )
 
 [node name="Bubbles" type="Node2D" parent="."]
 scale = Vector2( 1.00147, 1 )

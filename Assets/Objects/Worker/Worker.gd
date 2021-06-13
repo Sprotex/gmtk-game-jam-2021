@@ -190,6 +190,7 @@ func _change_parent(node: Node2D, new_parent):
 	node.get_parent().remove_child(node)
 	new_parent.add_child(node)
 	node.global_position = old_position
+	node.desired_position = old_position
 	
 
 func say_no_more():

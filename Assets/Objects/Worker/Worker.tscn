@@ -39,5 +39,6 @@ texture = ExtResource( 8 )
 
 [node name="Bubble" parent="." instance=ExtResource( 3 )]
 visible = false
+script = null
 
 [connection signal="timeout" from="MessageShowTimer" to="." method="_on_MessageShowTimer_timeout"]
