@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/fury_of_hr.ogg-f9c26ba0e4d4b9fe60e0a496c7e4dc1d.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/fury_of_hr.ogg"
+dest_files=[ "res://.import/fury_of_hr.ogg-f9c26ba0e4d4b9fe60e0a496c7e4dc1d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
