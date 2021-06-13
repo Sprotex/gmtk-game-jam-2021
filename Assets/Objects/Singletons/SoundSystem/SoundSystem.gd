@@ -5,6 +5,7 @@ onready var jump = get_node("Jump")
 onready var disconnecting = get_node("Disconnect")
 onready var window_breaking = get_node("window breaking")
 onready var message_delivered = get_node("Message delivered")
+onready var deny = get_node("deny")
 onready var level_music = [
 	get_node("ye old corporate boy"),
 	get_node("admins of madness"),

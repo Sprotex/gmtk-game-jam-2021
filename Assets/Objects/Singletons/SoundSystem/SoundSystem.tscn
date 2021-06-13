@@ -35,6 +35,9 @@ stepPath = [ ExtResource( 10 ) ]
 [node name="window breaking" parent="." instance=ExtResource( 16 )]
 stepPath = [ ExtResource( 8 ), ExtResource( 13 ), ExtResource( 4 ) ]
 
+[node name="deny" parent="." instance=ExtResource( 16 )]
+stepPath = [ ExtResource( 8 ), ExtResource( 13 ), ExtResource( 4 ) ]
+
 [node name="ye old corporate boy" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = -6.0
