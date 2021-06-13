@@ -14,6 +14,7 @@ onready var level_music = [
 ]
 
 func stop_music():
+	fail_music.stop()
 	for music in level_music:
 		music.stop()
 
