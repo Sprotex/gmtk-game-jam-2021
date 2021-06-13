@@ -5,7 +5,8 @@ const EPS: float = 0.1
 class_name PlayerBody
 
 export (int) var cables_count = 3
-onready var jumpSound = get_node("SoundSystem/Jump")
+
+onready var sound_system = get_node("/root/SoundSystem")
 
 var controls_enabled = true
 
@@ -69,7 +70,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		airtime = 0
 		if Input.is_action_pressed("jump") and controls_enabled:
-			jumpSound.play_event()
+			sound_system.jump.play_event()
 			vel.y = -base_jump_force
 	
 	airtime += delta

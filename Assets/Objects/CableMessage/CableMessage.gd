@@ -6,6 +6,7 @@ signal on_message_delivered(cable_message)
 signal on_message_relayed(cable_message)
 signal on_message_failed(cable_message)
 
+onready var sound_system = get_node("/root/SoundSystem")
 onready var message_tween = get_node("MessageTween")
 onready var sprite = get_node("Sprite")
 var is_last_hop = false
@@ -33,6 +34,7 @@ func cancel_message():
 func _on_MessageTween_tween_completed(object, key):
 	if is_last_hop:
 		emit_signal("on_message_delivered", self)
+		sound_system.message_delivered.play_event()
 	else:
 		emit_signal("on_message_relayed", self)
 	queue_free()

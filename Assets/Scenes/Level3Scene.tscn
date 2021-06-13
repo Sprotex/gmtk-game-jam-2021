@@ -32,7 +32,7 @@ font_data = ExtResource( 16 )
 
 [node name="LevelScene" type="Node"]
 script = ExtResource( 10 )
-level_name = "level3"
+level_music = 2
 timeline = "time;from;to;override_message1
 8:00;Nora;Bob;Hey, {name}, can you hear me from the tower?
 8:30;Andy;CEO;I can see you, {name}, do you read me?

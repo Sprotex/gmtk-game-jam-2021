@@ -1,0 +1,48 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Assets/Sounds/jump_002.wav" type="AudioStream" id=1]
+[ext_resource path="res://Assets/Sounds/message_delivered.wav" type="AudioStream" id=2]
+[ext_resource path="res://Assets/Sounds/fury of hr.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Sounds/window_003.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Sounds/admins of madness.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Sounds/ye ol corporate boy.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Sounds/window_001.wav" type="AudioStream" id=8]
+[ext_resource path="res://Assets/Sounds/disconnect_001.wav" type="AudioStream" id=10]
+[ext_resource path="res://Assets/Sounds/connect_001.wav" type="AudioStream" id=11]
+[ext_resource path="res://Assets/Sounds/window_002.wav" type="AudioStream" id=13]
+[ext_resource path="res://Assets/Sounds/jump_003.wav" type="AudioStream" id=14]
+[ext_resource path="res://Assets/Sounds/jump_001.wav" type="AudioStream" id=15]
+[ext_resource path="res://Assets/Objects/RandomSoundContainer/RandomSoundContainer.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Assets/Objects/Singletons/SoundSystem/SoundSystem.gd" type="Script" id=17]
+
+[node name="SoundSystem" type="Node"]
+script = ExtResource( 17 )
+
+[node name="Message delivered" parent="." instance=ExtResource( 16 )]
+volume_db = -6.0
+stepPath = [ ExtResource( 2 ) ]
+
+[node name="Connect" parent="." instance=ExtResource( 16 )]
+volume_db = -3.611
+stepPath = [ ExtResource( 11 ) ]
+
+[node name="Jump" parent="." instance=ExtResource( 16 )]
+stepPath = [ ExtResource( 15 ), ExtResource( 1 ), ExtResource( 14 ) ]
+
+[node name="Disconnect" parent="." instance=ExtResource( 16 )]
+stepPath = [ ExtResource( 10 ) ]
+
+[node name="window breaking" parent="." instance=ExtResource( 16 )]
+stepPath = [ ExtResource( 8 ), ExtResource( 13 ), ExtResource( 4 ) ]
+
+[node name="ye old corporate boy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -6.0
+
+[node name="admins of madness" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -6.0
+
+[node name="fury of hr" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -6.0

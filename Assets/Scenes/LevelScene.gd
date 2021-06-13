@@ -1,9 +1,12 @@
 extends Node
 
-export (String) var level_name
+export (int) var level_music = 0
 export (String, MULTILINE) var timeline
 onready var bubblesHolder = $Bubbles
+onready var sound_system = get_node("/root/SoundSystem")
 
 func _ready():
+	sound_system.stop_music()
+	sound_system.play_music(level_music)
 	TimeManager.reset()
 	TimelineManager.init(timeline)
