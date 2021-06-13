@@ -28,12 +28,11 @@ func send_message(cable_chain, cable_chain_destinations, hop_duration):
 		start_index = 1
 	var end_index = 1 - start_index
 	var start_position = current_cable.connections[start_index].global_position
-	var end_position = current_cable.connections[end_index].global_position
 	var cable_message = cable_message_class.instance()
 	add_child(cable_message)
 	var is_last_hop = cable_chain_destinations.size() == 1
 	cable_message.set_cable_chain(cable_chain, cable_chain_destinations)
-	cable_message.init_and_send(start_position, end_position, hop_duration, is_last_hop)
+	cable_message.init_and_send(start_position, current_cable.connections[end_index], hop_duration, is_last_hop)
 	connect_signals(cable_message)
 
 func connect_signals(cable_message: CableMessage):

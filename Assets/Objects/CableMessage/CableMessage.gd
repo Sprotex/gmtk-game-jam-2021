@@ -17,10 +17,10 @@ func set_cable_chain(_cable_chain, _cable_chain_destinations):
 	cable_chain = _cable_chain
 	cable_chain_destinations = _cable_chain_destinations
 
-func init_and_send(start_position: Vector2, end_position: Vector2, duration: float, _is_last_hop: bool):
+func init_and_send(start_position: Vector2, end_object: Node2D, duration: float, _is_last_hop: bool):
 	is_last_hop = _is_last_hop
-	message_tween.interpolate_property(
-		sprite, "global_position", start_position, end_position
+	message_tween.follow_property(
+		sprite, "global_position", start_position, end_object, "global_position"
 		, duration, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT, 0.0)
 	message_tween.start()
 	sprite.visible = true
