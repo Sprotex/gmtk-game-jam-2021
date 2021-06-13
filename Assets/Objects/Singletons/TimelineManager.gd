@@ -2,6 +2,7 @@ extends Node
 
 
 var _timeline = []
+var problems_spawned = 0
 
 
 class TimelinePiece:
@@ -36,7 +37,7 @@ func init(timeline_string: String):
 func _process(delta):
 	if len(_timeline) == 0: return
 	
-	var time = TimeManager.current_time()
+	var time = TimeManager.tutorial_adjusted_time()
 	var next_piece = _timeline[0]
 	
 	if time > next_piece.time:
@@ -49,6 +50,7 @@ func _process(delta):
 			to = LevelManager.workers.keys()[randi() % len(LevelManager.workers.keys())]
 		
 		print("New request at %s from %s to %s" % [TimeManager.current_time_string(),from, to])
+		problems_spawned += 1
 		LevelManager.workers[from].add_problem(to, 1.5)
 		
 	

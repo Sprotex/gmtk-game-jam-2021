@@ -5,12 +5,15 @@ var player_reference
 var workers: Dictionary
 var workstations: Dictionary
 var camera: Camera2D = null
+var tutorial: bool
+var score: int
 
 
 func _ready():
 	reset()
 
 func reset():
+	randomize()
 	workers = {}
 	workstations = {}
 	camera = null

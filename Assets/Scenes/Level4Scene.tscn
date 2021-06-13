@@ -1,0 +1,355 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://Assets/Objects/UI/GameOverUI/GameOverUI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Objects/UI/ScoreUI/ScoreUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Objects/Singletons/TimeManager/TimeLabel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Objects/Worker/Worker.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Objects/Tile/Tile.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Objects/Workstation/Workstation.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Objects/Player/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Objects/UI/CableUI/CableUI.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Fonts/FontResource.tres" type="DynamicFont" id=9]
+[ext_resource path="res://Assets/Fonts/Kenney Future Narrow.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Assets/Objects/Pathfinding/PathNodes.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Objects/UI/FullscreenLabel/FullscreenLabel.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Objects/Singletons/TimeManager/TimeLabel.gd" type="Script" id=13]
+[ext_resource path="res://Assets/Objects/UI/FullscreenLabel/EndOverlay.gd" type="Script" id=14]
+[ext_resource path="res://Assets/Objects/Singletons/BubbleManager/BubbleRegisterer.gd" type="Script" id=15]
+[ext_resource path="res://Assets/Scenes/LevelScene.gd" type="Script" id=16]
+[ext_resource path="res://Textures/NameplateAndy.png" type="Texture" id=17]
+[ext_resource path="res://Textures/NameplateNora.png" type="Texture" id=18]
+[ext_resource path="res://Textures/NameplateXena.png" type="Texture" id=19]
+[ext_resource path="res://Textures/NameplateFred.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Objects/Camera/GameCamera.gd" type="Script" id=21]
+[ext_resource path="res://Textures/level2.png" type="Texture" id=22]
+[ext_resource path="res://Textures/NameplateJosh.png" type="Texture" id=23]
+[ext_resource path="res://Textures/NameplateBob.png" type="Texture" id=24]
+[ext_resource path="res://Textures/NameplateTony.png" type="Texture" id=25]
+[ext_resource path="res://Textures/CEOAnger3.png" type="Texture" id=26]
+[ext_resource path="res://Textures/CEOAnger4.png" type="Texture" id=27]
+[ext_resource path="res://Textures/CEOAnger1.png" type="Texture" id=28]
+[ext_resource path="res://Textures/CEOAnger2.png" type="Texture" id=29]
+[ext_resource path="res://Textures/CEOBaseState.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Objects/CEO/CEO Workstation.gd" type="Script" id=31]
+
+[sub_resource type="DynamicFont" id=1]
+size = 49
+font_data = ExtResource( 10 )
+
+[node name="LevelScene" type="Node"]
+script = ExtResource( 16 )
+level_name = "level3"
+timeline = "time;from;to;override_message1
+8:00;Nora;Bob;Hey, {name}, can you hear me from the tower?
+8:30;Andy;CEO;I can see you, {name}, do you read me?
+9:00;RANDOM;RANDOM;
+9:22;RANDOM;RANDOM;
+10:00;Fred;Andy;I got no more work, {name}, let's play a game!
+10:30;RANDOM;RANDOM;
+11:00;RANDOM;RANDOM;
+11:00;RANDOM;RANDOM;
+11:00;RANDOM;RANDOM;
+11:45;RANDOM;RANDOM;
+13:00;RANDOM;RANDOM;
+13:30;RANDOM;RANDOM;
+13:33;RANDOM;RANDOM;
+13:59;RANDOM;RANDOM;
+14:03;RANDOM;RANDOM;
+14:33;RANDOM;RANDOM;
+14:43;RANDOM;RANDOM;
+15:00;RANDOM;RANDOM;
+15:07;Xena;RANDOM;
+15:17;RANDOM;Xena;
+15:31;RANDOM;RANDOM;
+15:32;RANDOM;RANDOM;
+15:45;Xena;RANDOM;
+16:00;RANDOM;RANDOM;
+16:21;RANDOM;RANDOM;
+16:33;RANDOM;Xena;"
+
+[node name="Back Black" type="ColorRect" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelBackground" type="Sprite" parent="."]
+position = Vector2( 1.97312, -600.689 )
+scale = Vector2( 1.00147, 1 )
+texture = ExtResource( 22 )
+centered = false
+
+[node name="Label" parent="." instance=ExtResource( 3 )]
+margin_left = 822.56
+margin_top = 81.7401
+margin_right = 922.56
+margin_bottom = 141.74
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = ExtResource( 9 )
+script = ExtResource( 13 )
+
+[node name="CableUI" parent="." instance=ExtResource( 8 )]
+visible = false
+player_path = NodePath("../Player")
+
+[node name="ScoreUI" parent="." instance=ExtResource( 2 )]
+
+[node name="Tiles" type="Node2D" parent="."]
+scale = Vector2( 1.00147, 1 )
+
+[node name="original_house" type="Node2D" parent="Tiles"]
+
+[node name="middle_floor" parent="Tiles/original_house" instance=ExtResource( 5 )]
+position = Vector2( 398.835, 299.812 )
+scale = Vector2( 1.7241, -0.060287 )
+
+[node name="middle_floor2" parent="Tiles/original_house" instance=ExtResource( 5 )]
+position = Vector2( 1338.24, 298.03 )
+scale = Vector2( 1.7241, -0.060287 )
+
+[node name="bottom_floor" parent="Tiles/original_house" instance=ExtResource( 5 )]
+position = Vector2( 912.474, 574.637 )
+scale = Vector2( 5.02924, 0.144885 )
+
+[node name="stairs_middle" parent="Tiles/original_house" instance=ExtResource( 5 )]
+position = Vector2( 941.434, 399.851 )
+scale = Vector2( 0.227488, -0.0726378 )
+
+[node name="wall_right" parent="Tiles/original_house" instance=ExtResource( 5 )]
+position = Vector2( 990.198, 69.0935 )
+rotation = 3.14159
+scale = Vector2( 0.05012, -0.206789 )
+
+[node name="wall_left" parent="Tiles/original_house" instance=ExtResource( 5 )]
+position = Vector2( 41.1335, 331.348 )
+scale = Vector2( 0.0575134, 0.459099 )
+
+[node name="wall_right2" parent="Tiles/original_house" instance=ExtResource( 5 )]
+position = Vector2( 986.822, 348.275 )
+scale = Vector2( 0.0575134, 0.299099 )
+
+[node name="wall_right3" parent="Tiles/original_house" instance=ExtResource( 5 )]
+position = Vector2( 1699.15, 316.275 )
+scale = Vector2( 0.0575134, 0.3791 )
+
+[node name="wall_left_outer" parent="Tiles/original_house" instance=ExtResource( 5 )]
+position = Vector2( -149.714, 254.554 )
+scale = Vector2( 0.10988, 4.04679 )
+
+[node name="wall_left_outer2" parent="Tiles/original_house" instance=ExtResource( 5 )]
+position = Vector2( 1903.27, 356.554 )
+scale = Vector2( 0.10988, 4.04679 )
+
+[node name="wall_left2_up" parent="Tiles/original_house" instance=ExtResource( 5 )]
+position = Vector2( 40.5806, 56.1768 )
+scale = Vector2( 0.0575134, 0.139099 )
+
+[node name="wall_left2_up2" parent="Tiles/original_house" instance=ExtResource( 5 )]
+position = Vector2( 1700.56, 57.9586 )
+scale = Vector2( 0.0575134, 0.139099 )
+
+[node name="wall_left3_up" parent="Tiles/original_house" instance=ExtResource( 5 )]
+position = Vector2( 751.668, 72.3215 )
+scale = Vector2( 0.0575134, 0.219099 )
+
+[node name="ceiling" parent="Tiles/original_house" instance=ExtResource( 5 )]
+position = Vector2( 874.332, 38.987 )
+scale = Vector2( 3.98501, 0.06 )
+
+[node name="Workers" type="Node" parent="."]
+
+[node name="Josh" parent="Workers" instance=ExtResource( 4 )]
+position = Vector2( -238.385, 482.308 )
+
+[node name="CEO" parent="Workers" instance=ExtResource( 4 )]
+position = Vector2( 1198.36, 221.564 )
+walk_while_working = true
+
+[node name="Sprite" parent="Workers/CEO/AngerSprite" index="0"]
+texture = ExtResource( 30 )
+
+[node name="Sprite2" parent="Workers/CEO/AngerSprite" index="1"]
+texture = ExtResource( 28 )
+
+[node name="Sprite3" parent="Workers/CEO/AngerSprite" index="2"]
+texture = ExtResource( 29 )
+
+[node name="Sprite4" parent="Workers/CEO/AngerSprite" index="3"]
+texture = ExtResource( 26 )
+
+[node name="Sprite5" parent="Workers/CEO/AngerSprite" index="4"]
+texture = ExtResource( 27 )
+
+[node name="Bob" parent="Workers" instance=ExtResource( 4 )]
+position = Vector2( -28.0999, 484.738 )
+
+[node name="Tony" parent="Workers" instance=ExtResource( 4 )]
+position = Vector2( 8.46948, 482.066 )
+
+[node name="Otto" parent="Workers" instance=ExtResource( 4 )]
+position = Vector2( -64.1179, 482.692 )
+
+[node name="Xena" parent="Workers" instance=ExtResource( 4 )]
+position = Vector2( -85.4753, 482.692 )
+
+[node name="Andy" parent="Workers" instance=ExtResource( 4 )]
+position = Vector2( -118.846, 484.027 )
+
+[node name="Nora" parent="Workers" instance=ExtResource( 4 )]
+position = Vector2( 1807.3, 481.782 )
+
+[node name="Fred" parent="Workers" instance=ExtResource( 4 )]
+position = Vector2( -118.846, 484.027 )
+
+[node name="Workstations" type="Node" parent="."]
+
+[node name="Josh" parent="Workstations" instance=ExtResource( 6 )]
+position = Vector2( 1474.89, 220.142 )
+nameplate = ExtResource( 23 )
+
+[node name="CEO" parent="Workstations" instance=ExtResource( 6 )]
+position = Vector2( 1198.75, 221.967 )
+nameplate = ExtResource( 23 )
+
+[node name="Sprite" parent="Workstations/CEO" index="0"]
+visible = false
+
+[node name="Port" parent="Workstations/CEO/Ports" index="0"]
+position = Vector2( 42.7502, 24.63 )
+
+[node name="Port2" parent="Workstations/CEO/Ports" index="1"]
+visible = false
+is_enabled = false
+
+[node name="Port3" parent="Workstations/CEO/Ports" index="2"]
+visible = false
+is_enabled = false
+
+[node name="Nameplate" parent="Workstations/CEO" index="3"]
+visible = false
+
+[node name="CEO Workstation" type="Node2D" parent="Workstations/CEO"]
+script = ExtResource( 31 )
+
+[node name="Bob" parent="Workstations" instance=ExtResource( 6 )]
+position = Vector2( 1323.44, 482.066 )
+nameplate = ExtResource( 24 )
+
+[node name="Tony" parent="Workstations" instance=ExtResource( 6 )]
+position = Vector2( 1552.54, 480.75 )
+nameplate = ExtResource( 25 )
+
+[node name="Otto" parent="Workstations" instance=ExtResource( 6 )]
+position = Vector2( 388.136, 221.027 )
+
+[node name="Xena" parent="Workstations" instance=ExtResource( 6 )]
+position = Vector2( 568.416, 221.265 )
+nameplate = ExtResource( 19 )
+
+[node name="Andy" parent="Workstations" instance=ExtResource( 6 )]
+position = Vector2( 195.377, 482.103 )
+nameplate = ExtResource( 17 )
+
+[node name="Nora" parent="Workstations" instance=ExtResource( 6 )]
+position = Vector2( 442.107, 481.004 )
+nameplate = ExtResource( 18 )
+
+[node name="Fred" parent="Workstations" instance=ExtResource( 6 )]
+position = Vector2( 582.825, 482.126 )
+nameplate = ExtResource( 20 )
+
+[node name="Player" parent="." instance=ExtResource( 7 )]
+position = Vector2( 69.7583, 484.813 )
+scale = Vector2( 1.00147, 1 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( 0, 200 )
+scale = Vector2( 0.997566, 1 )
+current = true
+zoom = Vector2( 1.5, 1.5 )
+limit_left = 0
+limit_top = -300
+limit_right = 2600
+limit_bottom = 600
+smoothing_enabled = true
+script = ExtResource( 21 )
+
+[node name="Bubbles" type="Node2D" parent="."]
+scale = Vector2( 1.00147, 1 )
+script = ExtResource( 15 )
+
+[node name="PathNodes" type="Node" parent="."]
+script = ExtResource( 11 )
+
+[node name="Node_0" type="Node2D" parent="PathNodes"]
+position = Vector2( 723.438, 484.027 )
+
+[node name="Node_1" type="Node2D" parent="PathNodes"]
+position = Vector2( 884.97, 320.691 )
+
+[node name="Node_2" type="Node2D" parent="PathNodes"]
+position = Vector2( 941.469, 319.801 )
+
+[node name="Node_3" type="Node2D" parent="PathNodes"]
+position = Vector2( 838.234, 223.733 )
+
+[node name="Overlays" type="Node2D" parent="."]
+position = Vector2( 0, -300 )
+scale = Vector2( 1.5, 1.5 )
+z_index = 1
+
+[node name="EndOverlay" type="ColorRect" parent="Overlays"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 105.827
+margin_top = -506.873
+margin_right = 1129.83
+margin_bottom = 93.1274
+rect_scale = Vector2( 2, 2 )
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Overlays/EndOverlay"]
+
+[node name="ScreenLabel" type="ColorRect" parent="Overlays"]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="Overlays/ScreenLabel"]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Level 3 : more space"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "s"
+}
+
+[node name="Tween" type="Tween" parent="Overlays/ScreenLabel"]
+
+[node name="Timer" type="Timer" parent="Overlays/ScreenLabel"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="GameOverUI" parent="." instance=ExtResource( 1 )]
+
+[connection signal="timeout" from="Overlays/ScreenLabel/Timer" to="Overlays/ScreenLabel" method="_on_Timer_timeout"]
+
+[editable path="Workers/CEO"]
+[editable path="Workstations/CEO"]

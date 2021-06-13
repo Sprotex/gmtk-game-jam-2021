@@ -34,6 +34,7 @@ func _unplug_cable(cable, port):
 
 func _connect_cable(id):
 	var port = near_computer.ports[id]
+	if not port.is_enabled: return
 	if not cables.empty():
 		var cable = cables[0]
 		if cable.connections.empty(): # I am currently not carrying a cable

@@ -29,6 +29,7 @@ func game_over():
 	visible = true
 	level_manager.player_reference.visible = false
 
+
 func _on_PlayAgainButton_pressed():
 	Engine.time_scale = 1.0
 	visible = false

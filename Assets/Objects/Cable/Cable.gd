@@ -33,8 +33,9 @@ func stop_drawing():
 func _process(_delta):
 	if connections.size() >= 2 and visible:
 		for connection in connections:
-			if connection is PlayerBody:
-				start_drawing()
+			start_drawing()
+			#if connection is PlayerBody: start_drawing()
+				
 
 func search(closed: Array, prev: Dictionary, receiver_name: String) -> bool:
 	for connection in connections:

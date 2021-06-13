@@ -5,6 +5,7 @@ var score = 0
 
 func set_score(value: int):
 	score = value
+	LevelManager.score = score
 	label.text = str(value)
 
 func reset():

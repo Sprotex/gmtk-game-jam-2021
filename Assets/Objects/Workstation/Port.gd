@@ -1,6 +1,7 @@
 extends Node2D
 
 export (int) var id
+export (bool) var is_enabled = true
 var cable = null
 
 onready var sound_system = get_node("/root/SoundSystem")
@@ -11,7 +12,7 @@ onready var particles = get_node("Particles2D")
 signal on_connection_changed
 
 func is_empty() -> bool:
-	return cable == null
+	return is_enabled and cable == null
 
 func connect_cable(new_cable):
 	if cable == new_cable:
