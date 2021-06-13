@@ -66,7 +66,7 @@ func _connect_cable(id):
 	elif not port.is_empty(): # can plug out occupied port
 		_unplug_cable(port.cable, port)
 	else:
-		ErrorManager.show_error("No cables in inventory")
+		ErrorManager.show_error("No cable in inventory or port")
 
 func _process(_delta):
 	if near_computer != null:
