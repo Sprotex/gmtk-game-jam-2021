@@ -1,3 +1,3 @@
 extends Node
 
-onready var total_connections = 0
+var total_connections = 0

@@ -9,11 +9,6 @@ func _ready():
 	nameplateSprite.texture = nameplate
 	LevelManager.workstations[name] = self
 
-func _process(_delta):
-	if Input.is_key_pressed(KEY_KP_ENTER):
-		if name != "Alex":
-			print("Send message from %s to %s: %s" % [name, "Alex", var2str(try_send_message("Alex", {}))])
-
 # receiver_name: which pc is receiving the message
 # returns true when message arrived, false otherwise
 func try_send_message(receiver_name: String, prev: Dictionary) -> bool:
