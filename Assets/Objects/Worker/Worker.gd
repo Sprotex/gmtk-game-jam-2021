@@ -211,6 +211,7 @@ func work(delta: float):
 			anger -= 0.5 * ANGER_INCREMENT * delta
 	
 	if anger >= 5:
+		anger = -1
 		MessageManager.emit_signal("on_message_timedout")
 		return
 	if not BubbleManager.bubble_visible(self) or int(anger) != int(prev_anger):
@@ -226,7 +227,7 @@ func work(delta: float):
 func work_walk(delta: float):
 	if walk_cooldown <= 0 or next_walk_location == Vector2.INF:
 		next_walk_location = walk_locations[randi() % len(walk_locations)]
-		walk_cooldown = rand_range(0, 2)
+		walk_cooldown = rand_range(5, 15)
 		
 	if next_walk_location.distance_squared_to(global_position) > EPS:
 		GlobalNavigation.navigate(self, next_walk_location, MOVE_SPEED, delta)

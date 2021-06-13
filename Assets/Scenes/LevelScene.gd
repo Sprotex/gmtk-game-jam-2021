@@ -13,7 +13,3 @@ func _ready():
 	LevelManager.tutorial = tutorial
 	TimeManager.reset()
 	TimelineManager.init(timeline)
-
-func _process(_delta):
-	if Input.is_key_pressed(KEY_F10):
-		LevelManager.go_to_next_scene()

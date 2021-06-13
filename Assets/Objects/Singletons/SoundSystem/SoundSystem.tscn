@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Sounds/jump_002.wav" type="AudioStream" id=1]
 [ext_resource path="res://Assets/Sounds/message_delivered.wav" type="AudioStream" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/Sounds/window_003.wav" type="AudioStream" id=4]
 [ext_resource path="res://Assets/Sounds/admins of madness.wav" type="AudioStream" id=5]
 [ext_resource path="res://Assets/Sounds/ye ol corporate boy.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Sounds/the final 1on1.wav" type="AudioStream" id=7]
 [ext_resource path="res://Assets/Sounds/window_001.wav" type="AudioStream" id=8]
 [ext_resource path="res://Assets/Sounds/disconnect_001.wav" type="AudioStream" id=10]
 [ext_resource path="res://Assets/Sounds/connect_001.wav" type="AudioStream" id=11]
@@ -37,6 +38,9 @@ stepPath = [ ExtResource( 8 ), ExtResource( 13 ), ExtResource( 4 ) ]
 
 [node name="deny" parent="." instance=ExtResource( 16 )]
 stepPath = [ ExtResource( 8 ), ExtResource( 13 ), ExtResource( 4 ) ]
+
+[node name="fail music" parent="." instance=ExtResource( 16 )]
+stepPath = [ ExtResource( 7 ) ]
 
 [node name="ye old corporate boy" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )

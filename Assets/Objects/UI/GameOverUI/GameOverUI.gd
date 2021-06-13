@@ -1,5 +1,6 @@
 extends Control
 
+onready var sound_system = get_node("/root/SoundSystem")
 onready var connections_enabled_label = get_node("ConnectionsEnabledLabel")
 onready var time_worked_label = get_node("TimeWorkedLabel")
 onready var connections_enabled_count = 0
@@ -19,7 +20,7 @@ func handle_deliver_message():
 	connections_enabled_count += 1
 
 func game_over():
-	emit_signal("on_game_over")
+	sound_system.play_fail()
 	Engine.time_scale = 0.0
 	connections_enabled_label.text = str(connections_enabled_count)
 	var time = int(TimeManager.get_duration())

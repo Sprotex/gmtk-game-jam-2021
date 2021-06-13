@@ -6,6 +6,7 @@ onready var disconnecting = get_node("Disconnect")
 onready var window_breaking = get_node("window breaking")
 onready var message_delivered = get_node("Message delivered")
 onready var deny = get_node("deny")
+onready var fail_music = get_node("fail music")
 onready var level_music = [
 	get_node("ye old corporate boy"),
 	get_node("admins of madness"),
@@ -18,3 +19,7 @@ func stop_music():
 
 func play_music(index: int):
 	level_music[index].play()
+
+func play_fail():
+	stop_music()
+	fail_music.play_event()
