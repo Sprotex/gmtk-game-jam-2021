@@ -156,7 +156,10 @@ func _process(delta: float):
 	
 	var time = TimeManager.current_time()
 	if walk_while_working:
-		work(delta)
+		if time < lunch_break_start or (time > lunch_break_start + 1 and time < 17):
+			work(delta)
+		else:
+			lunch_break(delta)
 		return
 		
 	if time < lunch_break_start or (time > lunch_break_start + 1 and time < 17):

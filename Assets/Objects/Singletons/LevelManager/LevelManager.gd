@@ -32,7 +32,6 @@ func go_to_next_scene():
 	_current_scene_index += 1
 	
 	if _current_scene_index >= len(scene_sequence):
-		printerr("Cannot advance to next scene!")
 		get_tree().quit()
 		return
 	
