@@ -32,7 +32,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="GMTK-game-jam-2021"
+config/name="system-is-a-down"
 run/main_scene="res://Assets/Scenes/Level1Scene.tscn"
 config/icon="res://icon.png"
 
