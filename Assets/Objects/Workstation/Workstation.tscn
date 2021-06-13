@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Objects/Workstation/Workstation.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Workstation.png" type="Texture" id=2]
@@ -7,7 +7,11 @@
 [ext_resource path="res://Textures/NameplateOtto.png" type="Texture" id=5]
 [ext_resource path="res://Textures/PortFiller.png" type="Texture" id=6]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.726563, 1 )
+colors = PoolColorArray( 1, 0.866667, 0, 1, 1, 0.866667, 0, 0 )
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 50, 50 )
 
 [node name="Workstation" type="Node2D"]
@@ -30,6 +34,24 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Particles2D" type="CPUParticles2D" parent="Ports/Port"]
+emitting = false
+amount = 200
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.9
+randomness = 1.0
+lifetime_randomness = 1.0
+spread = 180.0
+initial_velocity = 150.0
+initial_velocity_random = 0.5
+damping = 100.0
+scale_amount = 2.0
+scale_amount_random = 1.0
+color_ramp = SubResource( 3 )
+hue_variation = -0.02
+hue_variation_random = 1.0
+
 [node name="Port2" type="Node2D" parent="Ports"]
 position = Vector2( 42.1006, -8.42501 )
 script = ExtResource( 4 )
@@ -41,6 +63,24 @@ texture = ExtResource( 6 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Particles2D" type="CPUParticles2D" parent="Ports/Port2"]
+emitting = false
+amount = 200
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.9
+randomness = 1.0
+lifetime_randomness = 1.0
+spread = 180.0
+initial_velocity = 150.0
+initial_velocity_random = 0.5
+damping = 100.0
+scale_amount = 2.0
+scale_amount_random = 1.0
+color_ramp = SubResource( 3 )
+hue_variation = -0.02
+hue_variation_random = 1.0
 
 [node name="Port3" type="Node2D" parent="Ports"]
 position = Vector2( 41.9603, 9.47092 )
@@ -54,7 +94,26 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Particles2D" type="CPUParticles2D" parent="Ports/Port3"]
+emitting = false
+amount = 200
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.9
+randomness = 1.0
+lifetime_randomness = 1.0
+spread = 180.0
+initial_velocity = 150.0
+initial_velocity_random = 0.5
+damping = 100.0
+scale_amount = 2.0
+scale_amount_random = 1.0
+color_ramp = SubResource( 3 )
+hue_variation = -0.02
+hue_variation_random = 1.0
+
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true,
@@ -62,7 +121,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Nameplate" type="Sprite" parent="."]
 position = Vector2( -31.4695, 11.1286 )
