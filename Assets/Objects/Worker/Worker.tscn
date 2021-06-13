@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Textures/WorkerGrey.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Objects/Worker/Worker.gd" type="Script" id=2]
@@ -8,6 +8,16 @@
 [ext_resource path="res://Textures/WorkerGreyAnger2.png" type="Texture" id=6]
 [ext_resource path="res://Textures/WorkerGreyAnger3.png" type="Texture" id=7]
 [ext_resource path="res://Textures/WorkerGreyAnger4.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Objects/Worker/Hair.gd" type="Script" id=9]
+[ext_resource path="res://Textures/HairDread.png" type="Texture" id=10]
+[ext_resource path="res://Textures/HairAfro.png" type="Texture" id=11]
+[ext_resource path="res://Textures/HairFuzz.png" type="Texture" id=12]
+[ext_resource path="res://Textures/HairOld.png" type="Texture" id=13]
+[ext_resource path="res://Textures/HairBigFro.png" type="Texture" id=14]
+[ext_resource path="res://Textures/HairCheesetop.png" type="Texture" id=15]
+[ext_resource path="res://Textures/HairDevil.png" type="Texture" id=16]
+[ext_resource path="res://Textures/HairLong.png" type="Texture" id=17]
+[ext_resource path="res://Textures/HairPunk.png" type="Texture" id=18]
 
 [node name="Worker" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -36,4 +46,33 @@ texture = ExtResource( 8 )
 
 [node name="Bubble" parent="." instance=ExtResource( 3 )]
 visible = false
-script = null
+
+[node name="Hair" type="Node2D" parent="."]
+script = ExtResource( 9 )
+
+[node name="HairAfro" type="Sprite" parent="Hair"]
+texture = ExtResource( 11 )
+
+[node name="HairBigFro" type="Sprite" parent="Hair"]
+texture = ExtResource( 14 )
+
+[node name="HairCheesetop" type="Sprite" parent="Hair"]
+texture = ExtResource( 15 )
+
+[node name="HairDevil" type="Sprite" parent="Hair"]
+texture = ExtResource( 16 )
+
+[node name="HairDread" type="Sprite" parent="Hair"]
+texture = ExtResource( 10 )
+
+[node name="HairFuzz" type="Sprite" parent="Hair"]
+texture = ExtResource( 12 )
+
+[node name="HairLong" type="Sprite" parent="Hair"]
+texture = ExtResource( 17 )
+
+[node name="HairOld" type="Sprite" parent="Hair"]
+texture = ExtResource( 13 )
+
+[node name="HairPunk" type="Sprite" parent="Hair"]
+texture = ExtResource( 18 )
