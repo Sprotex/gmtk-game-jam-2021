@@ -34,16 +34,17 @@ class Problem:
 	var from: String
 	var to: String
 	var progress: float = 0.0
-	var length: float = 2.0
+	var length: float
 	var is_new: bool = true
 	var opening_message: String
 	var reply_message: String
 	var is_message_in_progress = false
 	var current_signal_sender = null
 	
-	func init(from: String, to: String, var length: float = 2.0):
+	func init(from: String, to: String, var length: float = 1.5):
 		self.to = to
-		self.length = length
+		randomize()
+		self.length = length + rand_range(-0.1, 0.1)
 		var msgRequest = MessageManager.pick_first_message(from, to)
 		self.opening_message = msgRequest.message
 		self.reply_message = msgRequest.get_random_reply()
@@ -167,7 +168,10 @@ func work(delta: float):
 	
 	problem.try_solve_from(name, delta)
 	if problem.is_solved():
-		message_queue.pop_front()
+		if len(message_queue) > 0:
+			var message: MsgQueueElement = message_queue[0]
+			if message.time_remaining == -1:
+				message_queue.pop_front()
 		# say_text(MessageManager.pick_thanks_message(problem.to), 2.0)
 		LevelManager.workers[problem.to].say_text(problem.reply_message, 2.0)
 		_problems.pop_front()
@@ -208,7 +212,7 @@ func lunch_break(delta: float):
 # ==================
 
 # Called from outer scope by timeline manager
-func add_problem(target_name: String, time: float = 2.0):
+func add_problem(target_name: String, time: float):
 	_problems.push_back(
 		Problem.new().init(name, target_name, time)
 	)
