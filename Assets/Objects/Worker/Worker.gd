@@ -15,18 +15,39 @@ var _starting_position: Vector2
 onready var _problems = []
 var anger = 0
 var _work_location: Vector2 = Vector2.INF
+var lunch_break_start
+var at_lunch = false
+
+class MsgQueueElement:
+	var msg: String
+	var time_remaining: float
+	
+	func init(msg: String, time_remaining: float):
+		self.msg = msg
+		self.time_remaining = time_remaining
+		return self
+
+var message_queue = []
 
 
 class Problem:
+	var from: String
 	var to: String
 	var progress: float = 0.0
-	var length: float = 2.0
+	var length: float
+	var is_new: bool = true
+	var opening_message: String
+	var reply_message: String
 	var is_message_in_progress = false
 	var current_signal_sender = null
 	
-	func init(to: String, var length: float = 2.0):
+	func init(from: String, to: String, var length: float = 1.5):
 		self.to = to
-		self.length = length
+		randomize()
+		self.length = length + rand_range(-0.1, 0.1)
+		var msgRequest = MessageManager.pick_first_message(from, to)
+		self.opening_message = msgRequest.message
+		self.reply_message = msgRequest.get_random_reply()
 		return self
 		
 	func send_networking_message(from, to, prev: Dictionary):
@@ -89,6 +110,8 @@ class Problem:
 	func try_solve_from(name: String, delta: float):
 		if is_message_in_progress:
 			return
+		if LevelManager.workers[to].at_lunch:
+			return
 		var prev = {}
 		var workstation = LevelManager.workstations[name]
 		var is_connected = workstation.try_send_message(to, prev)
@@ -97,11 +120,14 @@ class Problem:
 			send_networking_message(workstation, to, prev)
 		
 	func is_solved():
+		if LevelManager.workers[to].at_lunch:
+			false
 		return progress == 1.0
 
 
 func _ready():
 	_starting_position = global_position
+	lunch_break_start = 11.5 + randf()
 	LevelManager.workers[name] = self
 
 func get_work_location():
@@ -111,17 +137,19 @@ func get_work_location():
 
 
 func _process(delta: float):
+	message_queue_process(delta)
 	anger -= ANGER_INCREMENT * delta
 	anger = clamp(anger, 0, 5)
 	anger_sprite.set_angriness(int(anger))
 	
 	var time = TimeManager.current_time()
-	if time < 12 or (time > 13 and time < 17):
+	if time < lunch_break_start or (time > lunch_break_start + 1 and time < 17):
 		if global_position.distance_squared_to(get_work_location()) > EPS:
 			go_to_work(delta)
 		else:
+			at_lunch = false
 			work(delta)
-	elif time < 13:
+	elif time < 15:
 		lunch_break(delta)
 	else:
 		go_home(delta)
@@ -140,8 +168,12 @@ func work(delta: float):
 	
 	problem.try_solve_from(name, delta)
 	if problem.is_solved():
-		say_no_more()
-		say_text(MessageManager.pick_thanks_message(problem.to), 2.0)
+		if len(message_queue) > 0:
+			var message: MsgQueueElement = message_queue[0]
+			if message.time_remaining == -1:
+				message_queue.pop_front()
+		# say_text(MessageManager.pick_thanks_message(problem.to), 2.0)
+		LevelManager.workers[problem.to].say_text(problem.reply_message, 2.0)
 		_problems.pop_front()
 		MessageManager.emit_signal("on_message_delivered")
 		next_will_fail = false
@@ -153,7 +185,13 @@ func work(delta: float):
 		MessageManager.emit_signal("on_message_timedout")
 		return
 	if not BubbleManager.bubble_visible(self) or int(anger) != int(prev_anger):
-		say_text(MessageManager.pick_message(problem.to, int(anger)))
+		var msg
+		if problem.is_new:
+			msg = problem.opening_message
+			problem.is_new = false
+		else:
+			msg = MessageManager.pick_anger_message(problem.to, int(anger))
+		say_text(msg)
 
 func go_home(delta: float):
 	say_no_more()
@@ -161,40 +199,59 @@ func go_home(delta: float):
 	
 
 func lunch_break(delta: float):
-	say_no_more()
-	pass
+	if not at_lunch:
+		say_no_more()
+		if len(_problems) > 0:
+			say_text(MessageManager.pick_hunger_message(_problems[0].to))
+		at_lunch = true
+		BubbleManager.override_bubble_location(self, global_position)
+	GlobalNavigation.navigate(self, _starting_position, MOVE_SPEED * 2, delta)
 
 # ==================
 #  HELPER FUNCTIONS
 # ==================
 
 # Called from outer scope by timeline manager
-func add_problem(target_name: String, time: float = 2.0):
+func add_problem(target_name: String, time: float):
 	_problems.push_back(
-		Problem.new().init(target_name, time)
+		Problem.new().init(name, target_name, time)
 	)
 
 # MESSAGING
 	
 func say_text(message: String, timeout = -1):	
-	if !messageShowTimer.is_stopped():
-		messageShowTimer.stop()
+	message_queue.push_back(MsgQueueElement.new().init(message, timeout))
 
-	if timeout > 0:
-		messageShowTimer.start(timeout)
-	
-	BubbleManager.show_bubble(self, message, bubble.global_position, timeout)
 	
 func _change_parent(node: Node2D, new_parent):
 	var old_position = node.global_position
 	node.get_parent().remove_child(node)
 	new_parent.add_child(node)
 	node.global_position = old_position
+	node.desired_position = old_position
 	
 
 func say_no_more():
 	BubbleManager.hide_my_bubble(self)
 
 
-func _on_MessageShowTimer_timeout():
-	say_no_more()
+func message_queue_process(delta: float):
+	if len(message_queue) == 0:
+		BubbleManager.hide_my_bubble(self)
+		return
+	
+	var msg_queue_elem: MsgQueueElement = message_queue[0]
+	
+	if msg_queue_elem.time_remaining == -1:
+		if len(message_queue) > 1:
+			message_queue.pop_front()
+			# will be dealt with in later update
+			return
+		BubbleManager.show_bubble(self, msg_queue_elem.msg, bubble.global_position)
+		return
+	
+	msg_queue_elem.time_remaining -= delta
+	if msg_queue_elem.time_remaining <= 0:
+		message_queue.pop_front()
+		return
+	BubbleManager.show_bubble(self, msg_queue_elem.msg, bubble.global_position)

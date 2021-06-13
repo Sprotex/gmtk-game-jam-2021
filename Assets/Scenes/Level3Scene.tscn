@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Assets/Objects/UI/CableUI/CableUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Objects/Workstation/Workstation.tscn" type="PackedScene" id=2]
@@ -23,6 +23,8 @@
 [ext_resource path="res://Assets/Objects/UI/FullscreenLabel/EndOverlay.gd" type="Script" id=21]
 [ext_resource path="res://Assets/Objects/Singletons/BubbleManager/BubbleRegisterer.gd" type="Script" id=22]
 [ext_resource path="res://Textures/NameplateJosh.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Objects/Camera/GameCamera.gd" type="Script" id=24]
+[ext_resource path="res://Assets/Objects/UI/GameOverUI/GameOverUI.tscn" type="PackedScene" id=25]
 
 [sub_resource type="DynamicFont" id=1]
 size = 49
@@ -31,6 +33,33 @@ font_data = ExtResource( 16 )
 [node name="LevelScene" type="Node"]
 script = ExtResource( 10 )
 level_name = "level3"
+timeline = "time;from;to;override_message1
+8:00;Nora;Bob;Hey, {name}, can you hear me from the tower?
+8:30;Andy;CEO;I can see you, {name}, do you read me?
+9:00;RANDOM;RANDOM;
+9:22;RANDOM;RANDOM;
+10:00;Fred;Andy;I got no more work, {name}, let's play a game!
+10:30;RANDOM;RANDOM;
+11:00;RANDOM;RANDOM;
+11:00;RANDOM;RANDOM;
+11:00;RANDOM;RANDOM;
+11:45;RANDOM;RANDOM;
+13:00;RANDOM;RANDOM;
+13:30;RANDOM;RANDOM;
+13:33;RANDOM;RANDOM;
+13:59;RANDOM;RANDOM;
+14:03;RANDOM;RANDOM;
+14:33;RANDOM;RANDOM;
+14:43;RANDOM;RANDOM;
+15:00;RANDOM;RANDOM;
+15:07;Xena;RANDOM;
+15:17;RANDOM;Xena;
+15:31;RANDOM;RANDOM;
+15:32;RANDOM;RANDOM;
+15:45;Xena;RANDOM;
+16:00;RANDOM;RANDOM;
+16:21;RANDOM;RANDOM;
+16:33;RANDOM;Xena;"
 
 [node name="Back Black" type="ColorRect" parent="."]
 modulate = Color( 0, 0, 0, 1 )
@@ -194,7 +223,13 @@ scale = Vector2( 0.15, 0.06 )
 [node name="Workers" type="Node" parent="."]
 
 [node name="CEO" parent="Workers" instance=ExtResource( 6 )]
-position = Vector2( -513.959, 481.357 )
+position = Vector2( 1298.93, -301.994 )
+
+[node name="Bob" parent="Workers" instance=ExtResource( 6 )]
+position = Vector2( 1391.78, 481.357 )
+
+[node name="Josh" parent="Workers" instance=ExtResource( 6 )]
+position = Vector2( 1357.29, 218.36 )
 
 [node name="Otto" parent="Workers" instance=ExtResource( 6 )]
 position = Vector2( -64.1179, 482.692 )
@@ -222,7 +257,7 @@ position = Vector2( 1391.78, -42.6072 )
 nameplate = ExtResource( 19 )
 
 [node name="Josh" parent="Workstations" instance=ExtResource( 2 )]
-position = Vector2( 1344.14, 215.37 )
+position = Vector2( 1357.29, 218.36 )
 nameplate = ExtResource( 23 )
 
 [node name="Otto" parent="Workstations" instance=ExtResource( 2 )]
@@ -249,6 +284,7 @@ position = Vector2( 69.7583, 484.813 )
 scale = Vector2( 1.00147, 1 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( 0, 200 )
 scale = Vector2( 0.997566, 1 )
 current = true
 zoom = Vector2( 1.5, 1.5 )
@@ -257,6 +293,7 @@ limit_top = -600
 limit_right = 1850
 limit_bottom = 600
 smoothing_enabled = true
+script = ExtResource( 24 )
 
 [node name="Bubbles" type="Node2D" parent="."]
 scale = Vector2( 1.00147, 1 )
@@ -324,5 +361,7 @@ __meta__ = {
 wait_time = 2.0
 one_shot = true
 autostart = true
+
+[node name="GameOverUI" parent="." instance=ExtResource( 25 )]
 
 [connection signal="timeout" from="Overlays/ScreenLabel/Timer" to="Overlays/ScreenLabel" method="_on_Timer_timeout"]

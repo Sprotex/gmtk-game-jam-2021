@@ -4,6 +4,7 @@ var player_reference
 
 var workers: Dictionary
 var workstations: Dictionary
+var camera: Camera2D = null
 
 
 func _ready():
@@ -12,6 +13,7 @@ func _ready():
 func reset():
 	workers = {}
 	workstations = {}
+	camera = null
 
 var scene_sequence = [
 	'res://Assets/Scenes/Level1Scene.tscn',

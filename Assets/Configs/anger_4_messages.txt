@@ -1,9 +1,0 @@
-Last chance or {name} is no more
-I will fire you, {name}!
-This is your last warning, {name}!
-I am this close to reporting you, {name}!
-Do you like this job, {name}?!
-Final warning, {name}!
-I swear, {name}, reply to me or else!
-I will find somebody else named {name}, wait and see!
-{name}, would you reply faster if the office was on fire?

@@ -16,12 +16,12 @@ class TimelinePiece:
 		return self
 
 # Called in _ready of LevelScene 
-func init(level_name: String):
+func init(timeline_string: String):
 	_timeline = []
-	var lines = FileUtils.read_lines('res://Assets/Configs/%s.csv' % level_name)
+	var lines = timeline_string.split("\n")
 	# first line is column names
-	lines.pop_front()
-	for line in lines:
+	for i in range(1, len(lines)):
+		var line = lines[i]
 		if line == "": continue
 		var parts = line.split(";")
 		
@@ -49,6 +49,6 @@ func _process(delta):
 			to = LevelManager.workers.keys()[randi() % len(LevelManager.workers.keys())]
 		
 		print("New request at %s from %s to %s" % [TimeManager.current_time_string(),from, to])
-		LevelManager.workers[from].add_problem(to)
+		LevelManager.workers[from].add_problem(to, 1.5)
 		
 	
