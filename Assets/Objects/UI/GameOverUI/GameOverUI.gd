@@ -8,7 +8,7 @@ onready var level_manager = get_node("/root/LevelManager")
 func _ready():
 	Engine.time_scale = 1.0
 	TimeManager.get_duration()
-	MessageManager.connect("on_message_failed", self, "game_over")
+	MessageManager.connect("on_message_timedout", self, "game_over")
 	MessageManager.connect("on_message_delivered", self, "handle_deliver_message")
 
 func _process(_delta):

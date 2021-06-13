@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Textures/LetterIcon.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Objects/CableMessage/CableMessage.gd" type="Script" id=2]
+
+[node name="CableMessage" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="MessageTween" type="Tween" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+z_index = 1
+texture = ExtResource( 1 )
+
+[connection signal="tween_completed" from="MessageTween" to="." method="_on_MessageTween_tween_completed"]

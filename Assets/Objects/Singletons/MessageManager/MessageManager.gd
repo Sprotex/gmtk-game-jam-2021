@@ -11,7 +11,7 @@ const filenames = [
 var thanks_messages = []
 
 signal on_message_delivered
-signal on_message_failed
+signal on_message_timedout
 
 func _ready():
 	for filename in filenames:

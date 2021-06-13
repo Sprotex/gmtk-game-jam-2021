@@ -60,26 +60,27 @@ class Problem:
 		var index = 0
 		current_signal_sender = cable_chain[index].message_signals
 		
+		connect_signals()
+		current_signal_sender.send_message(cable_chain, cable_chain_destinations, length)
+	
+	func connect_signals():
 		current_signal_sender.connect("on_reached_destination", self, "handle_on_reached_destination")
 		current_signal_sender.connect("on_relay_message", self, "handle_on_relay_message")
 		current_signal_sender.connect("on_canceled_transmission", self, "handle_on_canceled_transmission")
-		current_signal_sender.send_message(cable_chain, cable_chain_destinations, length)
 	
 	func disconnect_signals():
 		current_signal_sender.disconnect("on_reached_destination", self, "handle_on_reached_destination")
 		current_signal_sender.disconnect("on_relay_message", self, "handle_on_relay_message")
 		current_signal_sender.disconnect("on_canceled_transmission", self, "handle_on_canceled_transmission")
 	
-	func handle_on_reached_destination(obj):
+	func handle_on_reached_destination():
 		progress = 1.0
 		disconnect_signals()
 		
 	func handle_on_relay_message(next_signal_sender):
 		disconnect_signals()
 		current_signal_sender = next_signal_sender
-		current_signal_sender.connect("on_reached_destination", self, "handle_on_reached_destination")
-		current_signal_sender.connect("on_relay_message", self, "handle_on_relay_message")
-		current_signal_sender.connect("on_canceled_transmission", self, "handle_on_canceled_transmission")
+		connect_signals()
 		
 	func handle_on_canceled_transmission():
 		is_message_in_progress = false
@@ -149,7 +150,7 @@ func work(delta: float):
 	var prev_anger = anger
 	anger += 2 * ANGER_INCREMENT * delta
 	if anger >= 5:
-		MessageManager.emit_signal("on_message_failed")
+		MessageManager.emit_signal("on_message_timedout")
 		return
 	if not BubbleManager.bubble_visible(self) or int(anger) != int(prev_anger):
 		say_text(MessageManager.pick_message(problem.to, int(anger)))

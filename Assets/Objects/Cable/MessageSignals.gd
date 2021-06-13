@@ -1,14 +1,13 @@
 extends Node
 
-onready var message_sprite = get_node("Sprite")
-onready var message_tween = get_node("MessageTween")
+onready var cable_message_class = preload("res://Assets/Objects/CableMessage/CableMessage.tscn")
 var current_cable = null
 var current_cable_chain = null
 var current_cable_chain_destinations = null
 var current_hop_duration = 0.0
 
-signal on_reached_destination(node)
-signal on_relay_message(next_signal_sender)
+signal on_reached_destination
+signal on_relay_message(cable_message, next_signal_sender)
 signal on_canceled_transmission
 
 func send_message(cable_chain, cable_chain_destinations, hop_duration):
@@ -27,23 +26,27 @@ func send_message(cable_chain, cable_chain_destinations, hop_duration):
 	if current_cable.connections[start_index].computer != cable_chain_destinations.front():
 		start_index = 1
 	var end_index = 1 - start_index
-	message_tween.interpolate_property(
-		message_sprite, "global_position"
-		, current_cable.connections[start_index].global_position, current_cable.connections[end_index].global_position
-		, hop_duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.0)
-	current_cable.connect("on_disconnected", self, "handle_on_disconnected")
-	message_tween.connect("tween_completed", self, "handle_tween_completed")
-	message_tween.start()
-	message_sprite.global_position = current_cable.connections[start_index].global_position
-	message_sprite.visible = true
+	var start_position = current_cable.connections[start_index].global_position
+	var end_position = current_cable.connections[end_index].global_position
+	var cable_message = cable_message_class.instance()
+	add_child(cable_message)
+	var is_last_hop = cable_chain_destinations.size() == 1
+	cable_message.set_cable_chain(cable_chain, cable_chain_destinations)
+	cable_message.init_and_send(start_position, end_position, hop_duration, is_last_hop)
+	connect_signals(cable_message)
 
-func disconnect_signals():
-	message_tween.disconnect("tween_completed", self, "handle_tween_completed")
-	current_cable.disconnect("on_disconnected", self, "handle_on_disconnected")
+func connect_signals(cable_message: CableMessage):
+	cable_message.connect("on_message_delivered", self, "handle_on_message_delivered")
+	cable_message.connect("on_message_failed", self, "handle_on_disconnected")
+	cable_message.connect("on_message_relayed", self, "handle_on_message_relayed")
 
-func handle_tween_completed(_obj, _key):
-	disconnect_signals()
-	message_sprite.visible = false
+func disconnect_signals(cable_message):
+	cable_message.disconnect("on_message_delivered", self, "handle_on_message_delivered")
+	cable_message.disconnect("on_message_failed", self, "handle_on_disconnected")
+	cable_message.disconnect("on_message_relayed", self, "handle_on_message_relayed")
+
+func handle_on_message_delivered(cable_message):
+	disconnect_signals(cable_message)
 	current_cable_chain.pop_front()
 	current_cable_chain_destinations.pop_front()
 	if current_cable_chain.empty():
@@ -51,15 +54,24 @@ func handle_tween_completed(_obj, _key):
 		current_cable_chain = []
 		current_cable_chain_destinations = []
 		current_hop_duration = 0.0
-		emit_signal("on_reached_destination", null)
+		emit_signal("on_reached_destination")
 	else:
 		var next_signal_sender = current_cable_chain.front().message_signals
 		emit_signal("on_relay_message", next_signal_sender)
 		next_signal_sender.send_message(current_cable_chain, current_cable_chain_destinations, current_hop_duration)
 
-func handle_on_disconnected():
-	disconnect_signals()
-	message_sprite.visible = false
-	message_tween.stop_all()
+func handle_on_message_relayed(cable_message):
+	disconnect_signals(cable_message)
+	cable_message.cable_chain.pop_front()
+	cable_message.cable_chain_destinations.pop_front()
+	var next_signal_sender = cable_message.cable_chain.front().message_signals
+	emit_signal("on_relay_message", cable_message, next_signal_sender)
+	next_signal_sender.send_message(cable_message.cable_chain, cable_message.cable_chain_destinations, current_hop_duration)
+
+func handle_on_disconnected(cable_message):
+	disconnect_signals(cable_message)
 	emit_signal("on_canceled_transmission")
 
+func _on_Cable_on_disconnected():
+	for cable_message in get_children():
+		cable_message.cancel_message()
