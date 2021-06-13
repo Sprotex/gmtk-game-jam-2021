@@ -1,5 +1,5 @@
 Hey {name}, can you help me open this file?;Just left-click it|Sure|Here is a video that explains it
-{name}, what is your e-mail address?;It's {my_name_lower}.company.co|me@{my_name_lower}.com|{my_name_lower}@shady.videos
+{name}, what is your e-mail address?;It's {my_name_lower}.company.co|me@{my_name_lower}.com|{my_name_lower}@shady.video
 How are you doing, {name}?;Good, you?|Bad, you?|Alright, alright, alright.
 Heyyy {name}, I need you to work on Saturday;I would rather quit|No problem|Again?!
 {name}, could you help me buy Bitcoin?;What's that?|Yes, I can even sell you some|I don't know what it is.
@@ -12,5 +12,6 @@ Did you get this e-mail {name}? Please reply.;Reply|Yes|Please stop sending me c
 Will you forgive for what I did, {name}?;All is forgiven|Already got my revenge|I don't think I can
 Do you even love me, {name}?;I love you always|New PC, who dis?|I never did
 Can we stop hating each other, {name}?;I like hating people|I don't hate you, you hate me?|Yeah, sure
-Would you like to stay friends, {name}?;:(|I wanted more than friends|Okay, let's be friends
+Would you like to stay friends, {name}?;We are not friends.|I wanted more than friends|Okay, let's be friends
 Share this pic on your page, {name}!;Share it yourself first|Haha, sure|I don't know how to do that
+{name} pls, how do you spell your name?;Like just wrote it|{my_name}, but the {random_letter_of_my_name} is silent|{my_name} McShobobolama|{my_name}-san

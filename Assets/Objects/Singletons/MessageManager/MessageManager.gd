@@ -9,6 +9,7 @@ const filenames = [
 ];
 var request_messages = []
 var thanks_messages = []
+var lunch_messages = []
 
 class MessageRequest:
 	var from: String
@@ -30,7 +31,12 @@ class MessageRequest:
 		return self
 	func get_random_reply() -> String:
 		var reply = possible_replies[randi() % len(possible_replies)]
-		return reply.format({"name": to, "my_name": from, "my_name_lower": from.to_lower()})
+		return reply.format({
+			"name": from,
+			"my_name": to,
+			"my_name_lower": to.to_lower(),
+			"random_letter_of_my_name": to[randi() % len(to)]
+		})
 
 signal on_message_delivered
 signal on_message_timedout
@@ -42,6 +48,7 @@ func _ready():
 		)
 	request_messages = FileUtils.read_lines('res://Assets/Configs/request_messages.txt')
 	thanks_messages = FileUtils.read_lines('res://Assets/Configs/thanks_messages.txt')
+	lunch_messages = FileUtils.read_lines('res://Assets/Configs/lunch_messages.txt')
 
 
 func pick_first_message(from: String, name: String) -> MessageRequest:
@@ -59,3 +66,8 @@ func pick_anger_message(name: String, anger: int):
 func pick_thanks_message(name: String) -> String:
 	var sentence = thanks_messages[randi() % len(thanks_messages)]
 	return sentence.format({"name": name})
+
+
+func pick_hunger_message(name: String) -> String:
+	var sentence = lunch_messages[randi() % len(lunch_messages)]
+	return sentence.format({"name": "[color=red]%s[/color]" % name})

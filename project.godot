@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node2D",
+"class": "Bubble",
+"language": "GDScript",
+"path": "res://Assets/Objects/Bubble/Bubble.gd"
+}, {
+"base": "Node2D",
 "class": "CableMessage",
 "language": "GDScript",
 "path": "res://Assets/Objects/CableMessage/CableMessage.gd"
@@ -25,6 +30,7 @@ _global_script_classes=[ {
 "path": "res://Assets/Objects/Player/Player.gd"
 } ]
 _global_script_class_icons={
+"Bubble": "",
 "CableMessage": "",
 "ComputerArea": "",
 "PlayerBody": ""

@@ -24,6 +24,14 @@ func show_bubble(obj: Node, message: String, location: Vector2):
 	bubble.global_position = location
 
 
+func override_bubble_location(obj: Node, location: Vector2):
+	var id = obj.get_instance_id()
+	if not bubbles.has(id): return false
+	var bubble = bubbles[id]
+	
+	bubble.override_position = location
+
+
 func bubble_visible(obj: Node):
 	var id = obj.get_instance_id()
 	if not bubbles.has(id): return false

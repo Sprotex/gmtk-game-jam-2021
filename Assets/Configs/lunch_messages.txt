@@ -1,0 +1,10 @@
+You better get this done while I am at lunch, {name}!
+I better have this in my inbox after lunch, {name}...
+You have 1 hour, {name}.
+I need to take a walk, {name}, get back to me.
+I have almost smashed my keyboard, I need to walk it off, {name}.
+I feel no stress, {name}.
+I am taking a walk because I want to, not because I need to, {name}.
+Is that free pizza over there? brb, {name}.
+Did I leave the oven on? See you later, {name}.
+I will get a beer, {name}, chill on this.

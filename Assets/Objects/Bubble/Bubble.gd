@@ -3,8 +3,12 @@ extends Node2D
 class_name Bubble
 
 var desired_position: Vector2 = Vector2.INF
+var override_position: Vector2 = Vector2.INF
 
 func _process(delta):
+	if override_position != Vector2.INF:
+		self.global_position = override_position
+	
 	var camera = LevelManager.camera
 	if camera == null: return
 	

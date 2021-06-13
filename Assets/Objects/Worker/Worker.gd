@@ -15,6 +15,8 @@ var _starting_position: Vector2
 onready var _problems = []
 var anger = 0
 var _work_location: Vector2 = Vector2.INF
+var lunch_break_start
+var at_lunch = false
 
 class MsgQueueElement:
 	var msg: String
@@ -107,6 +109,8 @@ class Problem:
 	func try_solve_from(name: String, delta: float):
 		if is_message_in_progress:
 			return
+		if LevelManager.workers[to].at_lunch:
+			return
 		var prev = {}
 		var workstation = LevelManager.workstations[name]
 		var is_connected = workstation.try_send_message(to, prev)
@@ -115,11 +119,14 @@ class Problem:
 			send_networking_message(workstation, to, prev)
 		
 	func is_solved():
+		if LevelManager.workers[to].at_lunch:
+			false
 		return progress == 1.0
 
 
 func _ready():
 	_starting_position = global_position
+	lunch_break_start = 11.5 + randf()
 	LevelManager.workers[name] = self
 
 func get_work_location():
@@ -135,12 +142,13 @@ func _process(delta: float):
 	anger_sprite.set_angriness(int(anger))
 	
 	var time = TimeManager.current_time()
-	if time < 12 or (time > 13 and time < 17):
+	if time < lunch_break_start or (time > lunch_break_start + 1 and time < 17):
 		if global_position.distance_squared_to(get_work_location()) > EPS:
 			go_to_work(delta)
 		else:
+			at_lunch = false
 			work(delta)
-	elif time < 13:
+	elif time < 15:
 		lunch_break(delta)
 	else:
 		go_home(delta)
@@ -187,8 +195,13 @@ func go_home(delta: float):
 	
 
 func lunch_break(delta: float):
-	say_no_more()
-	pass
+	if not at_lunch:
+		say_no_more()
+		if len(_problems) > 0:
+			say_text(MessageManager.pick_hunger_message(_problems[0].to))
+		at_lunch = true
+		BubbleManager.override_bubble_location(self, global_position)
+	GlobalNavigation.navigate(self, _starting_position, MOVE_SPEED * 2, delta)
 
 # ==================
 #  HELPER FUNCTIONS
