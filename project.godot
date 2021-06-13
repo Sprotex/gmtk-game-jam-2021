@@ -53,6 +53,7 @@ TimelineManager="*res://Assets/Objects/Singletons/TimelineManager.gd"
 BubbleManager="*res://Assets/Objects/Singletons/BubbleManager/BubbleManager.gd"
 SoundSystem="*res://Assets/Objects/Singletons/SoundSystem/SoundSystem.tscn"
 ConnectionsCounter="*res://Assets/Objects/Singletons/ConnectionsCounter/ConnectionsCounter.tscn"
+ErrorManager="*res://Assets/Objects/Singletons/ErrorManager/ErrorManager.tscn"
 
 [global]
 
