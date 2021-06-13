@@ -18,8 +18,13 @@ func show_bubble(obj: Node, message: String, location: Vector2):
 		bubble = bubble_scene.instance()
 		bubbles[id] = bubble
 	
-	bubble_holder.add_child(bubble)
+	if bubble.get_parent() != bubble_holder:
+		bubble_holder.add_child(bubble)
+	
 	bubble.get_node("Text").bbcode_text = message
+	bubble.scale = Vector2(1, 1)
+	if LevelManager.camera != null:
+		bubble.scale = LevelManager.camera.zoom
 	bubble.desired_position = location
 	bubble.global_position = location
 

@@ -150,22 +150,22 @@ position = Vector2( 147.755, 221.265 )
 nameplate = ExtResource( 15 )
 
 [node name="Otto" parent="Workstations" instance=ExtResource( 2 )]
-position = Vector2( 388.136, 221.027 )
+position = Vector2( 388.136, 221 )
 
 [node name="Xena" parent="Workstations" instance=ExtResource( 2 )]
 position = Vector2( 568.416, 221.265 )
 nameplate = ExtResource( 14 )
 
 [node name="Andy" parent="Workstations" instance=ExtResource( 2 )]
-position = Vector2( 195.377, 482.103 )
+position = Vector2( 195.377, 483 )
 nameplate = ExtResource( 13 )
 
 [node name="Nora" parent="Workstations" instance=ExtResource( 2 )]
-position = Vector2( 442.107, 481.004 )
+position = Vector2( 442.107, 483 )
 nameplate = ExtResource( 18 )
 
 [node name="Fred" parent="Workstations" instance=ExtResource( 2 )]
-position = Vector2( 583.386, 481.004 )
+position = Vector2( 583.386, 483 )
 nameplate = ExtResource( 20 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]

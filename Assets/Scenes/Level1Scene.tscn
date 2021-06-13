@@ -391,10 +391,8 @@ __meta__ = {
 
 [node name="EndOverlay" type="ColorRect" parent="Overlays"]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 5.95493
-margin_top = 46.9133
-margin_right = 1029.95
-margin_bottom = 646.913
+margin_right = 1024.0
+margin_bottom = 600.0
 color = Color( 0, 0, 0, 1 )
 script = ExtResource( 18 )
 __meta__ = {

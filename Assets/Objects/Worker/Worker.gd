@@ -22,11 +22,10 @@ var at_lunch = false
 var next_walk_location: Vector2 = Vector2.INF
 var walk_cooldown: float = 5.0
 var walk_locations = [
-	Vector2(1198.364, 222),
-	Vector2(198.775, 222),
-	Vector2(316.374, 482),
-	Vector2(1143.128, 482),
-	Vector2(1421.088, 482)
+	Vector2(1198, 222),
+	Vector2(1384, 480),
+	Vector2(120, 222),
+	Vector2(898, 480),
 ]
 
 class MsgQueueElement:
@@ -154,8 +153,12 @@ func _process(delta: float):
 	anger_sprite.set_angriness(int(anger))
 	
 	var time = TimeManager.current_time()
+	if walk_while_working:
+		work(delta)
+		return
+		
 	if time < lunch_break_start or (time > lunch_break_start + 1 and time < 17):
-		if not walk_while_working and global_position.distance_squared_to(get_work_location()) > EPS:
+		if global_position.distance_squared_to(get_work_location()) > EPS:
 			go_to_work(delta)
 		else:
 			at_lunch = false
@@ -277,17 +280,20 @@ func message_queue_process(delta: float):
 		return
 	
 	var msg_queue_elem: MsgQueueElement = message_queue[0]
+	if not LevelManager.workstations.has(name):
+		return
+	var work_location = LevelManager.workstations[name].global_position
 	
 	if msg_queue_elem.time_remaining == -1:
 		if len(message_queue) > 1:
 			message_queue.pop_front()
 			# will be dealt with in later update
 			return
-		BubbleManager.show_bubble(self, msg_queue_elem.msg, bubble.global_position)
+		BubbleManager.show_bubble(self, msg_queue_elem.msg, work_location)
 		return
 	
 	msg_queue_elem.time_remaining -= delta
 	if msg_queue_elem.time_remaining <= 0:
 		message_queue.pop_front()
 		return
-	BubbleManager.show_bubble(self, msg_queue_elem.msg, bubble.global_position)
+	BubbleManager.show_bubble(self, msg_queue_elem.msg, work_location)
