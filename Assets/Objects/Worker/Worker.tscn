@@ -12,9 +12,6 @@
 [node name="Worker" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
-[node name="MessageShowTimer" type="Timer" parent="."]
-wait_time = 2.0
-
 [node name="AngerSprite" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
@@ -40,5 +37,3 @@ texture = ExtResource( 8 )
 [node name="Bubble" parent="." instance=ExtResource( 3 )]
 visible = false
 script = null
-
-[connection signal="timeout" from="MessageShowTimer" to="." method="_on_MessageShowTimer_timeout"]

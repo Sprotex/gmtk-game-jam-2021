@@ -8,7 +8,7 @@ func _ready():
 	bubbles.clear()
 
 
-func show_bubble(obj: Node, message: String, location: Vector2, timeout: float = -1):
+func show_bubble(obj: Node, message: String, location: Vector2):
 	var id = obj.get_instance_id()
 	var bubble: Bubble
 	if bubbles.has(id):
