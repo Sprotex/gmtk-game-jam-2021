@@ -29,8 +29,9 @@ func _process(delta):
 	
 	if _time >= 24:
 		_time -= 24
-	
-	time_label.text = current_time_string()
+		
+	if time_label != null:
+		time_label.text = current_time_string()
 
 func get_duration():
 	return _duration
