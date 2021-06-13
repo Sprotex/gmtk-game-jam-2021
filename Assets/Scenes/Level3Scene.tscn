@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Assets/Objects/UI/CableUI/CableUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Objects/Workstation/Workstation.tscn" type="PackedScene" id=2]
@@ -11,17 +11,18 @@
 [ext_resource path="res://Assets/Objects/Pathfinding/PathNodes.gd" type="Script" id=9]
 [ext_resource path="res://Assets/Scenes/LevelScene.gd" type="Script" id=10]
 [ext_resource path="res://Assets/Objects/Singletons/TimeManager/TimeLabel.gd" type="Script" id=11]
-[ext_resource path="res://Textures/level1.png" type="Texture" id=12]
+[ext_resource path="res://Textures/level3.png" type="Texture" id=12]
 [ext_resource path="res://Textures/NameplateAndy.png" type="Texture" id=13]
 [ext_resource path="res://Textures/NameplateXena.png" type="Texture" id=14]
 [ext_resource path="res://Textures/NameplateCEO.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Fonts/Kenney Future Narrow.ttf" type="DynamicFontData" id=16]
 [ext_resource path="res://Assets/Objects/UI/FullscreenLabel/FullscreenLabel.gd" type="Script" id=17]
 [ext_resource path="res://Textures/NameplateNora.png" type="Texture" id=18]
+[ext_resource path="res://Textures/NameplateBob.png" type="Texture" id=19]
 [ext_resource path="res://Textures/NameplateFred.png" type="Texture" id=20]
 [ext_resource path="res://Assets/Objects/UI/FullscreenLabel/EndOverlay.gd" type="Script" id=21]
-[ext_resource path="res://Assets/Objects/UI/GameOverUI/GameOverUI.tscn" type="PackedScene" id=22]
-[ext_resource path="res://Assets/Objects/Singletons/BubbleManager/BubbleRegisterer.gd" type="Script" id=23]
+[ext_resource path="res://Assets/Objects/Singletons/BubbleManager/BubbleRegisterer.gd" type="Script" id=22]
+[ext_resource path="res://Textures/NameplateJosh.png" type="Texture" id=23]
 
 [sub_resource type="DynamicFont" id=1]
 size = 49
@@ -29,7 +30,7 @@ font_data = ExtResource( 16 )
 
 [node name="LevelScene" type="Node"]
 script = ExtResource( 10 )
-level_name = "level2"
+level_name = "level3"
 
 [node name="Back Black" type="ColorRect" parent="."]
 modulate = Color( 0, 0, 0, 1 )
@@ -41,64 +42,154 @@ __meta__ = {
 }
 
 [node name="LevelBackground" type="Sprite" parent="."]
+position = Vector2( 1.97312, -600.689 )
+scale = Vector2( 1.00147, 1 )
 texture = ExtResource( 12 )
 centered = false
 
 [node name="Label" parent="." instance=ExtResource( 4 )]
-margin_left = 821.351
+margin_left = 822.56
 margin_top = 81.7401
-margin_right = 921.351
+margin_right = 922.56
 margin_bottom = 141.74
+grow_horizontal = 2
+grow_vertical = 2
 custom_fonts/font = ExtResource( 8 )
 script = ExtResource( 11 )
 
 [node name="CableUI" parent="." instance=ExtResource( 1 )]
+visible = false
 player_path = NodePath("../Player")
 
 [node name="ScoreUI" parent="." instance=ExtResource( 5 )]
 
 [node name="Tiles" type="Node2D" parent="."]
-visible = false
+scale = Vector2( 1.00147, 1 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="middle_floor" parent="Tiles" instance=ExtResource( 7 )]
+[node name="original_house" type="Node2D" parent="Tiles"]
+
+[node name="middle_floor" parent="Tiles/original_house" instance=ExtResource( 7 )]
 position = Vector2( 398.835, 299.812 )
 scale = Vector2( 1.7241, -0.060287 )
 
-[node name="bottom_floor" parent="Tiles" instance=ExtResource( 7 )]
-position = Vector2( 512.998, 576.637 )
-scale = Vector2( 3.14989, 0.144885 )
+[node name="bottom_floor" parent="Tiles/original_house" instance=ExtResource( 7 )]
+position = Vector2( 748.715, 576.637 )
+scale = Vector2( 4.58989, 0.144885 )
 
-[node name="stairs_middle" parent="Tiles" instance=ExtResource( 7 )]
-position = Vector2( 924.507, 433.26 )
-scale = Vector2( 0.307478, -0.0726378 )
+[node name="stairs_middle" parent="Tiles/original_house" instance=ExtResource( 7 )]
+position = Vector2( 941.434, 399.851 )
+scale = Vector2( 0.227488, -0.0726378 )
 
-[node name="wall_right" parent="Tiles" instance=ExtResource( 7 )]
-position = Vector2( 995.982, 231.391 )
-scale = Vector2( 0.10988, 1.48679 )
+[node name="wall_right" parent="Tiles/original_house" instance=ExtResource( 7 )]
+position = Vector2( 990.198, 69.0935 )
+rotation = 3.14159
+scale = Vector2( 0.05012, -0.206789 )
 
-[node name="wall_left" parent="Tiles" instance=ExtResource( 7 )]
+[node name="wall_left" parent="Tiles/original_house" instance=ExtResource( 7 )]
 position = Vector2( 41.1335, 331.348 )
 scale = Vector2( 0.0575134, 0.459099 )
 
-[node name="wall_left_outer" parent="Tiles" instance=ExtResource( 7 )]
+[node name="wall_right2" parent="Tiles/original_house" instance=ExtResource( 7 )]
+position = Vector2( 986.822, 348.275 )
+scale = Vector2( 0.0575134, 0.299099 )
+
+[node name="wall_left_outer" parent="Tiles/original_house" instance=ExtResource( 7 )]
 position = Vector2( -149.714, 254.554 )
-scale = Vector2( 0.10988, 1.48679 )
+scale = Vector2( 0.10988, 4.04679 )
 
-[node name="wall_left2_up" parent="Tiles" instance=ExtResource( 7 )]
-position = Vector2( 39.2458, 23.4732 )
-scale = Vector2( 0.0575134, 0.299099 )
+[node name="wall_left2_up" parent="Tiles/original_house" instance=ExtResource( 7 )]
+position = Vector2( 40.5806, 56.1768 )
+scale = Vector2( 0.0575134, 0.139099 )
 
-[node name="wall_left3_up" parent="Tiles" instance=ExtResource( 7 )]
-position = Vector2( 751.965, 55.5456 )
-scale = Vector2( 0.0575134, 0.299099 )
+[node name="wall_left3_up" parent="Tiles/original_house" instance=ExtResource( 7 )]
+position = Vector2( 751.668, 72.3215 )
+scale = Vector2( 0.0575134, 0.219099 )
 
-[node name="ceiling" parent="Tiles" instance=ExtResource( 7 )]
-position = Vector2( 507.334, 38.629 )
-scale = Vector2( 2.26989, 0.0753481 )
+[node name="ceiling" parent="Tiles/original_house" instance=ExtResource( 7 )]
+position = Vector2( 874.332, 38.987 )
+scale = Vector2( 0.59, 0.06 )
+
+[node name="stepping_stone1" parent="Tiles/original_house" instance=ExtResource( 7 )]
+position = Vector2( 995.285, 403.104 )
+scale = Vector2( 0.15, 0.06 )
+
+[node name="stepping_stone2" parent="Tiles/original_house" instance=ExtResource( 7 )]
+position = Vector2( 1002.37, 102.376 )
+scale = Vector2( 0.11, 0.06 )
+
+[node name="ceiling_left" parent="Tiles/original_house" instance=ExtResource( 7 )]
+position = Vector2( 295.248, 38.987 )
+scale = Vector2( 1.23, 0.06 )
+
+[node name="tower" type="Node2D" parent="Tiles"]
+
+[node name="middle_floor" parent="Tiles/tower" instance=ExtResource( 7 )]
+position = Vector2( 1348.15, 345.947 )
+scale = Vector2( 0.714, 0.3 )
+
+[node name="stepping_stone1" parent="Tiles/tower" instance=ExtResource( 7 )]
+position = Vector2( 1490.82, 398.385 )
+scale = Vector2( 0.15, 0.06 )
+
+[node name="ceiling" parent="Tiles/tower" instance=ExtResource( 7 )]
+position = Vector2( 1350.58, 35.2073 )
+scale = Vector2( 0.710005, 0.06 )
+
+[node name="wall_right" parent="Tiles/tower" instance=ExtResource( 7 )]
+position = Vector2( 1484.34, 69.0935 )
+rotation = 3.14159
+scale = Vector2( 0.07, -0.207 )
+
+[node name="wall_right2" parent="Tiles/tower" instance=ExtResource( 7 )]
+position = Vector2( 1213.45, 70.0373 )
+rotation = 3.14159
+scale = Vector2( 0.07, -0.207 )
+
+[node name="ceiling2" parent="Tiles/tower" instance=ExtResource( 7 )]
+position = Vector2( 1350.58, -225.302 )
+scale = Vector2( 0.710005, 0.06 )
+
+[node name="wall_right3" parent="Tiles/tower" instance=ExtResource( 7 )]
+position = Vector2( 1484.34, -191.416 )
+rotation = 3.14159
+scale = Vector2( 0.07, -0.207 )
+
+[node name="wall_right4" parent="Tiles/tower" instance=ExtResource( 7 )]
+position = Vector2( 1213.45, -190.472 )
+rotation = 3.14159
+scale = Vector2( 0.07, -0.207 )
+
+[node name="ceiling3" parent="Tiles/tower" instance=ExtResource( 7 )]
+position = Vector2( 1350.58, -484.549 )
+scale = Vector2( 0.710005, 0.06 )
+
+[node name="wall_right5" parent="Tiles/tower" instance=ExtResource( 7 )]
+position = Vector2( 1484.34, -450.663 )
+rotation = 3.14159
+scale = Vector2( 0.07, -0.207 )
+
+[node name="wall_right6" parent="Tiles/tower" instance=ExtResource( 7 )]
+position = Vector2( 1213.45, -449.719 )
+rotation = 3.14159
+scale = Vector2( 0.07, -0.207 )
+
+[node name="skyscraper" type="Node2D" parent="Tiles"]
+
+[node name="wall_right_outer" parent="Tiles/skyscraper" instance=ExtResource( 7 )]
+position = Vector2( 1770.03, -186.183 )
+scale = Vector2( 0.10988, 4.04679 )
+
+[node name="wall_right" parent="Tiles/skyscraper" instance=ExtResource( 7 )]
+position = Vector2( 1734.36, 258.581 )
+scale = Vector2( 0.10988, 1.56679 )
+
+[node name="stepping_stone1" parent="Tiles/skyscraper" instance=ExtResource( 7 )]
+position = Vector2( 1716.23, 192.023 )
+scale = Vector2( 0.15, 0.06 )
 
 [node name="Workers" type="Node" parent="."]
 
@@ -123,8 +214,16 @@ position = Vector2( -118.846, 484.027 )
 [node name="Workstations" type="Node" parent="."]
 
 [node name="CEO" parent="Workstations" instance=ExtResource( 2 )]
-position = Vector2( 147.755, 221.265 )
+position = Vector2( 1298.92, -301.994 )
 nameplate = ExtResource( 15 )
+
+[node name="Bob" parent="Workstations" instance=ExtResource( 2 )]
+position = Vector2( 1391.78, -42.6072 )
+nameplate = ExtResource( 19 )
+
+[node name="Josh" parent="Workstations" instance=ExtResource( 2 )]
+position = Vector2( 1344.14, 215.37 )
+nameplate = ExtResource( 23 )
 
 [node name="Otto" parent="Workstations" instance=ExtResource( 2 )]
 position = Vector2( 388.136, 221.027 )
@@ -146,10 +245,22 @@ position = Vector2( 583.386, 481.004 )
 nameplate = ExtResource( 20 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 69.6557, 484.813 )
+position = Vector2( 69.7583, 484.813 )
+scale = Vector2( 1.00147, 1 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+scale = Vector2( 0.997566, 1 )
+current = true
+zoom = Vector2( 1.5, 1.5 )
+limit_left = 0
+limit_top = -600
+limit_right = 1850
+limit_bottom = 600
+smoothing_enabled = true
 
 [node name="Bubbles" type="Node2D" parent="."]
-script = ExtResource( 23 )
+scale = Vector2( 1.00147, 1 )
+script = ExtResource( 22 )
 
 [node name="PathNodes" type="Node" parent="."]
 script = ExtResource( 9 )
@@ -167,12 +278,15 @@ position = Vector2( 934.342, 355.882 )
 position = Vector2( 838.234, 223.733 )
 
 [node name="Overlays" type="Node2D" parent="."]
+position = Vector2( 0, -300 )
+scale = Vector2( 1.5, 1.5 )
 z_index = 1
 
 [node name="EndOverlay" type="ColorRect" parent="Overlays"]
 modulate = Color( 1, 1, 1, 0 )
+margin_top = -600.0
 margin_right = 1024.0
-margin_bottom = 600.0
+rect_scale = Vector2( 2, 2 )
 color = Color( 0, 0, 0, 1 )
 script = ExtResource( 21 )
 __meta__ = {
@@ -196,7 +310,7 @@ margin_right = 1024.0
 margin_bottom = 600.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Level 2 : new hires"
+text = "Level 3 : expanding"
 align = 1
 valign = 1
 __meta__ = {
@@ -210,7 +324,5 @@ __meta__ = {
 wait_time = 2.0
 one_shot = true
 autostart = true
-
-[node name="GameOverUI" parent="." instance=ExtResource( 22 )]
 
 [connection signal="timeout" from="Overlays/ScreenLabel/Timer" to="Overlays/ScreenLabel" method="_on_Timer_timeout"]

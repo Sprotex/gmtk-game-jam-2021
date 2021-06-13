@@ -6,8 +6,7 @@ const EPS: float = 0.01
 const ANGER_INCREMENT = 0.15
 
 onready var messageShowTimer: Timer = $MessageShowTimer
-onready var bubble: RichTextLabel = $BubbleText
-onready var bubble_background: NinePatchRect = $BubbleBackground
+onready var bubble: Node2D = $Bubble
 onready var message_manager = get_node("/root/MessageManager")
 onready var anger_sprite = get_node("AngerSprite")
 
@@ -104,7 +103,6 @@ func _ready():
 	_starting_position = global_position
 	LevelManager.workers[name] = self
 
-
 func get_work_location():
 	if _work_location == Vector2.INF:
 		_work_location = LevelManager.workstations[name].global_position
@@ -153,7 +151,7 @@ func work(delta: float):
 	if anger >= 5:
 		MessageManager.emit_signal("on_message_failed")
 		return
-	if not bubble.visible or int(anger) != int(prev_anger):
+	if not BubbleManager.bubble_visible(self) or int(anger) != int(prev_anger):
 		say_text(MessageManager.pick_message(problem.to, int(anger)))
 
 func go_home(delta: float):
@@ -177,20 +175,24 @@ func add_problem(target_name: String, time: float = 2.0):
 
 # MESSAGING
 	
-func say_text(message: String, timeout = -1):
+func say_text(message: String, timeout = -1):	
 	if !messageShowTimer.is_stopped():
 		messageShowTimer.stop()
 
 	if timeout > 0:
 		messageShowTimer.start(timeout)
-		
-	bubble.bbcode_text = message
-	bubble.visible = true
-	bubble_background.visible = true
 	
+	BubbleManager.show_bubble(self, message, bubble.global_position, timeout)
+	
+func _change_parent(node: Node2D, new_parent):
+	var old_position = node.global_position
+	node.get_parent().remove_child(node)
+	new_parent.add_child(node)
+	node.global_position = old_position
+	
+
 func say_no_more():
-	bubble.visible = false
-	bubble_background.visible = false
+	BubbleManager.hide_my_bubble(self)
 
 
 func _on_MessageShowTimer_timeout():
