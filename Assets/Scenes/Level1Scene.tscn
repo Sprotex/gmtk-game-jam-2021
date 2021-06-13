@@ -31,37 +31,33 @@
 size = 49
 font_data = ExtResource( 16 )
 
-[node name="LevelScene2" type="Node"]
+[node name="LevelScene" type="Node"]
 script = ExtResource( 10 )
 level_name = "level1"
 timeline = "time;from;to;override_message1
 8:00;Nora;Judy;
 8:30;Otto;Chad;
 9:00;Chad;Judy;
-9:22;Nora;Otto;
-9:27;Nora;Chad;
+9:29;Nora;Chad;
+9:55;Nora;Judy;
 10:00;Otto;Judy;
-10:30;Judy;Otto;
+10:30;Nora;Otto;
 11:00;Chad;Otto;
 11:00;Chad;Judy;
-11:00;Chad;Nora;
 11:45;Otto;Nora;
 13:00;Judy;Nora;
-13:30;Otto;Chad;
-13:33;Judy;Nora;
+13:31;Otto;Chad;
 13:59;Chad;Otto;
-14:03;Judy;Otto;
+14:08;Judy;Otto;
 14:33;Otto;Judy;
-14:43;Judy;Chad;
 15:00;Otto;Chad;
 15:07;Judy;Otto;
-15:17;Nora;Judy;
-15:31;Nora;Chad;
-15:32;Otto;Nora;
-15:45;Judy;Nora;
-16:00;Chad;Nora;
-16:21;Otto;Nora;
-16:33;Otto;Judy;"
+15:32;RANDOM;RANDOM;
+15:45;RANDOM;RANDOM;
+16:20;RANDOM;RANDOM;
+16:39;RANDOM;RANDOM;
+"
+tutorial = true
 
 [node name="Back Black" type="ColorRect" parent="."]
 modulate = Color( 0, 0, 0, 1 )

@@ -46,6 +46,7 @@ var anger_to_messages = [
 		"I swear, {name}, reply to me or else!",
 		"I will find somebody else named {name}, wait and see!",
 		"{name}, would you reply faster if the office was on fire?",
+		"Ignore me more and stuff is gonna go down, {name}!"
 	]
 ]
 var request_messages = [
@@ -57,7 +58,7 @@ var request_messages = [
 	"Please, {name}, how do I open e-mail?;Here is a video that explains it|Just left-click it|You just sent me one, wtf?",
 	"{name}, can you erase the pictures I sent you?;Already did|No, I am uploading them online|No, they may come handy",
 	"Would you like to have a drink someday, {name}?;What about right now?|Yeah, but not today|Not really, mate.",
-	"Yo {name}, check out this sick website!;Hey, nice|Thanks, I hate it|I am too busy, sorry",
+	"Yo {name}, check out this sick website!;Nice, did you make it yourself?|Thanks, I hate it|Don't interupt me from work",
 	"Please like and subscribe on my video, {name}!;Never!|Sure|I don't believe in the internet",
 	"Did you get this e-mail {name}? Please reply.;Reply|Yes|Please stop sending me chain e-mails",
 	"Will you forgive for what I did, {name}?;All is forgiven|Already got my revenge|I don't think I can",
@@ -66,6 +67,13 @@ var request_messages = [
 	"Would you like to stay friends, {name}?;We are not friends.|I wanted more than friends|Okay, let's be friends",
 	"Share this pic on your page, {name}!;Share it yourself first|Haha, sure|I don't know how to do that",
 	"{name} pls, how do you spell your name?;Like just wrote it|{my_name}, but the {random_letter_of_my_name} is silent|{my_name} McShobobolama|{my_name}-san",
+	"Who is {name}?;Me is... I am {my_name}|Seriously? We know each other from high school.|I don't know, but you are {name}",
+	"Who do you think should run this company, {name}?;{random_name} should run this company|Well, not {name}...|Anybody except {random_name}, for sure",
+	"What is this company actually doing, {name}?;I don't know, I just text people|I don't care|Better not ask questions or you'll get fired",
+	"I need to perform cable test to {name};Cable attached, message received|I got your message after a guy plugged me in",
+	"Help {name}, I appear to be disconnected;Yeah, a guy here keeps disconnecting people|I got problems too|Call the IT guy to fix it",
+	"Hey {name}, I haven't heard from you forever!;Yes, I talked to you last at 8:00|I know, I missed you too|How about we go to lunch someday?",
+	"{name}, what time is it?;I dunno, why is the clock by the stairs?|Showtime!|Doesn't matter, it keeps changing awfully fast"
 ]
 var thanks_messages = [
 	"Well, finally!",
@@ -93,6 +101,7 @@ var lunch_messages = [
 	"Is that free pizza over there? brb, {name}.",
 	"Did I leave the oven on? See you later, {name}.",
 	"I will get a beer, {name}, chill on this.",
+	"I will go to lunch before I lose my senses, {name}!"
 ]
 
 class MessageRequest:
@@ -119,7 +128,8 @@ class MessageRequest:
 			"name": from,
 			"my_name": to,
 			"my_name_lower": to.to_lower(),
-			"random_letter_of_my_name": to[randi() % len(to)]
+			"random_letter_of_my_name": to[randi() % len(to)],
+			"random_name": LevelManager.workers.keys()[randi() % len(LevelManager.workers.keys())]
 		})
 
 signal on_message_delivered

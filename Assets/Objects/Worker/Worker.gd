@@ -121,7 +121,7 @@ class Problem:
 		
 	func is_solved():
 		if LevelManager.workers[to].at_lunch:
-			false
+			return false
 		return progress == 1.0
 
 
@@ -181,6 +181,15 @@ func work(delta: float):
 	
 	var prev_anger = anger
 	anger += 2 * ANGER_INCREMENT * delta
+	
+	if LevelManager.tutorial:
+		if LevelManager.score < 1 and anger > 0.5:
+			anger = 0.5
+		elif LevelManager.score < 2 and anger > 1.5:
+			anger = 1.5
+		elif LevelManager.score >= 2:
+			anger -= 0.5 * ANGER_INCREMENT * delta
+	
 	if anger >= 5:
 		MessageManager.emit_signal("on_message_timedout")
 		return
