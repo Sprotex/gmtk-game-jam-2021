@@ -11,5 +11,8 @@ func show_error(text: String):
 	var position = LevelManager.player_reference.global_position
 	position.y -= 50
 	error_instance.set_global_position(position)
-	LevelManager.scene.add_child(error_instance)
+	if LevelManager.error_messages != null:
+		LevelManager.error_messages.add_child(error_instance)
+	else:
+		LevelManager.scene.add_child(error_instance)
 	sound_system.deny.play_event()

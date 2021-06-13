@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Assets/Objects/UI/GameOverUI/GameOverUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Objects/UI/ScoreUI/ScoreUI.tscn" type="PackedScene" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://Textures/NameplateJosh.png" type="Texture" id=23]
 [ext_resource path="res://Textures/NameplateBob.png" type="Texture" id=24]
 [ext_resource path="res://Textures/NameplateCEO.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Objects/ErrorMessage/ErrorMessagesRegisterer.gd" type="Script" id=26]
 
 [sub_resource type="DynamicFont" id=1]
 size = 49
@@ -309,6 +310,9 @@ position = Vector2( 934.342, 320.165 )
 
 [node name="Node_3" type="Node2D" parent="PathNodes"]
 position = Vector2( 838.234, 223.733 )
+
+[node name="ErrorMessages" type="Node2D" parent="."]
+script = ExtResource( 26 )
 
 [node name="CameraRelative" type="Node2D" parent="."]
 position = Vector2( 662.829, 138.98 )
