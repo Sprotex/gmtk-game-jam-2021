@@ -35,6 +35,7 @@ var anger_to_messages = [
 		"Wake up, sheeple and {name}!",
 		"If you don't reply, {name}, I don't think I can help you.",
 		"Are you messing with me, {name}?",
+		"I could have a hundred {name}s and the job wouldn't be done"
 	],
 	[ # Anger 4 (last warning)
 		"Last chance or {name} is no more",
@@ -50,7 +51,7 @@ var anger_to_messages = [
 	]
 ]
 var request_messages = [
-	"Hey {name}, can you help me open this file?;Just left-click it|Sure|Here is a video that explains it",
+	"Hey {name}, can you help me open this file?;Just left-click it|Sure, I got a PhD in opening files|Here is a video that explains it",
 	"{name}, what is your e-mail address?;It's {my_name_lower}.company.co|me@{my_name_lower}.com|{my_name_lower}@shady.video",
 	"How are you doing, {name}?;Good, you?|Bad, you?|Alright, alright, alright.",
 	"Heyyy {name}, I need you to work on Saturday;I would rather quit|No problem|Again?!",
@@ -61,19 +62,20 @@ var request_messages = [
 	"Yo {name}, check out this sick website!;Nice, did you make it yourself?|Thanks, I hate it|Don't interupt me from work",
 	"Please like and subscribe on my video, {name}!;Never!|Sure|I don't believe in the internet",
 	"Did you get this e-mail {name}? Please reply.;Reply|Yes|Please stop sending me chain e-mails",
-	"Will you forgive for what I did, {name}?;All is forgiven|Already got my revenge|I don't think I can",
+	"Will you forgive me for what I did, {name}?;All is forgiven|We do not forget or forgive|I don't think I can",
 	"Do you even love me, {name}?;I love you always|New PC, who dis?|I never did",
 	"Can we stop hating each other, {name}?;I like hating people|I don't hate you, you hate me?|Yeah, sure",
 	"Would you like to stay friends, {name}?;We are not friends.|I wanted more than friends|Okay, let's be friends",
 	"Share this pic on your page, {name}!;Share it yourself first|Haha, sure|I don't know how to do that",
 	"{name} pls, how do you spell your name?;Like just wrote it|{my_name}, but the {random_letter_of_my_name} is silent|{my_name} McShobobolama|{my_name}-san",
 	"Who is {name}?;Me is... I am {my_name}|Seriously? We know each other from high school.|I don't know, but you are {name}",
-	"Who do you think should run this company, {name}?;{random_name} should run this company|Well, not {name}...|Anybody except {random_name}, for sure",
+	"Who do you think should run this company, {name}?;{random_name} should run this company|Your momma|Anybody except {random_name}, for sure",
 	"What is this company actually doing, {name}?;I don't know, I just text people|I don't care|Better not ask questions or you'll get fired",
 	"I need to perform cable test to {name};Cable attached, message received|I got your message after a guy plugged me in",
 	"Help {name}, I appear to be disconnected;Yeah, a guy here keeps disconnecting people|I got problems too|Call the IT guy to fix it",
 	"Hey {name}, I haven't heard from you forever!;Yes, I talked to you last at 8:00|I know, I missed you too|How about we go to lunch someday?",
-	"{name}, what time is it?;I dunno, why is the clock by the stairs?|Showtime!|Doesn't matter, it keeps changing awfully fast"
+	"{name}, what time is it?;Ask the genius who put the clock in the staircase|Showtime!|Doesn't matter, it keeps changing awfully fast",
+	"{name}, oh wherefore art thou {name}?!;My parents|I will change it if you insist|It's still better to be {my_name} than {random_name}|It was the name written on this desk"
 ]
 var thanks_messages = [
 	"Well, finally!",
@@ -101,7 +103,9 @@ var lunch_messages = [
 	"Is that free pizza over there? brb, {name}.",
 	"Did I leave the oven on? See you later, {name}.",
 	"I will get a beer, {name}, chill on this.",
-	"I will go to lunch before I lose my senses, {name}!"
+	"I will go to lunch before I lose my senses, {name}!",
+	"Brb {name}, trying to find the limits of my anger!",
+	"I need to punch a tree, brb {name}!"
 ]
 
 class MessageRequest:

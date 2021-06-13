@@ -289,6 +289,13 @@ margin_top = -329.632
 margin_right = 737.664
 margin_bottom = -329.632
 
+[node name="GameOverUI" parent="CameraRelative" instance=ExtResource( 25 )]
+margin_left = -767.519
+margin_top = -452.798
+margin_right = -767.519
+margin_bottom = -452.798
+rect_scale = Vector2( 1.5, 1.5 )
+
 [node name="PathNodes" type="Node" parent="."]
 script = ExtResource( 9 )
 
@@ -352,8 +359,6 @@ __meta__ = {
 wait_time = 2.0
 one_shot = true
 autostart = true
-
-[node name="GameOverUI" parent="." instance=ExtResource( 25 )]
 
 [connection signal="timeout" from="Overlays/ScreenLabel/Timer" to="Overlays/ScreenLabel" method="_on_Timer_timeout"]
 
