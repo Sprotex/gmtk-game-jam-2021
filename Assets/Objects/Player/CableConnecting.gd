@@ -63,6 +63,8 @@ func _connect_cable(id):
 				port.connect_cable(null)
 				cable.stop_drawing()
 				emit_signal("on_gain_cable")
+			else:
+				ErrorManager.show_error("This port is full")
 	elif not port.is_empty(): # can plug out occupied port
 		_unplug_cable(port.cable, port)
 	else:

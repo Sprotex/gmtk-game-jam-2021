@@ -32,6 +32,7 @@ font_data = ExtResource( 10 )
 
 [node name="LevelScene" type="Node"]
 script = ExtResource( 16 )
+level_music = 2
 timeline = "time;from;to;override_message1
 8:00;Nora;Bob;Hey, {name}, can you hear me from the tower?
 8:30;Andy;CEO;I can see you, {name}, do you read me?
@@ -325,6 +326,13 @@ margin_top = -216.24
 margin_right = -610.452
 margin_bottom = -216.24
 
+[node name="GameOverUI" parent="CameraRelative" instance=ExtResource( 1 )]
+margin_left = -767.519
+margin_top = -452.798
+margin_right = -767.519
+margin_bottom = -452.798
+rect_scale = Vector2( 1.5, 1.5 )
+
 [node name="Overlays" type="Node2D" parent="."]
 position = Vector2( 0, -300 )
 scale = Vector2( 1.5, 1.5 )
@@ -375,10 +383,4 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="GameOverUI" parent="Overlays" instance=ExtResource( 1 )]
-margin_top = 0.438675
-margin_bottom = 0.438675
-
 [connection signal="timeout" from="Overlays/ScreenLabel/Timer" to="Overlays/ScreenLabel" method="_on_Timer_timeout"]
-
-[editable path="Overlays/GameOverUI"]
