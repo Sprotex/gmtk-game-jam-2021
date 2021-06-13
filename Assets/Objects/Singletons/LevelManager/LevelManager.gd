@@ -9,18 +9,15 @@ var workstations: Dictionary
 func _ready():
 	reset()
 
-
 func reset():
 	workers = {}
 	workstations = {} 
-
 
 var scene_sequence = [
 	'res://Assets/Scenes/Level1Scene.tscn',
 	'res://Assets/Scenes/Level2Scene.tscn',
 ]
 var _current_scene_index = 0
-
 
 func go_to_next_scene():
 	_current_scene_index += 1
