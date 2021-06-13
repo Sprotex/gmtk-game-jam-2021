@@ -13,6 +13,7 @@ func _ready():
 	reset()
 
 func reset():
+	randomize()
 	workers = {}
 	workstations = {}
 	camera = null

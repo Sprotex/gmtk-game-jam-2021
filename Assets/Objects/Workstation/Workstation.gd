@@ -30,6 +30,7 @@ func search(closed: Array, prev: Dictionary, receiver_name: String) -> bool:
 			if not port.is_empty():
 				cables.append(port.cable)
 		for cable in cables:
+			if cable == null: continue
 			if not prev.has(cable):
 				prev[cable] = self
 			var _cable_connections = ""

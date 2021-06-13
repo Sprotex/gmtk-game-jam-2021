@@ -5,6 +5,8 @@ const EPS: float = 0.01
 # anger increment per second of being unsatisfied
 const ANGER_INCREMENT = 0.15
 
+export (bool) var walk_while_working = false
+
 onready var messageShowTimer: Timer = $MessageShowTimer
 onready var bubble: Node2D = $Bubble
 onready var message_manager = get_node("/root/MessageManager")
@@ -17,6 +19,15 @@ var anger = 0
 var _work_location: Vector2 = Vector2.INF
 var lunch_break_start
 var at_lunch = false
+var next_walk_location: Vector2 = Vector2.INF
+var walk_cooldown: float = 5.0
+var walk_locations = [
+	Vector2(1198.364, 222),
+	Vector2(198.775, 222),
+	Vector2(316.374, 482),
+	Vector2(1143.128, 482),
+	Vector2(1421.088, 482)
+]
 
 class MsgQueueElement:
 	var msg: String
@@ -144,7 +155,7 @@ func _process(delta: float):
 	
 	var time = TimeManager.current_time()
 	if time < lunch_break_start or (time > lunch_break_start + 1 and time < 17):
-		if global_position.distance_squared_to(get_work_location()) > EPS:
+		if not walk_while_working and global_position.distance_squared_to(get_work_location()) > EPS:
 			go_to_work(delta)
 		else:
 			at_lunch = false
@@ -162,6 +173,8 @@ func go_to_work(delta: float):
 	GlobalNavigation.navigate(self, get_work_location(), MOVE_SPEED, delta)
 
 func work(delta: float):
+	if walk_while_working:
+		work_walk(delta)
 	if len(_problems) == 0: return
 	# TODO problem solving
 	var problem: Problem = _problems[0]
@@ -176,6 +189,8 @@ func work(delta: float):
 		LevelManager.workers[problem.to].say_text(problem.reply_message, 2.0)
 		_problems.pop_front()
 		MessageManager.emit_signal("on_message_delivered")
+		if anger > 1:
+			anger -= 1
 		next_will_fail = false
 		return
 	
@@ -201,6 +216,18 @@ func work(delta: float):
 		else:
 			msg = MessageManager.pick_anger_message(problem.to, int(anger))
 		say_text(msg)
+
+
+func work_walk(delta: float):
+	if walk_cooldown <= 0 or next_walk_location == Vector2.INF:
+		next_walk_location = walk_locations[randi() % len(walk_locations)]
+		walk_cooldown = 5 + rand_range(0, 10)
+		
+	if next_walk_location.distance_squared_to(global_position) > EPS:
+		GlobalNavigation.navigate(self, next_walk_location, MOVE_SPEED, delta)
+	else:
+		walk_cooldown -= delta
+
 
 func go_home(delta: float):
 	say_no_more()
