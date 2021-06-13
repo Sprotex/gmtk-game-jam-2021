@@ -327,6 +327,7 @@ margin_top = -501.54
 margin_right = 703.163
 margin_bottom = 98.4607
 rect_scale = Vector2( 2, 2 )
+mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 script = ExtResource( 21 )
 __meta__ = {
@@ -338,6 +339,7 @@ __meta__ = {
 [node name="ScreenLabel" type="ColorRect" parent="Overlays"]
 margin_right = 1024.0
 margin_bottom = 600.0
+mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 script = ExtResource( 17 )
 __meta__ = {
